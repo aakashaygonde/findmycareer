@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -6,10 +7,10 @@ import { Send, Bot, User } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ChatMessage } from '@/types';
 import { v4 as uuidv4 } from 'uuid';
-import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/components/ui/use-toast';
+import { careerAdvice, getAdvisorResponse } from '@/lib/career-advisor-data';
 
-// Mock data for initial chat
+// Initial welcome message
 const initialMessages: ChatMessage[] = [
   {
     id: '1',
@@ -24,6 +25,7 @@ const AssessmentChat: React.FC = () => {
   const [messages, setMessages] = useState<ChatMessage[]>(initialMessages);
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+  const [assessmentStage, setAssessmentStage] = useState(1);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
 
@@ -49,50 +51,44 @@ const AssessmentChat: React.FC = () => {
     setIsTyping(true);
 
     try {
-      // Get all messages except the initial bot message to keep context manageable
-      const conversationHistory = messages.length > 1 
-        ? messages.slice(1) 
-        : [];
+      // Simulate network delay
+      await new Promise(resolve => setTimeout(resolve, 700 + Math.random() * 1200));
       
-      // Add the new user message to the history
-      const fullHistory = [...conversationHistory, userMessage];
+      // Get conversation history
+      const conversationHistory = messages.slice(Math.max(0, messages.length - 5));
       
-      // Call the Supabase Edge Function
-      const { data, error } = await supabase.functions.invoke('career-advisor', {
-        body: { 
-          message: messageContent,
-          conversationHistory: fullHistory 
-        },
-      });
-
-      if (error) {
-        console.error('Error calling career-advisor function:', error);
-        throw new Error(error.message);
-      }
-
+      // Get response based on improved local algorithm
+      const response = getAdvisorResponse(messageContent, conversationHistory, assessmentStage);
+      
       // Add bot response
       const botResponse: ChatMessage = {
         id: uuidv4(),
         sender: 'bot',
-        message: data.message,
+        message: response.message,
         timestamp: new Date(),
-        options: data.options
+        options: response.options
       };
       
       setMessages(prev => [...prev, botResponse]);
+      
+      // Update assessment stage if applicable
+      if (response.advanceStage) {
+        setAssessmentStage(prev => prev + 1);
+      }
+      
     } catch (error) {
-      console.error('Error getting AI response:', error);
+      console.error('Error getting response:', error);
       toast({
         title: "Error",
         description: "Failed to get a response from the career advisor. Please try again.",
         variant: "destructive"
       });
       
-      // Fallback response if API fails
+      // Fallback response if something fails
       const fallbackResponse: ChatMessage = {
         id: uuidv4(),
         sender: 'bot',
-        message: "I'm sorry, I'm having trouble connecting to my knowledge base. Could you please try again in a moment?",
+        message: "I'm sorry, I'm having trouble processing your request. Could you please try again with a different question?",
         timestamp: new Date()
       };
       
