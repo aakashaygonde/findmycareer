@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Layout from '@/components/Layout';
@@ -166,25 +167,28 @@ const Index: React.FC = () => {
         </div>
       </section>
       
-      <section className="py-20 bg-muted/50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl font-bold mb-6">Join Thousands of Successful Professionals</h2>
-            <p className="text-xl text-muted-foreground mb-10">
-              Our platform has helped people from all backgrounds find fulfilling careers that match their skills and passions.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Link to="/auth">
-                <Button size="lg" className="px-8">Get Started for Free</Button>
-              </Link>
-              <Button size="lg" variant="outline" className="px-8">Learn More</Button>
+      {!user && (
+        <section className="py-20 bg-muted/50">
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mx-auto text-center">
+              <h2 className="text-3xl font-bold mb-6">Join Thousands of Successful Professionals</h2>
+              <p className="text-xl text-muted-foreground mb-10">
+                Our platform has helped people from all backgrounds find fulfilling careers that match their skills and passions.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row justify-center gap-4">
+                <Link to="/auth">
+                  <Button size="lg" className="px-8">Get Started for Free</Button>
+                </Link>
+                <Button size="lg" variant="outline" className="px-8">Learn More</Button>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
     </Layout>
   );
 };
 
 export default Index;
+
