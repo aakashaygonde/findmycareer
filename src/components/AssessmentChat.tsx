@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -7,6 +6,8 @@ import { Send, Bot, User } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ChatMessage } from '@/types';
 import { v4 as uuidv4 } from 'uuid';
+import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/components/ui/use-toast';
 
 // Mock data for initial chat
 const initialMessages: ChatMessage[] = [
@@ -24,13 +25,14 @@ const AssessmentChat: React.FC = () => {
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const { toast } = useToast();
 
   // Auto-scroll to bottom when messages change
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
-  const handleSendMessage = (text?: string) => {
+  const handleSendMessage = async (text?: string) => {
     const messageContent = text || inputValue;
     if (!messageContent.trim()) return;
 
@@ -46,44 +48,58 @@ const AssessmentChat: React.FC = () => {
     setInputValue('');
     setIsTyping(true);
 
-    // Simulate bot response after a delay
-    setTimeout(() => {
-      let botResponse: ChatMessage;
+    try {
+      // Get all messages except the initial bot message to keep context manageable
+      const conversationHistory = messages.length > 1 
+        ? messages.slice(1) 
+        : [];
       
-      // Very simple mock logic for bot responses based on user input
-      if (messageContent.toLowerCase().includes('technology') || 
-          messageContent.toLowerCase().includes('tech') ||
-          messageContent.toLowerCase().includes('coding')) {
-        botResponse = {
-          id: uuidv4(),
-          sender: 'bot',
-          message: "Great! Technology is a growing field with many opportunities. What specific aspects of technology interest you the most?",
-          timestamp: new Date(),
-          options: ['Software Development', 'Data Science', 'Cybersecurity', 'UI/UX Design', 'Cloud Computing']
-        };
-      } else if (messageContent.toLowerCase().includes('creative') || 
-                messageContent.toLowerCase().includes('art') ||
-                messageContent.toLowerCase().includes('design')) {
-        botResponse = {
-          id: uuidv4(),
-          sender: 'bot',
-          message: "Creative fields offer many ways to express yourself professionally. Which creative areas are you most drawn to?",
-          timestamp: new Date(),
-          options: ['Graphic Design', 'Content Creation', 'Photography', 'Animation', 'Fashion Design']
-        };
-      } else {
-        botResponse = {
-          id: uuidv4(),
-          sender: 'bot',
-          message: "Thanks for sharing! Now, let's talk about your education level. What's your highest level of education completed or in progress?",
-          timestamp: new Date(),
-          options: ['High School', 'Some College', 'Bachelor\'s Degree', 'Master\'s Degree', 'PhD or Doctorate']
-        };
+      // Add the new user message to the history
+      const fullHistory = [...conversationHistory, userMessage];
+      
+      // Call the Supabase Edge Function
+      const { data, error } = await supabase.functions.invoke('career-advisor', {
+        body: { 
+          message: messageContent,
+          conversationHistory: fullHistory 
+        },
+      });
+
+      if (error) {
+        console.error('Error calling career-advisor function:', error);
+        throw new Error(error.message);
       }
+
+      // Add bot response
+      const botResponse: ChatMessage = {
+        id: uuidv4(),
+        sender: 'bot',
+        message: data.message,
+        timestamp: new Date(),
+        options: data.options
+      };
       
       setMessages(prev => [...prev, botResponse]);
+    } catch (error) {
+      console.error('Error getting AI response:', error);
+      toast({
+        title: "Error",
+        description: "Failed to get a response from the career advisor. Please try again.",
+        variant: "destructive"
+      });
+      
+      // Fallback response if API fails
+      const fallbackResponse: ChatMessage = {
+        id: uuidv4(),
+        sender: 'bot',
+        message: "I'm sorry, I'm having trouble connecting to my knowledge base. Could you please try again in a moment?",
+        timestamp: new Date()
+      };
+      
+      setMessages(prev => [...prev, fallbackResponse]);
+    } finally {
       setIsTyping(false);
-    }, 1500);
+    }
   };
 
   const handleOptionClick = (option: string) => {
