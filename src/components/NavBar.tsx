@@ -3,13 +3,23 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useIsMobile } from '@/hooks/use-mobile';
-import { Menu, X, User, BarChart, MessageSquare, Home } from 'lucide-react';
+import { Menu, X, User, BarChart, MessageSquare, Home, LogOut } from 'lucide-react';
+import { useAuth } from '@/context/AuthContext';
+import { 
+  DropdownMenu, 
+  DropdownMenuContent, 
+  DropdownMenuItem, 
+  DropdownMenuSeparator, 
+  DropdownMenuTrigger 
+} from '@/components/ui/dropdown-menu';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 
 const NavBar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const isMobile = useIsMobile();
   const location = useLocation();
+  const { user, signOut } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,11 +36,14 @@ const NavBar: React.FC = () => {
   }, [location.pathname]);
 
   const navLinks = [
-    { name: 'Home', path: '/', icon: <Home className="w-4 h-4 mr-2" /> },
-    { name: 'Assessment', path: '/assessment', icon: <MessageSquare className="w-4 h-4 mr-2" /> },
-    { name: 'Dashboard', path: '/dashboard', icon: <BarChart className="w-4 h-4 mr-2" /> },
-    { name: 'Profile', path: '/profile', icon: <User className="w-4 h-4 mr-2" /> }
+    { name: 'Home', path: '/', icon: <Home className="w-4 h-4 mr-2" />, requiresAuth: false },
+    { name: 'Assessment', path: '/assessment', icon: <MessageSquare className="w-4 h-4 mr-2" />, requiresAuth: true },
+    { name: 'Dashboard', path: '/dashboard', icon: <BarChart className="w-4 h-4 mr-2" />, requiresAuth: true },
+    { name: 'Profile', path: '/profile', icon: <User className="w-4 h-4 mr-2" />, requiresAuth: true }
   ];
+
+  // Filter nav links based on auth status
+  const filteredNavLinks = navLinks.filter(link => !link.requiresAuth || user);
 
   return (
     <header className={`sticky top-0 z-40 w-full transition-all duration-200 ${
@@ -54,7 +67,7 @@ const NavBar: React.FC = () => {
           {/* Desktop Navigation */}
           {!isMobile && (
             <nav className="hidden md:flex items-center space-x-1">
-              {navLinks.map((link) => (
+              {filteredNavLinks.map((link) => (
                 <Link 
                   key={link.path}
                   to={link.path}
@@ -70,9 +83,44 @@ const NavBar: React.FC = () => {
                   </span>
                 </Link>
               ))}
-              <div className="ml-4">
-                <Button>Get Started</Button>
-              </div>
+              
+              {!user ? (
+                <Link to="/auth">
+                  <Button>Get Started</Button>
+                </Link>
+              ) : (
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="ghost" className="relative h-8 w-8 rounded-full">
+                      <Avatar className="h-8 w-8">
+                        <AvatarFallback className="bg-primary text-primary-foreground">
+                          {user.email?.charAt(0).toUpperCase()}
+                        </AvatarFallback>
+                      </Avatar>
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="w-56" align="end" forceMount>
+                    <div className="flex flex-col space-y-1 p-2">
+                      <p className="text-sm font-medium leading-none">{user.email}</p>
+                    </div>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem asChild>
+                      <Link to="/profile" className="cursor-pointer w-full">
+                        <User className="mr-2 h-4 w-4" />
+                        <span>Profile</span>
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem
+                      className="cursor-pointer text-red-500 focus:text-red-500"
+                      onClick={() => signOut()}
+                    >
+                      <LogOut className="mr-2 h-4 w-4" />
+                      <span>Log out</span>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              )}
             </nav>
           )}
 
@@ -99,7 +147,7 @@ const NavBar: React.FC = () => {
         <div className="absolute top-16 left-0 right-0 bg-background border-b shadow-lg animate-slide-down">
           <div className="container px-4 py-4">
             <nav className="flex flex-col space-y-2">
-              {navLinks.map((link) => (
+              {filteredNavLinks.map((link) => (
                 <Link
                   key={link.path}
                   to={link.path}
@@ -115,9 +163,28 @@ const NavBar: React.FC = () => {
                   </span>
                 </Link>
               ))}
-              <div className="pt-2">
-                <Button className="w-full">Get Started</Button>
-              </div>
+              
+              {!user ? (
+                <div className="pt-2">
+                  <Link to="/auth" className="w-full">
+                    <Button className="w-full">Get Started</Button>
+                  </Link>
+                </div>
+              ) : (
+                <div className="border-t mt-2 pt-2">
+                  <div className="px-4 py-2 text-sm">
+                    Signed in as: <span className="font-semibold">{user.email}</span>
+                  </div>
+                  <Button 
+                    variant="outline" 
+                    className="w-full mt-2 text-red-500 border-red-200 hover:bg-red-50"
+                    onClick={() => signOut()}
+                  >
+                    <LogOut className="mr-2 h-4 w-4" />
+                    Log Out
+                  </Button>
+                </div>
+              )}
             </nav>
           </div>
         </div>
