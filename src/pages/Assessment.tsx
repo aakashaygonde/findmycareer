@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { ArrowLeft, InfoIcon, Clock, Lightbulb, BadgeHelp } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
-const AssessmentChat = lazy(() => import('@/components/AssessmentChat'));
+const AssessmentChat = lazy(() => import('@/components/assessment/AssessmentChat'));
 
 const Assessment: React.FC = () => {
   const navigate = useNavigate();
