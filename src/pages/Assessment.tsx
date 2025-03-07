@@ -1,27 +1,38 @@
-
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import Layout from '@/components/Layout';
-import AssessmentChat from '@/components/AssessmentChat';
 import { Progress } from '@/components/ui/progress';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, InfoIcon, Clock, Lightbulb, BadgeHelp } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
+const AssessmentChat = lazy(() => import('@/components/AssessmentChat'));
+
 const Assessment: React.FC = () => {
   const navigate = useNavigate();
   const [progress, setProgress] = React.useState(20);
+  const [isLoading, setIsLoading] = React.useState(true);
 
-  // Simulate progress update based on chat interactions
   React.useEffect(() => {
-    const timer = setTimeout(() => {
-      if (progress < 80) {
-        setProgress(progress + 10);
-      }
-    }, 5000);
+    const initialTimer = setTimeout(() => {
+      setIsLoading(false);
+    }, 300);
     
-    return () => clearTimeout(timer);
-  }, [progress]);
+    const progressTimer = setInterval(() => {
+      setProgress(prev => {
+        if (prev < 80) {
+          return prev + 5;
+        }
+        clearInterval(progressTimer);
+        return prev;
+      });
+    }, 10000);
+    
+    return () => {
+      clearTimeout(initialTimer);
+      clearInterval(progressTimer);
+    };
+  }, []);
 
   return (
     <Layout className="py-8">
@@ -58,7 +69,16 @@ const Assessment: React.FC = () => {
       
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2">
-          <AssessmentChat />
+          <Suspense fallback={
+            <div className="h-[600px] flex items-center justify-center border rounded-lg bg-background/50 animate-pulse">
+              <div className="text-center">
+                <Clock className="h-12 w-12 mx-auto text-muted-foreground animate-spin" />
+                <p className="mt-4 text-muted-foreground">Loading Assessment Chat...</p>
+              </div>
+            </div>
+          }>
+            <AssessmentChat />
+          </Suspense>
         </div>
         
         <div>

@@ -1,5 +1,5 @@
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, memo } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -11,7 +11,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { useToast } from '@/components/ui/use-toast';
 import { careerAdvice, getAdvisorResponse } from '@/lib/career-advisor-data';
 
-// Initial welcome message
+// Initial welcome message - memoized to prevent re-creation
 const initialMessages: ChatMessage[] = [
   {
     id: '1',
@@ -21,6 +21,84 @@ const initialMessages: ChatMessage[] = [
     options: ['Technology', 'Creative Arts', 'Business', 'Science', 'Healthcare', 'Education', 'Social Services']
   }
 ];
+
+// Memoize individual message components for better performance
+const ChatMessageItem = memo(({ message }: { message: ChatMessage }) => {
+  return (
+    <div
+      className={cn(
+        "flex w-max max-w-[85%] animate-scale-in",
+        message.sender === 'user' ? "ml-auto" : "mr-auto"
+      )}
+    >
+      <Card
+        className={cn(
+          "px-4 py-3 shadow-sm transition-all",
+          message.sender === 'user'
+            ? "bg-primary text-primary-foreground"
+            : "bg-card"
+        )}
+      >
+        <div className="flex items-center space-x-2 mb-1">
+          {message.sender === 'bot' ? (
+            <Bot className="h-4 w-4" />
+          ) : (
+            <User className="h-4 w-4" />
+          )}
+          <span className="text-xs font-medium">
+            {message.sender === 'bot' ? 'Career Advisor' : 'You'}
+          </span>
+          <span className="text-xs opacity-70">
+            {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+          </span>
+        </div>
+        <div className="whitespace-pre-wrap">{message.message}</div>
+        
+        {message.options && (
+          <div className="mt-3 flex flex-wrap gap-2">
+            {message.options.map((option) => (
+              <Button
+                key={option}
+                variant="outline"
+                size="sm"
+                className={cn(
+                  "text-xs transition-all hover:scale-105",
+                  message.sender === 'bot' ? "bg-background hover:bg-background/80" : ""
+                )}
+                onClick={() => {}}
+              >
+                {option}
+              </Button>
+            ))}
+          </div>
+        )}
+      </Card>
+    </div>
+  );
+});
+
+ChatMessageItem.displayName = 'ChatMessageItem';
+
+// Options buttons component - memoized
+const OptionButtons = memo(({ options, onOptionClick }: { options: string[], onOptionClick: (option: string) => void }) => {
+  return (
+    <div className="mt-3 flex flex-wrap gap-2">
+      {options.map((option) => (
+        <Button
+          key={option}
+          variant="outline"
+          size="sm"
+          className="text-xs transition-all hover:scale-105 bg-background hover:bg-background/80"
+          onClick={() => onOptionClick(option)}
+        >
+          {option}
+        </Button>
+      ))}
+    </div>
+  );
+});
+
+OptionButtons.displayName = 'OptionButtons';
 
 const AssessmentChat: React.FC = () => {
   const [messages, setMessages] = useState<ChatMessage[]>(initialMessages);
@@ -32,10 +110,19 @@ const AssessmentChat: React.FC = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const { toast } = useToast();
+  
+  // Memoize frequently accessed data
+  const latestMessages = React.useMemo(() => {
+    return messages.slice(-5);
+  }, [messages]);
 
-  // Auto-scroll to bottom when messages change
+  // Auto-scroll to bottom when messages change - optimized
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (messagesEndRef.current) {
+      requestAnimationFrame(() => {
+        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+      });
+    }
   }, [messages]);
 
   // Focus input when component mounts
@@ -70,14 +157,11 @@ const AssessmentChat: React.FC = () => {
     setIsMultiLine(false); // Reset to single line input after sending
 
     try {
-      // Simulate network delay for more natural conversation flow
-      await new Promise(resolve => setTimeout(resolve, 700 + Math.random() * 1000));
+      // Use more minimal delay simulation
+      await new Promise(resolve => setTimeout(resolve, 300 + Math.random() * 300));
       
-      // Get conversation history for context
-      const conversationHistory = messages.slice(Math.max(0, messages.length - 5));
-      
-      // Get response based on improved local algorithm
-      const response = getAdvisorResponse(messageContent, conversationHistory, assessmentStage);
+      // Get response based on improved local algorithm - using memoized messages
+      const response = getAdvisorResponse(messageContent, latestMessages, assessmentStage);
       
       // Add bot response
       const botResponse: ChatMessage = {
@@ -189,17 +273,14 @@ const AssessmentChat: React.FC = () => {
               </div>
               <div className="whitespace-pre-wrap">{msg.message}</div>
               
-              {msg.options && (
+              {msg.options && msg.sender === 'bot' && (
                 <div className="mt-3 flex flex-wrap gap-2">
                   {msg.options.map((option) => (
                     <Button
                       key={option}
                       variant="outline"
                       size="sm"
-                      className={cn(
-                        "text-xs transition-all hover:scale-105",
-                        msg.sender === 'bot' ? "bg-background hover:bg-background/80" : ""
-                      )}
+                      className="text-xs transition-all hover:scale-105 bg-background hover:bg-background/80"
                       onClick={() => handleOptionClick(option)}
                     >
                       {option}
