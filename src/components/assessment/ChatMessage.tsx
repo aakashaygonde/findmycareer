@@ -2,7 +2,7 @@
 import React, { memo } from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Bot, User } from 'lucide-react';
+import { Bot, User, MessageSquare } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ChatMessage } from '@/types';
 
@@ -43,18 +43,24 @@ const ChatMessageItem = memo(({ message, onOptionClick }: ChatMessageItemProps) 
         <div className="whitespace-pre-wrap">{message.message}</div>
         
         {message.options && message.sender === 'bot' && (
-          <div className="mt-3 flex flex-wrap gap-2">
-            {message.options.map((option) => (
-              <Button
-                key={option}
-                variant="outline"
-                size="sm"
-                className="text-xs transition-all hover:scale-105 bg-background hover:bg-background/80"
-                onClick={() => onOptionClick && onOptionClick(option)}
-              >
-                {option}
-              </Button>
-            ))}
+          <div className="mt-3">
+            <div className="flex items-center gap-1 mb-1 text-xs text-muted-foreground">
+              <MessageSquare className="h-3 w-3" />
+              <span>Suggested responses:</span>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {message.options.map((option) => (
+                <Button
+                  key={option}
+                  variant="outline"
+                  size="sm"
+                  className="text-xs py-1 h-auto text-left justify-start transition-all hover:bg-background/80"
+                  onClick={() => onOptionClick && onOptionClick(option)}
+                >
+                  {option}
+                </Button>
+              ))}
+            </div>
           </div>
         )}
       </Card>

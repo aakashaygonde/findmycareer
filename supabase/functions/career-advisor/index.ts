@@ -24,7 +24,19 @@ serve(async (req) => {
     const messages = [
       {
         role: "system",
-        content: "You are a helpful career advisor assistant that provides guidance on career paths, skills, and educational requirements. Your goal is to help users discover career opportunities that match their interests, skills, and aspirations. Be friendly, supportive, and provide specific, actionable advice."
+        content: `You are a helpful career advisor assistant that provides personalized guidance on career paths, skills, and educational requirements. 
+
+Your goal is to help users discover career opportunities that match their interests, skills, and aspirations based on the text they provide. Use the information they share about their interests, skills, values, and preferences to recommend specific careers.
+
+Key guidelines:
+1. Focus on understanding the user's interests from their natural language descriptions rather than just button selections
+2. Analyze their messages to identify potential career matches
+3. Provide specific, actionable advice and career recommendations
+4. Be conversational and ask thoughtful follow-up questions
+5. Offer 2-3 relevant suggested response options in your replies, but don't make these the focus
+6. Include detailed information about recommended careers including skills required and education paths
+
+Be friendly, supportive, and engaging. Avoid being overly rigid or formulaic in your responses.`
       },
       ...conversationHistory.map((msg: any) => ({
         role: msg.sender === 'user' ? 'user' : 'assistant',
@@ -49,7 +61,7 @@ serve(async (req) => {
         model: 'deepseek-chat',
         messages: messages,
         temperature: 0.7,
-        max_tokens: 500
+        max_tokens: 800
       }),
     });
 
@@ -65,16 +77,61 @@ serve(async (req) => {
     // Extract the assistant's message from the response
     const assistantMessage = data.choices[0]?.message?.content || "I'm sorry, I couldn't generate a response.";
     
-    // Check if there are suggested options to show (parsing from the response)
+    // Parse options from the response if present
     let options = [];
-    const optionsMatch = assistantMessage.match(/Options:(.*?)(?:\n\n|$)/s);
+    // Look for options or suggestions in various formats
+    const optionsRegex = /(?:Options|Suggestions|You could|You might):(.*?)(?:\n\n|$)/s;
+    const optionsMatch = assistantMessage.match(optionsRegex);
+    
     if (optionsMatch) {
       const optionText = optionsMatch[1];
       options = optionText.split('\n')
         .map(line => line.trim())
-        .filter(line => line.startsWith('-'))
+        .filter(line => line.startsWith('-') || line.startsWith('*'))
         .map(line => line.substring(1).trim());
     }
+    
+    // If no options were found, try to extract some from the message
+    if (options.length === 0) {
+      // Look for questions that might be good follow-up options
+      const questions = assistantMessage.match(/\?/g);
+      if (questions && questions.length > 0) {
+        // Extract sentences with question marks
+        const sentences = assistantMessage.split(/[.!?]/).filter(s => s.includes('?'));
+        // Take up to 3 shortest questions as options
+        options = sentences
+          .map(s => s.trim())
+          .filter(s => s.length > 10 && s.length < 80)
+          .sort((a, b) => a.length - b.length)
+          .slice(0, 3);
+      }
+    }
+    
+    // If still no options, generate generic ones based on the conversation stage
+    if (options.length === 0) {
+      if (conversationHistory.length < 2) {
+        options = [
+          "Tell me more about your interests",
+          "What skills do you enjoy using?",
+          "What subjects did you excel at in school?"
+        ];
+      } else if (conversationHistory.length < 4) {
+        options = [
+          "Tell me about your ideal work environment",
+          "What values are important to you in a career?",
+          "Would you like specific career recommendations now?"
+        ];
+      } else {
+        options = [
+          "Tell me more about what interests you",
+          "Would you like details about a specific career?",
+          "What other factors are important in your career choice?"
+        ];
+      }
+    }
+
+    // Limit to 3 options to avoid cluttering the UI
+    options = options.slice(0, 3);
 
     return new Response(JSON.stringify({ 
       message: assistantMessage,

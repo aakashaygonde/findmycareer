@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Send, Sparkles } from 'lucide-react';
+import { Send, Sparkles, AlignJustify } from 'lucide-react';
 
 interface ChatInputProps {
   onSendMessage: (message: string) => void;
@@ -34,7 +34,8 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage }) => {
     
     onSendMessage(inputValue);
     setInputValue('');
-    setIsMultiLine(false); // Reset to single line input after sending
+    
+    // Don't reset to single line after sending to encourage detailed responses
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -55,41 +56,47 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage }) => {
         e.preventDefault();
         handleSendMessage();
       }}
-      className="flex space-x-2"
+      className="flex flex-col space-y-2"
     >
-      {isMultiLine ? (
-        <Textarea
-          ref={textareaRef}
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          onKeyDown={handleKeyPress}
-          placeholder="Type your detailed response... (Shift+Enter for new line)"
-          className="flex-1 min-h-[80px] max-h-[150px]"
-        />
-      ) : (
-        <Input
-          ref={inputRef}
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          onKeyDown={handleKeyPress}
-          placeholder="Type your message..."
-          className="flex-1"
-        />
-      )}
-      
-      <Button
-        type="button"
-        size="icon"
-        variant="ghost"
-        onClick={toggleInputMode}
-        title={isMultiLine ? "Switch to single line" : "Switch to multi-line"}
-      >
-        <Sparkles className="h-4 w-4" />
-      </Button>
-      
-      <Button type="submit" size="icon">
-        <Send className="h-4 w-4" />
-      </Button>
+      <div className="text-xs text-muted-foreground px-1">
+        Share details about your interests, skills and preferences for better career recommendations
+      </div>
+      <div className="flex space-x-2">
+        {isMultiLine ? (
+          <Textarea
+            ref={textareaRef}
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            onKeyDown={handleKeyPress}
+            placeholder="Describe your interests, skills, and what you're looking for in a career..."
+            className="flex-1 min-h-[100px] max-h-[200px]"
+          />
+        ) : (
+          <Input
+            ref={inputRef}
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            onKeyDown={handleKeyPress}
+            placeholder="Describe your interests and skills..."
+            className="flex-1"
+          />
+        )}
+        
+        <Button
+          type="button"
+          size="icon"
+          variant="outline"
+          onClick={toggleInputMode}
+          title={isMultiLine ? "Switch to single line" : "Switch to multi-line"}
+          className="flex-shrink-0"
+        >
+          {isMultiLine ? <Sparkles className="h-4 w-4" /> : <AlignJustify className="h-4 w-4" />}
+        </Button>
+        
+        <Button type="submit" size="icon" className="flex-shrink-0">
+          <Send className="h-4 w-4" />
+        </Button>
+      </div>
     </form>
   );
 };
