@@ -5,17 +5,17 @@ import AssessmentChat from '@/components/AssessmentChat';
 import { Progress } from '@/components/ui/progress';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, InfoIcon, Clock } from 'lucide-react';
+import { ArrowLeft, InfoIcon, Clock, Lightbulb, BadgeHelp } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const Assessment: React.FC = () => {
   const navigate = useNavigate();
   const [progress, setProgress] = React.useState(20);
 
-  // Simulate progress update
+  // Simulate progress update based on chat interactions
   React.useEffect(() => {
     const timer = setTimeout(() => {
-      if (progress < 60) {
+      if (progress < 80) {
         setProgress(progress + 10);
       }
     }, 5000);
@@ -67,24 +67,39 @@ const Assessment: React.FC = () => {
               <InfoIcon className="h-5 w-5 text-primary mt-0.5" />
               <div>
                 <h3 className="font-bold">How it works</h3>
-                <p className="text-sm text-muted-foreground">Our AI assistant will ask you questions to understand your interests, skills, and career goals.</p>
+                <p className="text-sm text-muted-foreground">Our AI career advisor will ask questions to understand your interests, skills, and career goals.</p>
               </div>
             </div>
             
             <div className="space-y-4 text-sm">
-              <div>
-                <h4 className="font-medium mb-1">Be honest</h4>
-                <p className="text-muted-foreground">There are no right or wrong answers. Your authentic responses lead to better recommendations.</p>
+              <div className="flex gap-2">
+                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Lightbulb className="h-4 w-4 text-primary" />
+                </div>
+                <div>
+                  <h4 className="font-medium mb-1">Be honest</h4>
+                  <p className="text-muted-foreground">There are no right or wrong answers. Your authentic responses lead to better recommendations.</p>
+                </div>
               </div>
               
-              <div>
-                <h4 className="font-medium mb-1">Take your time</h4>
-                <p className="text-muted-foreground">Consider each question carefully. You can always revisit the assessment later.</p>
+              <div className="flex gap-2">
+                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Clock className="h-4 w-4 text-primary" />
+                </div>
+                <div>
+                  <h4 className="font-medium mb-1">Take your time</h4>
+                  <p className="text-muted-foreground">Consider each question carefully. You can always revisit the assessment later.</p>
+                </div>
               </div>
               
-              <div>
-                <h4 className="font-medium mb-1">Explore options</h4>
-                <p className="text-muted-foreground">Feel free to ask the AI assistant for clarification or more information about specific careers.</p>
+              <div className="flex gap-2">
+                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                  <BadgeHelp className="h-4 w-4 text-primary" />
+                </div>
+                <div>
+                  <h4 className="font-medium mb-1">Ask questions</h4>
+                  <p className="text-muted-foreground">Feel free to ask for clarification or more information about specific careers.</p>
+                </div>
               </div>
             </div>
             
@@ -96,6 +111,13 @@ const Assessment: React.FC = () => {
               <Button variant="outline" size="sm" className="w-full">
                 Learn More About Our Methodology
               </Button>
+            </div>
+            
+            <div className="mt-6 p-4 bg-muted/50 rounded-lg border border-border">
+              <h4 className="font-medium text-sm mb-2">Pro Tip</h4>
+              <p className="text-xs text-muted-foreground">
+                The more details you provide in your responses, the more personalized your career recommendations will be.
+              </p>
             </div>
           </Card>
         </div>
