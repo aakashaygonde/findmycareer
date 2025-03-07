@@ -3,7 +3,7 @@ import { useState, useCallback, useEffect, useMemo } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useToast } from '@/components/ui/use-toast';
 import { ChatMessage } from '@/types';
-import { useSupabase } from '@/integrations/supabase/client';
+import { supabase } from '@/integrations/supabase/client';
 
 // Initial welcome message
 const initialMessages: ChatMessage[] = [
@@ -21,7 +21,6 @@ export const useAssessmentChat = () => {
   const [isTyping, setIsTyping] = useState(false);
   const [assessmentStage, setAssessmentStage] = useState(1);
   const { toast } = useToast();
-  const supabase = useSupabase();
   
   // Memoize conversation history for the AI
   const conversationHistory = useMemo(() => {
@@ -100,7 +99,7 @@ export const useAssessmentChat = () => {
     } finally {
       setIsTyping(false);
     }
-  }, [messages, conversationHistory, assessmentStage, supabase.functions, toast]);
+  }, [messages, conversationHistory, assessmentStage, toast]);
 
   return {
     messages,
