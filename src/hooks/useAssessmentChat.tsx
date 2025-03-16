@@ -36,7 +36,10 @@ export const useAssessmentChat = () => {
 
   // Cleanup function for aborted requests
   useEffect(() => {
+    console.log("useAssessmentChat hook initialized");
+    
     return () => {
+      console.log("useAssessmentChat hook cleanup");
       if (abortControllerRef.current) {
         abortControllerRef.current.abort();
       }
@@ -45,6 +48,8 @@ export const useAssessmentChat = () => {
 
   const handleSendMessage = useCallback(async (messageContent: string) => {
     if (!messageContent.trim()) return;
+
+    console.log("Sending message:", messageContent);
 
     // Cancel any in-flight request
     if (abortControllerRef.current) {
@@ -69,6 +74,7 @@ export const useAssessmentChat = () => {
     try {
       // Call the Supabase edge function for AI response
       // Fix: Remove the signal property since it's not in the FunctionInvokeOptions type
+      console.log("Calling career-advisor edge function");
       const { data, error } = await supabase.functions.invoke('career-advisor', {
         body: { 
           message: messageContent,
@@ -77,6 +83,8 @@ export const useAssessmentChat = () => {
         }
         // Remove the signal property as it's not supported in the type definition
       });
+      
+      console.log("Edge function response:", { data, error });
       
       if (error) throw error;
       
@@ -94,6 +102,7 @@ export const useAssessmentChat = () => {
       
       // Update assessment stage if the function suggests advancing
       if (data.nextStage && data.nextStage !== assessmentStage) {
+        console.log(`Advancing to stage ${data.nextStage}`);
         setAssessmentStage(data.nextStage);
         
         // Show toast for stage advancement
@@ -106,6 +115,7 @@ export const useAssessmentChat = () => {
       
       // Update career roadmap if provided
       if (data.careerRoadmap) {
+        console.log("Setting career roadmap:", data.careerRoadmap);
         setCareerRoadmap(data.careerRoadmap);
       }
       
@@ -130,6 +140,8 @@ export const useAssessmentChat = () => {
         };
         
         setMessages(prev => [...prev, fallbackResponse]);
+      } else {
+        console.log("Request was aborted");
       }
     } finally {
       setIsTyping(false);

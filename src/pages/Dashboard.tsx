@@ -1,5 +1,4 @@
-
-import React from 'react';
+import React, { Suspense, useEffect } from 'react';
 import Layout from '@/components/Layout';
 import CareerRoadmap from '@/components/CareerRoadmap';
 import SkillGapAnalysis from '@/components/SkillGapAnalysis';
@@ -19,10 +18,25 @@ import {
   DollarSign, 
   BarChart3, 
   ExternalLink, 
-  Users 
+  Users,
+  Loader2
 } from 'lucide-react';
+import { useAuth } from '@/context/AuthContext';
+
+const LoadingFallback = () => (
+  <div className="flex justify-center items-center p-8">
+    <Loader2 className="h-8 w-8 animate-spin text-primary" />
+    <span className="ml-2">Loading component...</span>
+  </div>
+);
 
 const Dashboard: React.FC = () => {
+  const { user } = useAuth();
+  
+  useEffect(() => {
+    console.log("Dashboard rendered, user:", user?.email);
+  }, [user]);
+
   return (
     <Layout className="py-8">
       <div className="mb-8">
@@ -184,11 +198,15 @@ const Dashboard: React.FC = () => {
         </TabsList>
         
         <TabsContent value="roadmap" className="animate-fade-in">
-          <CareerRoadmap />
+          <Suspense fallback={<LoadingFallback />}>
+            <CareerRoadmap />
+          </Suspense>
         </TabsContent>
         
         <TabsContent value="skills" className="animate-fade-in">
-          <SkillGapAnalysis />
+          <Suspense fallback={<LoadingFallback />}>
+            <SkillGapAnalysis />
+          </Suspense>
         </TabsContent>
       </Tabs>
     </Layout>

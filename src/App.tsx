@@ -34,51 +34,50 @@ const queryClient = new QueryClient({
   },
 });
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <BrowserRouter>
-        <AuthProvider>
-          <Toaster />
-          <Sonner />
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/auth" element={
-              <Suspense fallback={<PageLoader />}>
-                <Auth />
-              </Suspense>
-            } />
-            <Route path="/assessment" element={
-              <Suspense fallback={<PageLoader />}>
-                <ProtectedRoute>
+const App = () => {
+  // Log to debug route rendering
+  console.log("App rendering");
+  
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <BrowserRouter>
+          <AuthProvider>
+            <Toaster />
+            <Sonner />
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/auth" element={
+                <Suspense fallback={<PageLoader />}>
+                  <Auth />
+                </Suspense>
+              } />
+              <Route path="/assessment" element={
+                <Suspense fallback={<PageLoader />}>
                   <Assessment />
-                </ProtectedRoute>
-              </Suspense>
-            } />
-            <Route path="/dashboard" element={
-              <Suspense fallback={<PageLoader />}>
-                <ProtectedRoute>
+                </Suspense>
+              } />
+              <Route path="/dashboard" element={
+                <Suspense fallback={<PageLoader />}>
                   <Dashboard />
-                </ProtectedRoute>
-              </Suspense>
-            } />
-            <Route path="/profile" element={
-              <Suspense fallback={<PageLoader />}>
-                <ProtectedRoute>
+                </Suspense>
+              } />
+              <Route path="/profile" element={
+                <Suspense fallback={<PageLoader />}>
                   <Profile />
-                </ProtectedRoute>
-              </Suspense>
-            } />
-            <Route path="*" element={
-              <Suspense fallback={<PageLoader />}>
-                <NotFound />
-              </Suspense>
-            } />
-          </Routes>
-        </AuthProvider>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+                </Suspense>
+              } />
+              <Route path="*" element={
+                <Suspense fallback={<PageLoader />}>
+                  <NotFound />
+                </Suspense>
+              } />
+            </Routes>
+          </AuthProvider>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+};
 
 export default App;

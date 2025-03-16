@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
@@ -28,9 +27,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log("AuthProvider initializing");
+    
     // Set up an auth state listener
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, currentSession) => {
+        console.log("Auth state changed:", event, currentSession?.user?.email);
         setSession(currentSession);
         setUser(currentSession?.user ?? null);
         
@@ -48,13 +50,17 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     checkUser();
 
     return () => {
+      console.log("AuthProvider cleanup");
       subscription.unsubscribe();
     };
   }, []);
 
   const checkUser = async () => {
     try {
+      console.log("Checking user session");
       const { data: { session: currentSession } } = await supabase.auth.getSession();
+      console.log("Current session:", currentSession?.user?.email);
+      
       setSession(currentSession);
       setUser(currentSession?.user ?? null);
       
@@ -64,12 +70,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     } catch (error) {
       console.error('Error checking auth state:', error);
     } finally {
+      console.log("Setting loading to false");
       setLoading(false);
     }
   };
 
   const fetchUserProfile = async (userId: string) => {
     try {
+      console.log("Fetching user profile for:", userId);
       const { data, error } = await supabase
         .from('profiles')
         .select('*')
@@ -82,6 +90,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       }
 
       if (data) {
+        console.log("Profile data fetched:", data);
         // Convert the data from the DB to match the UserProfile type
         const userProfile: UserProfile = {
           id: data.id,
@@ -99,6 +108,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         };
         
         setProfile(userProfile);
+      } else {
+        console.log("No profile data found");
       }
     } catch (error) {
       console.error('Error in fetchUserProfile:', error);

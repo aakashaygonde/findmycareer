@@ -5,6 +5,7 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, InfoIcon, Clock, Lightbulb, BadgeHelp, Loader2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { ErrorBoundary } from '@/components/ErrorBoundary';
 
 const AssessmentChat = lazy(() => import('@/components/assessment/AssessmentChat'));
 const CareerRoadmapDisplay = lazy(() => import('@/components/assessment/CareerRoadmapDisplay'));
@@ -15,6 +16,7 @@ const Assessment: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    console.log("Assessment page rendered");
     const initialTimer = setTimeout(() => {
       setIsLoading(false);
     }, 300);
@@ -70,20 +72,28 @@ const Assessment: React.FC = () => {
       
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2">
-          <Suspense fallback={
-            <div className="h-[600px] flex items-center justify-center border rounded-lg bg-background/50">
-              <div className="text-center">
-                <Loader2 className="h-12 w-12 mx-auto text-muted-foreground animate-spin" />
-                <p className="mt-4 text-muted-foreground">Loading Assessment Chat...</p>
+          <ErrorBoundary fallback={<div className="p-4 border border-red-300 bg-red-50 rounded-lg text-red-700">There was an error loading the chat component. Please refresh the page.</div>}>
+            <Suspense fallback={
+              <div className="h-[600px] flex items-center justify-center border rounded-lg bg-background/50">
+                <div className="text-center">
+                  <Loader2 className="h-12 w-12 mx-auto text-muted-foreground animate-spin" />
+                  <p className="mt-4 text-muted-foreground">Loading Assessment Chat...</p>
+                </div>
               </div>
-            </div>
-          }>
-            <AssessmentChat />
-          </Suspense>
+            }>
+              <AssessmentChat />
+            </Suspense>
+          </ErrorBoundary>
           
-          <Suspense fallback={null}>
-            <CareerRoadmapDisplay />
-          </Suspense>
+          <ErrorBoundary fallback={<div className="mt-4 p-4 border border-red-300 bg-red-50 rounded-lg text-red-700">There was an error loading the roadmap. Please refresh the page.</div>}>
+            <Suspense fallback={
+              <div className="mt-4 h-[200px] flex items-center justify-center border rounded-lg bg-background/50">
+                <Loader2 className="h-8 w-8 text-muted-foreground animate-spin" />
+              </div>
+            }>
+              <CareerRoadmapDisplay />
+            </Suspense>
+          </ErrorBoundary>
         </div>
         
         <div>
