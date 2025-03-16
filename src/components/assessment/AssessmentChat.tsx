@@ -24,6 +24,18 @@ const AssessmentChat: React.FC = () => {
     handleSendMessage(option);
   };
 
+  // Determine the stage name based on current assessment stage
+  const getStageName = (stage: number): string => {
+    switch (stage) {
+      case 1: return "Exploration";
+      case 2: return "Skills Evaluation";
+      case 3: return "Values Clarification";
+      case 4: return "Career Recommendations";
+      case 5: return "Roadmap Creation";
+      default: return `Stage ${stage}`;
+    }
+  };
+
   return (
     <div className="flex flex-col h-[600px] glass-card rounded-lg overflow-hidden shadow-md">
       <div className="flex items-center justify-between p-4 border-b bg-background/80">
@@ -33,7 +45,7 @@ const AssessmentChat: React.FC = () => {
           </div>
           <h3 className="ml-2 font-medium">Career Advisor</h3>
           <div className="ml-2 px-2 py-0.5 bg-primary/20 text-xs rounded-full text-primary">
-            Stage {assessmentStage}/5
+            {getStageName(assessmentStage)}
           </div>
         </div>
         <Button variant="outline" size="sm">Skip Assessment</Button>

@@ -1,4 +1,3 @@
-
 export interface Career {
   id: string;
   title: string;
@@ -45,14 +44,16 @@ export interface ChatMessage {
   options?: string[];
 }
 
-export interface Milestone {
-  id: string;
+export interface CareerRoadmap {
+  shortTerm: RoadmapItem[];
+  mediumTerm: RoadmapItem[];
+  longTerm: RoadmapItem[];
+  resources: Resource[];
+}
+
+export interface RoadmapItem {
   title: string;
   description: string;
-  type: 'skill' | 'education' | 'project' | 'certification';
-  timeframe: 'short' | 'medium' | 'long';
-  completed: boolean;
-  resources?: Resource[];
 }
 
 export interface Resource {

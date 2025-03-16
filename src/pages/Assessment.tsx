@@ -1,3 +1,4 @@
+
 import React, { Suspense, lazy } from 'react';
 import Layout from '@/components/Layout';
 import { Progress } from '@/components/ui/progress';
@@ -5,6 +6,7 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, InfoIcon, Clock, Lightbulb, BadgeHelp } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import CareerRoadmapDisplay from '@/components/assessment/CareerRoadmapDisplay';
 
 const AssessmentChat = lazy(() => import('@/components/assessment/AssessmentChat'));
 
@@ -79,6 +81,9 @@ const Assessment: React.FC = () => {
           }>
             <AssessmentChat />
           </Suspense>
+          
+          {/* Career Roadmap will be displayed here when available */}
+          <CareerRoadmapDisplay />
         </div>
         
         <div>

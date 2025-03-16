@@ -2,7 +2,7 @@
 import { useState, useCallback, useEffect, useMemo } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useToast } from '@/components/ui/use-toast';
-import { ChatMessage } from '@/types';
+import { ChatMessage, CareerRoadmap } from '@/types';
 import { supabase } from '@/integrations/supabase/client';
 
 // Initial welcome message
@@ -20,6 +20,7 @@ export const useAssessmentChat = () => {
   const [messages, setMessages] = useState<ChatMessage[]>(initialMessages);
   const [isTyping, setIsTyping] = useState(false);
   const [assessmentStage, setAssessmentStage] = useState(1);
+  const [careerRoadmap, setCareerRoadmap] = useState<CareerRoadmap | null>(null);
   const { toast } = useToast();
   
   // Memoize conversation history for the AI
@@ -49,7 +50,8 @@ export const useAssessmentChat = () => {
       const { data, error } = await supabase.functions.invoke('career-advisor', {
         body: { 
           message: messageContent,
-          conversationHistory
+          conversationHistory,
+          stage: assessmentStage
         }
       });
       
@@ -66,16 +68,21 @@ export const useAssessmentChat = () => {
       
       setMessages(prev => [...prev, botResponse]);
       
-      // Update assessment stage based on conversation progress
-      if (assessmentStage < 5 && messages.length > assessmentStage * 3) {
-        setAssessmentStage(prev => Math.min(prev + 1, 5));
+      // Update assessment stage if the function suggests advancing
+      if (data.nextStage && data.nextStage !== assessmentStage) {
+        setAssessmentStage(data.nextStage);
         
         // Show toast for stage advancement
         toast({
-          title: "Assessment Progress",
-          description: `Moving to the next stage of your career assessment.`,
-          duration: 3000,
+          title: `Stage ${data.nextStage} of 5`,
+          description: getStageDescription(data.nextStage),
+          duration: 4000,
         });
+      }
+      
+      // Update career roadmap if provided
+      if (data.careerRoadmap) {
+        setCareerRoadmap(data.careerRoadmap);
       }
       
     } catch (error) {
@@ -101,10 +108,29 @@ export const useAssessmentChat = () => {
     }
   }, [messages, conversationHistory, assessmentStage, toast]);
 
+  // Helper function to get description for each assessment stage
+  const getStageDescription = (stage: number): string => {
+    switch (stage) {
+      case 1:
+        return "Exploration - Understanding your interests and passions";
+      case 2:
+        return "Skills Evaluation - Identifying your strengths and abilities";
+      case 3:
+        return "Values Clarification - Understanding what matters to you";
+      case 4:
+        return "Career Recommendations - Suggesting specific career paths";
+      case 5:
+        return "Roadmap Creation - Building your personalized career plan";
+      default:
+        return "Moving to the next stage of your career assessment";
+    }
+  };
+
   return {
     messages,
     isTyping,
     assessmentStage,
+    careerRoadmap,
     handleSendMessage
   };
 };
