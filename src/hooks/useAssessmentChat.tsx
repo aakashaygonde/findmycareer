@@ -68,13 +68,14 @@ export const useAssessmentChat = () => {
 
     try {
       // Call the Supabase edge function for AI response
+      // Fix: Remove the signal property since it's not in the FunctionInvokeOptions type
       const { data, error } = await supabase.functions.invoke('career-advisor', {
         body: { 
           message: messageContent,
           conversationHistory,
           stage: assessmentStage
-        },
-        signal: abortControllerRef.current.signal
+        }
+        // Remove the signal property as it's not supported in the type definition
       });
       
       if (error) throw error;
