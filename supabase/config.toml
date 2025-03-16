@@ -2,8 +2,6 @@
 project_id = "nytqmuhmpkvsvsvjjtrx"
 [api]
 enabled = true
-[api.schema]
-enabled = true
 [functions]
 [functions.career-advisor]
 verify_jwt = false
