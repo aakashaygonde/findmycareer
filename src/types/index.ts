@@ -1,3 +1,4 @@
+
 export interface Career {
   id: string;
   title: string;
@@ -76,4 +77,14 @@ export interface AssessmentResult {
     needed: Skill[];
   };
   roadmap: Milestone[];
+}
+
+export interface Milestone {
+  id: string;
+  title: string;
+  description: string;
+  type: 'skill' | 'project' | 'certification' | 'education';
+  timeframe: 'short' | 'medium' | 'long';
+  completed: boolean;
+  resources?: Resource[];
 }
