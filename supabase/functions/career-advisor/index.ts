@@ -107,30 +107,12 @@ serve(async (req) => {
       assistantMessage = "I'm sorry, I couldn't generate a proper response. Please try asking something else about your career interests.";
     }
     
-    // Look for questions in the message to use as options
-    let options: string[] = [];
+    // Extract follow-up questions from the assistant's message to use as options
+    const options = extractFollowUpQuestions(assistantMessage, message, stage);
     
-    // Extract questions from the response
-    const sentences = assistantMessage.split(/[.!?]/).filter(s => s.includes('?'));
-    if (sentences.length > 0) {
-      // Take up to 3 shortest questions as options
-      options = sentences
-        .map(s => s.trim())
-        .filter(s => s.length > 10 && s.length < 80)
-        .sort((a, b) => a.length - b.length)
-        .slice(0, 3);
-    }
-    
-    // If no questions found, provide default options based on conversation context
-    if (options.length === 0) {
-      options = getDefaultOptionsForStage(stage, assistantMessage, message);
-    }
-
     // Determine if we should advance to the next assessment stage
-    let nextStage = stage;
-    if (conversationHistory.length >= stage * 2 && stage < 5) {
-      nextStage = stage + 1;
-    }
+    // Base this on message content and conversation progress
+    let nextStage = determineNextStage(stage, conversationHistory, message, assistantMessage);
 
     // Add career roadmap if we're in the later stages (4-5)
     let careerRoadmap = null;
@@ -140,7 +122,7 @@ serve(async (req) => {
 
     return new Response(JSON.stringify({ 
       message: assistantMessage,
-      options: options.length > 0 ? options : undefined,
+      options: options,
       nextStage: nextStage,
       careerRoadmap: careerRoadmap
     }), {
@@ -164,15 +146,15 @@ serve(async (req) => {
 function getSystemPromptForStage(stage: number): string {
   const basePrompt = `You are a helpful career advisor assistant that provides personalized guidance on career paths, skills, and educational requirements. 
 
-Your goal is to help users discover career opportunities that match their interests, skills, and aspirations. Use the information they share about their interests, skills, values, and preferences to recommend specific careers.
+Your goal is to help users discover career opportunities that match their interests, skills, and aspirations. You are interacting with a user who is providing free-form text about their career interests, skills, and preferences.
 
 Key guidelines:
 1. Focus on understanding the user's interests from their text descriptions
 2. Analyze their messages to identify potential career matches
 3. Provide specific, actionable advice and career recommendations
-4. Be conversational and ask thoughtful follow-up questions
+4. Be conversational and ask thoughtful follow-up questions 
 5. Include detailed information about recommended careers including skills required and education paths
-6. At the end of your response, suggest a few relevant questions the user might ask next
+6. At the end of every response, include 2-3 direct questions the user might want to ask next
 
 Be friendly, supportive, and engaging. Provide detailed and specific career suggestions based on the user's input.`;
 
@@ -228,6 +210,32 @@ Be specific, practical and actionable in your advice.`;
   }
 }
 
+// Improved function to extract follow-up questions from the assistant's message
+function extractFollowUpQuestions(assistantMessage: string, userMessage: string, stage: number): string[] {
+  // First, try to find direct questions in the assistant's message
+  const questionRegex = /\b([A-Z][^.!?]*\?)/g;
+  const matches = assistantMessage.match(questionRegex) || [];
+  
+  // Get up to 3 questions from the message
+  let questions = matches
+    .filter(q => q.length > 10 && q.length < 100) // Filter out very short or very long questions
+    .slice(0, 3);
+  
+  // If we didn't find enough questions, add some stage-appropriate options
+  if (questions.length < 3) {
+    const additionalOptions = getDefaultOptionsForStage(stage, assistantMessage, userMessage);
+    
+    // Add additional options without duplicates until we have 3
+    additionalOptions.forEach(option => {
+      if (questions.length < 3 && !questions.some(q => q.toLowerCase().includes(option.toLowerCase().substring(0, 10)))) {
+        questions.push(option);
+      }
+    });
+  }
+  
+  return questions;
+}
+
 // Helper function to get default options based on the assessment stage
 function getDefaultOptionsForStage(stage: number, assistantMessage: string, userMessage: string): string[] {
   const lowerAssistantMessage = assistantMessage.toLowerCase();
@@ -235,13 +243,13 @@ function getDefaultOptionsForStage(stage: number, assistantMessage: string, user
 
   switch (stage) {
     case 1:
-      if (lowerAssistantMessage.includes('technology') || lowerUserMessage.includes('tech')) {
+      if (lowerAssistantMessage.includes('technology') || lowerUserMessage.includes('tech') || lowerUserMessage.includes('computer')) {
         return [
           "What technological activities do I enjoy the most?",
           "How do my interests in technology translate to careers?",
           "What non-technical interests do I have alongside tech?"
         ];
-      } else if (lowerAssistantMessage.includes('creative') || lowerUserMessage.includes('art')) {
+      } else if (lowerAssistantMessage.includes('creative') || lowerUserMessage.includes('art') || lowerUserMessage.includes('design')) {
         return [
           "How do I express my creativity in daily life?",
           "What creative fields am I most curious about?",
@@ -271,7 +279,7 @@ function getDefaultOptionsForStage(stage: number, assistantMessage: string, user
 
     case 4:
       return [
-        "Tell me more details about the first career option",
+        "Tell me more details about these career options",
         "What education paths would work for these careers?",
         "Which of these careers has the best growth potential?"
       ];
@@ -290,6 +298,73 @@ function getDefaultOptionsForStage(stage: number, assistantMessage: string, user
         "How can I get started in this field?"
       ];
   }
+}
+
+// Function to determine if we should advance to the next stage
+function determineNextStage(currentStage: number, conversationHistory: any[], userMessage: string, assistantMessage: string): number {
+  // Don't advance past stage 5
+  if (currentStage >= 5) {
+    return 5;
+  }
+  
+  // Count meaningful exchanges in this stage (pairs of user and assistant messages)
+  const messagesInCurrentStage = conversationHistory.filter(msg => 
+    msg.stageWhenSent === currentStage
+  ).length;
+  
+  // Message content analysis for stage advancement
+  const combinedText = (userMessage + " " + assistantMessage).toLowerCase();
+  
+  // Stage-specific advancement logic
+  switch (currentStage) {
+    case 1: // Exploration -> Skills
+      // Advance if user has shared enough about interests or we've had sufficient exchanges
+      if (messagesInCurrentStage >= 4 || 
+          combinedText.includes("skill") || 
+          combinedText.includes("good at") || 
+          combinedText.includes("experience")) {
+        return 2;
+      }
+      break;
+      
+    case 2: // Skills -> Values
+      // Advance if user has shared their skills or we've had sufficient exchanges
+      if (messagesInCurrentStage >= 4 || 
+          combinedText.includes("value") || 
+          combinedText.includes("important to me") ||
+          combinedText.includes("care about") ||
+          combinedText.includes("work environment") ||
+          combinedText.includes("work-life")) {
+        return 3;
+      }
+      break;
+      
+    case 3: // Values -> Career Recommendations
+      // Advance if user has shared their values or we've had sufficient exchanges
+      if (messagesInCurrentStage >= 4 || 
+          combinedText.includes("career") || 
+          combinedText.includes("job") ||
+          combinedText.includes("recommendation") ||
+          combinedText.includes("suggest")) {
+        return 4;
+      }
+      break;
+      
+    case 4: // Career Recommendations -> Roadmap
+      // Advance if user has shown interest in specific careers or we've had sufficient exchanges
+      if (messagesInCurrentStage >= 4 || 
+          combinedText.includes("how do i") || 
+          combinedText.includes("steps") ||
+          combinedText.includes("plan") ||
+          combinedText.includes("roadmap") ||
+          combinedText.includes("get started")) {
+        return 5;
+      }
+      break;
+  }
+  
+  // Stay in current stage if no advancement conditions met
+  return currentStage;
 }
 
 // Helper function to generate a career roadmap
@@ -336,9 +411,9 @@ function generateCareerRoadmap(conversationHistory: any[], currentMessage: strin
         { title: "Continuous Learning", description: "Stay updated with industry trends and technologies" }
       ],
       resources: [
-        { title: "freeCodeCamp", url: "https://www.freecodecamp.org/" },
-        { title: "The Odin Project", url: "https://www.theodinproject.com/" },
-        { title: "GitHub", url: "https://github.com/" }
+        { id: "1", title: "freeCodeCamp", type: "course", url: "https://www.freecodecamp.org/", provider: "freeCodeCamp" },
+        { id: "2", title: "The Odin Project", type: "course", url: "https://www.theodinproject.com/", provider: "The Odin Project" },
+        { id: "3", title: "GitHub", type: "tool", url: "https://github.com/", provider: "GitHub" }
       ]
     },
     design: {

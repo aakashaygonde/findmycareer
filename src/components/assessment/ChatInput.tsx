@@ -34,8 +34,6 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage }) => {
     
     onSendMessage(inputValue);
     setInputValue('');
-    
-    // Don't reset to single line after sending to encourage detailed responses
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {

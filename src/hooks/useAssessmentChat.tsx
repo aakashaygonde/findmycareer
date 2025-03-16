@@ -27,7 +27,8 @@ export const useAssessmentChat = () => {
   const conversationHistory = useMemo(() => {
     return messages.map(msg => ({
       sender: msg.sender,
-      message: msg.message
+      message: msg.message,
+      stageWhenSent: msg.stageWhenSent || 1 // Default to stage 1 if not specified
     }));
   }, [messages]);
 
@@ -39,7 +40,8 @@ export const useAssessmentChat = () => {
       id: uuidv4(),
       sender: 'user',
       message: messageContent,
-      timestamp: new Date()
+      timestamp: new Date(),
+      stageWhenSent: assessmentStage
     };
     
     setMessages(prev => [...prev, userMessage]);
@@ -63,7 +65,8 @@ export const useAssessmentChat = () => {
         sender: 'bot',
         message: data.message,
         timestamp: new Date(),
-        options: data.options
+        options: data.options,
+        stageWhenSent: assessmentStage
       };
       
       setMessages(prev => [...prev, botResponse]);
@@ -99,7 +102,8 @@ export const useAssessmentChat = () => {
         sender: 'bot',
         message: "I'm sorry, I'm having trouble processing that. Could you try rephrasing or asking something else?",
         timestamp: new Date(),
-        options: ["Tell me about your interests", "What skills do you have?", "What's important to you in a career?"]
+        options: ["Tell me about your interests", "What skills do you have?", "What's important to you in a career?"],
+        stageWhenSent: assessmentStage
       };
       
       setMessages(prev => [...prev, fallbackResponse]);
