@@ -12,7 +12,8 @@ const initialMessages: ChatMessage[] = [
     sender: 'bot',
     message: "Hello! I'm your career advisor. I'm here to help you discover career paths that match your skills, interests, and values. Tell me about yourself - what subjects, activities, or types of work do you enjoy the most?",
     timestamp: new Date(),
-    options: ['I enjoy working with technology', 'I like creative activities', 'I prefer helping people']
+    options: ['I enjoy working with technology', 'I like creative activities', 'I prefer helping people'],
+    stageWhenSent: 1
   }
 ];
 
