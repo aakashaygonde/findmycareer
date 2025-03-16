@@ -1,21 +1,20 @@
-
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, useState, useEffect } from 'react';
 import Layout from '@/components/Layout';
 import { Progress } from '@/components/ui/progress';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, InfoIcon, Clock, Lightbulb, BadgeHelp } from 'lucide-react';
+import { ArrowLeft, InfoIcon, Clock, Lightbulb, BadgeHelp, Loader2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import CareerRoadmapDisplay from '@/components/assessment/CareerRoadmapDisplay';
 
 const AssessmentChat = lazy(() => import('@/components/assessment/AssessmentChat'));
+const CareerRoadmapDisplay = lazy(() => import('@/components/assessment/CareerRoadmapDisplay'));
 
 const Assessment: React.FC = () => {
   const navigate = useNavigate();
-  const [progress, setProgress] = React.useState(20);
-  const [isLoading, setIsLoading] = React.useState(true);
+  const [progress, setProgress] = useState(20);
+  const [isLoading, setIsLoading] = useState(true);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const initialTimer = setTimeout(() => {
       setIsLoading(false);
     }, 300);
@@ -72,9 +71,9 @@ const Assessment: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2">
           <Suspense fallback={
-            <div className="h-[600px] flex items-center justify-center border rounded-lg bg-background/50 animate-pulse">
+            <div className="h-[600px] flex items-center justify-center border rounded-lg bg-background/50">
               <div className="text-center">
-                <Clock className="h-12 w-12 mx-auto text-muted-foreground animate-spin" />
+                <Loader2 className="h-12 w-12 mx-auto text-muted-foreground animate-spin" />
                 <p className="mt-4 text-muted-foreground">Loading Assessment Chat...</p>
               </div>
             </div>
@@ -82,8 +81,9 @@ const Assessment: React.FC = () => {
             <AssessmentChat />
           </Suspense>
           
-          {/* Career Roadmap will be displayed here when available */}
-          <CareerRoadmapDisplay />
+          <Suspense fallback={null}>
+            <CareerRoadmapDisplay />
+          </Suspense>
         </div>
         
         <div>

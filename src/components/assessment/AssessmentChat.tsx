@@ -1,5 +1,5 @@
 
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, memo } from 'react';
 import { Bot } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useAssessmentChat } from '@/hooks/useAssessmentChat';
@@ -7,7 +7,8 @@ import ChatMessageItem from './ChatMessage';
 import TypingIndicator from './TypingIndicator';
 import ChatInput from './ChatInput';
 
-const AssessmentChat: React.FC = () => {
+// Using memo to prevent unnecessary re-renders
+const AssessmentChat: React.FC = memo(() => {
   const { messages, isTyping, assessmentStage, handleSendMessage } = useAssessmentChat();
   const messagesEndRef = useRef<HTMLDivElement>(null);
   
@@ -70,6 +71,8 @@ const AssessmentChat: React.FC = () => {
       </div>
     </div>
   );
-};
+});
+
+AssessmentChat.displayName = 'AssessmentChat';
 
 export default AssessmentChat;

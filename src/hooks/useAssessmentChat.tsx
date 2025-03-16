@@ -1,5 +1,5 @@
 
-import { useState, useCallback, useEffect, useMemo } from 'react';
+import { useState, useCallback, useEffect, useMemo, useRef } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useToast } from '@/components/ui/use-toast';
 import { ChatMessage, CareerRoadmap } from '@/types';
@@ -23,8 +23,9 @@ export const useAssessmentChat = () => {
   const [assessmentStage, setAssessmentStage] = useState(1);
   const [careerRoadmap, setCareerRoadmap] = useState<CareerRoadmap | null>(null);
   const { toast } = useToast();
+  const abortControllerRef = useRef<AbortController | null>(null);
   
-  // Memoize conversation history for the AI
+  // Memoize conversation history for the AI to prevent unnecessary recalculations
   const conversationHistory = useMemo(() => {
     return messages.map(msg => ({
       sender: msg.sender,
@@ -33,8 +34,25 @@ export const useAssessmentChat = () => {
     }));
   }, [messages]);
 
+  // Cleanup function for aborted requests
+  useEffect(() => {
+    return () => {
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+      }
+    };
+  }, []);
+
   const handleSendMessage = useCallback(async (messageContent: string) => {
     if (!messageContent.trim()) return;
+
+    // Cancel any in-flight request
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+    }
+    
+    // Create a new abort controller for this request
+    abortControllerRef.current = new AbortController();
 
     // Add user message
     const userMessage: ChatMessage = {
@@ -55,7 +73,8 @@ export const useAssessmentChat = () => {
           message: messageContent,
           conversationHistory,
           stage: assessmentStage
-        }
+        },
+        signal: abortControllerRef.current.signal
       });
       
       if (error) throw error;
@@ -90,26 +109,31 @@ export const useAssessmentChat = () => {
       }
       
     } catch (error) {
-      console.error('Error getting response:', error);
-      toast({
-        title: "Error",
-        description: "Failed to get a response. Please try again with a different question.",
-        variant: "destructive"
-      });
-      
-      // Fallback response if something fails
-      const fallbackResponse: ChatMessage = {
-        id: uuidv4(),
-        sender: 'bot',
-        message: "I'm sorry, I'm having trouble processing that. Could you try rephrasing or asking something else?",
-        timestamp: new Date(),
-        options: ["Tell me about your interests", "What skills do you have?", "What's important to you in a career?"],
-        stageWhenSent: assessmentStage
-      };
-      
-      setMessages(prev => [...prev, fallbackResponse]);
+      // Only show error if it's not an abort error
+      if (!(error instanceof DOMException && error.name === 'AbortError')) {
+        console.error('Error getting response:', error);
+        toast({
+          title: "Error",
+          description: "Failed to get a response. Please try again with a different question.",
+          variant: "destructive"
+        });
+        
+        // Fallback response if something fails
+        const fallbackResponse: ChatMessage = {
+          id: uuidv4(),
+          sender: 'bot',
+          message: "I'm sorry, I'm having trouble processing that. Could you try rephrasing or asking something else?",
+          timestamp: new Date(),
+          options: ["Tell me about your interests", "What skills do you have?", "What's important to you in a career?"],
+          stageWhenSent: assessmentStage
+        };
+        
+        setMessages(prev => [...prev, fallbackResponse]);
+      }
     } finally {
       setIsTyping(false);
+      // Clear the abort controller reference
+      abortControllerRef.current = null;
     }
   }, [messages, conversationHistory, assessmentStage, toast]);
 

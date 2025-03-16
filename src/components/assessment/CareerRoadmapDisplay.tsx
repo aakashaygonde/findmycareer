@@ -1,5 +1,4 @@
-
-import React from 'react';
+import React, { memo } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -7,7 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Lightbulb, Calendar, Rocket, ExternalLink, Link as LinkIcon } from 'lucide-react';
 import { useAssessmentChat } from '@/hooks/useAssessmentChat';
 
-const CareerRoadmapDisplay: React.FC = () => {
+const CareerRoadmapDisplay: React.FC = memo(() => {
   const { careerRoadmap, assessmentStage } = useAssessmentChat();
   
   if (!careerRoadmap || assessmentStage < 4) {
@@ -139,6 +138,8 @@ const CareerRoadmapDisplay: React.FC = () => {
       </CardContent>
     </Card>
   );
-};
+});
+
+CareerRoadmapDisplay.displayName = 'CareerRoadmapDisplay';
 
 export default CareerRoadmapDisplay;
