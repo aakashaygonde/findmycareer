@@ -114,7 +114,10 @@ export const useAssessmentChat = () => {
     setIsTyping(true);
 
     try {
-      // Call the Supabase edge function for AI response
+      // Delay to simulate processing (makes the interface feel more natural)
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Call the Supabase edge function for response
       console.log("Calling career-advisor edge function with stage:", assessmentStage);
       const response = await supabase.functions.invoke('career-advisor', {
         body: { 
@@ -132,8 +135,8 @@ export const useAssessmentChat = () => {
       
       const data = response.data;
       
-      if (!data) {
-        throw new Error('No data returned from edge function');
+      if (!data || !data.message) {
+        throw new Error('Invalid response from edge function');
       }
       
       // Add bot response with proper Date object
@@ -142,7 +145,7 @@ export const useAssessmentChat = () => {
         sender: 'bot',
         message: data.message,
         timestamp: new Date(),
-        options: data.options,
+        options: data.options || [],
         stageWhenSent: assessmentStage
       };
       
@@ -173,7 +176,7 @@ export const useAssessmentChat = () => {
         console.error('Error getting response:', error);
         toast({
           title: "Error",
-          description: "Failed to get a response. Please try again with a different question.",
+          description: "Failed to get a response. Please try again.",
           variant: "destructive"
         });
         
@@ -181,7 +184,7 @@ export const useAssessmentChat = () => {
         const fallbackResponse: ChatMessage = {
           id: uuidv4(),
           sender: 'bot',
-          message: "I'm sorry, I'm having trouble processing that. Could you try rephrasing or asking something else?",
+          message: "I'm sorry, I'm having trouble processing that. Could you try again or ask something else?",
           timestamp: new Date(),
           options: ["Tell me about your interests", "What skills do you have?", "What's important to you in a career?"],
           stageWhenSent: assessmentStage
