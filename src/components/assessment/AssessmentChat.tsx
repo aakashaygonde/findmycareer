@@ -13,14 +13,14 @@ const AssessmentChat: React.FC = memo(() => {
   const { messages, isTyping, assessmentStage, handleSendMessage, resetAssessment } = useAssessmentChat();
   const messagesEndRef = useRef<HTMLDivElement>(null);
   
-  // Auto-scroll to bottom when messages change
+  // Auto-scroll to bottom when messages change or typing status changes
   useEffect(() => {
     if (messagesEndRef.current) {
       requestAnimationFrame(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
       });
     }
-  }, [messages]);
+  }, [messages, isTyping]);
 
   const handleOptionClick = (option: string) => {
     handleSendMessage(option);

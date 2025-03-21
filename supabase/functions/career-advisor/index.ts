@@ -31,12 +31,16 @@ serve(async (req) => {
       careerRoadmap = generateCareerRoadmap(conversationHistory, message, response.message);
     }
 
-    return new Response(JSON.stringify({ 
+    const responseData = { 
       message: response.message,
       options: response.options,
       nextStage: nextStage,
       careerRoadmap: careerRoadmap
-    }), {
+    };
+    
+    console.log('Sending response:', JSON.stringify(responseData).slice(0, 200) + '...');
+
+    return new Response(JSON.stringify(responseData), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
   } catch (error) {
@@ -45,7 +49,7 @@ serve(async (req) => {
       error: error.message,
       message: "I'm having technical difficulties. Please try again with a different question.",
       options: ["Tell me about your interests", "What skills do you have?", "What's important to you in a career?"],
-      nextStage: 1
+      nextStage: null
     }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },

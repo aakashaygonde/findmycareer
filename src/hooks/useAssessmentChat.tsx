@@ -21,7 +21,7 @@ const initialMessages: ChatMessage[] = [
 const parseStoredMessages = (messages: any[]): ChatMessage[] => {
   return messages.map(msg => ({
     ...msg,
-    timestamp: new Date(msg.timestamp)
+    timestamp: typeof msg.timestamp === 'string' ? new Date(msg.timestamp) : msg.timestamp
   }));
 };
 
@@ -177,7 +177,7 @@ export const useAssessmentChat = () => {
           variant: "destructive"
         });
         
-        // Fallback response if something fails
+        // Add a fallback bot message so the user doesn't see the typing animation disappear without a response
         const fallbackResponse: ChatMessage = {
           id: uuidv4(),
           sender: 'bot',
@@ -196,7 +196,7 @@ export const useAssessmentChat = () => {
       // Clear the abort controller reference
       abortControllerRef.current = null;
     }
-  }, [messages, conversationHistory, assessmentStage, toast]);
+  }, [assessmentStage, conversationHistory, toast]);
 
   // Helper function to get description for each assessment stage
   const getStageDescription = (stage: number): string => {
