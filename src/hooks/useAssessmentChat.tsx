@@ -11,7 +11,7 @@ const initialMessages: ChatMessage[] = [
     id: '1',
     sender: 'bot',
     message: "Hello! I'm your career advisor. I'm here to help you discover career paths that match your skills, interests, and values. Tell me about yourself - what subjects, activities, or types of work do you enjoy the most?",
-    timestamp: new Date(),
+    timestamp: new Date().toISOString(), // Store as ISO string for better serialization
     options: ['I enjoy working with technology', 'I like creative activities', 'I prefer helping people'],
     stageWhenSent: 1
   }
@@ -96,7 +96,7 @@ export const useAssessmentChat = () => {
       id: uuidv4(),
       sender: 'user',
       message: messageContent,
-      timestamp: new Date(),
+      timestamp: new Date().toISOString(), // Store as ISO string for better serialization
       stageWhenSent: assessmentStage
     };
     
@@ -105,7 +105,6 @@ export const useAssessmentChat = () => {
 
     try {
       // Call the Supabase edge function for AI response
-      // Fix: Remove the signal property since it's not in the FunctionInvokeOptions type
       console.log("Calling career-advisor edge function");
       const { data, error } = await supabase.functions.invoke('career-advisor', {
         body: { 
@@ -113,7 +112,6 @@ export const useAssessmentChat = () => {
           conversationHistory,
           stage: assessmentStage
         }
-        // Remove the signal property as it's not supported in the type definition
       });
       
       console.log("Edge function response:", { data, error });
@@ -125,7 +123,7 @@ export const useAssessmentChat = () => {
         id: uuidv4(),
         sender: 'bot',
         message: data.message,
-        timestamp: new Date(),
+        timestamp: new Date().toISOString(), // Store as ISO string for better serialization
         options: data.options,
         stageWhenSent: assessmentStage
       };
@@ -166,7 +164,7 @@ export const useAssessmentChat = () => {
           id: uuidv4(),
           sender: 'bot',
           message: "I'm sorry, I'm having trouble processing that. Could you try rephrasing or asking something else?",
-          timestamp: new Date(),
+          timestamp: new Date().toISOString(), // Store as ISO string for better serialization
           options: ["Tell me about your interests", "What skills do you have?", "What's important to you in a career?"],
           stageWhenSent: assessmentStage
         };

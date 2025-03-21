@@ -71,7 +71,7 @@ const AssessmentChat: React.FC = memo(() => {
               </AlertDialogFooter>
             </AlertDialogContent>
           </AlertDialog>
-          <Button variant="outline" size="sm">Skip Assessment</Button>
+          <Button variant="outline" size="sm" onClick={resetAssessment}>Skip Assessment</Button>
         </div>
       </div>
 
