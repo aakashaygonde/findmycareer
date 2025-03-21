@@ -1,3 +1,4 @@
+
 import React, { Suspense, lazy, useState, useEffect } from 'react';
 import Layout from '@/components/Layout';
 import { Progress } from '@/components/ui/progress';
@@ -6,14 +7,18 @@ import { Button } from '@/components/ui/button';
 import { ArrowLeft, InfoIcon, Clock, Lightbulb, BadgeHelp, Loader2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
+import { useAssessmentChat } from '@/hooks/useAssessmentChat';
 
 const AssessmentChat = lazy(() => import('@/components/assessment/AssessmentChat'));
 const CareerRoadmapDisplay = lazy(() => import('@/components/assessment/CareerRoadmapDisplay'));
 
 const Assessment: React.FC = () => {
   const navigate = useNavigate();
-  const [progress, setProgress] = useState(20);
   const [isLoading, setIsLoading] = useState(true);
+  const { assessmentStage } = useAssessmentChat();
+  
+  // Calculate progress based on actual assessment stage
+  const progressPercentage = Math.min(assessmentStage * 20, 100);
 
   useEffect(() => {
     console.log("Assessment page rendered");
@@ -21,19 +26,8 @@ const Assessment: React.FC = () => {
       setIsLoading(false);
     }, 300);
     
-    const progressTimer = setInterval(() => {
-      setProgress(prev => {
-        if (prev < 80) {
-          return prev + 5;
-        }
-        clearInterval(progressTimer);
-        return prev;
-      });
-    }, 10000);
-    
     return () => {
       clearTimeout(initialTimer);
-      clearInterval(progressTimer);
     };
   }, []);
 
@@ -64,9 +58,9 @@ const Assessment: React.FC = () => {
         <div className="mb-8">
           <div className="flex justify-between items-center mb-2">
             <span className="text-sm font-medium">Assessment Progress</span>
-            <span className="text-sm font-medium">{progress}%</span>
+            <span className="text-sm font-medium">{progressPercentage}%</span>
           </div>
-          <Progress value={progress} className="h-2" />
+          <Progress value={progressPercentage} className="h-2" />
         </div>
       </div>
       

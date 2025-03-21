@@ -18,13 +18,45 @@ const initialMessages: ChatMessage[] = [
 ];
 
 export const useAssessmentChat = () => {
-  const [messages, setMessages] = useState<ChatMessage[]>(initialMessages);
+  // Load persisted data from localStorage if available
+  const loadPersistedData = () => {
+    try {
+      const savedMessages = localStorage.getItem('assessmentMessages');
+      const savedStage = localStorage.getItem('assessmentStage');
+      const savedRoadmap = localStorage.getItem('careerRoadmap');
+
+      return {
+        messages: savedMessages ? JSON.parse(savedMessages) : initialMessages,
+        stage: savedStage ? parseInt(savedStage, 10) : 1,
+        roadmap: savedRoadmap ? JSON.parse(savedRoadmap) : null
+      };
+    } catch (error) {
+      console.error('Error loading persisted assessment data:', error);
+      return { messages: initialMessages, stage: 1, roadmap: null };
+    }
+  };
+
+  const persistedData = loadPersistedData();
+  const [messages, setMessages] = useState<ChatMessage[]>(persistedData.messages);
   const [isTyping, setIsTyping] = useState(false);
-  const [assessmentStage, setAssessmentStage] = useState(1);
-  const [careerRoadmap, setCareerRoadmap] = useState<CareerRoadmap | null>(null);
+  const [assessmentStage, setAssessmentStage] = useState(persistedData.stage);
+  const [careerRoadmap, setCareerRoadmap] = useState<CareerRoadmap | null>(persistedData.roadmap);
   const { toast } = useToast();
   const abortControllerRef = useRef<AbortController | null>(null);
   
+  // Persist state to localStorage whenever it changes
+  useEffect(() => {
+    try {
+      localStorage.setItem('assessmentMessages', JSON.stringify(messages));
+      localStorage.setItem('assessmentStage', assessmentStage.toString());
+      if (careerRoadmap) {
+        localStorage.setItem('careerRoadmap', JSON.stringify(careerRoadmap));
+      }
+    } catch (error) {
+      console.error('Error persisting assessment data:', error);
+    }
+  }, [messages, assessmentStage, careerRoadmap]);
+
   // Memoize conversation history for the AI to prevent unnecessary recalculations
   const conversationHistory = useMemo(() => {
     return messages.map(msg => ({
@@ -167,12 +199,23 @@ export const useAssessmentChat = () => {
         return "Moving to the next stage of your career assessment";
     }
   };
+  
+  // Add a method to clear chat history
+  const resetAssessment = useCallback(() => {
+    localStorage.removeItem('assessmentMessages');
+    localStorage.removeItem('assessmentStage');
+    localStorage.removeItem('careerRoadmap');
+    setMessages(initialMessages);
+    setAssessmentStage(1);
+    setCareerRoadmap(null);
+  }, []);
 
   return {
     messages,
     isTyping,
     assessmentStage,
     careerRoadmap,
-    handleSendMessage
+    handleSendMessage,
+    resetAssessment
   };
 };

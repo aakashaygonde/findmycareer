@@ -1,15 +1,16 @@
 
 import React, { useRef, useEffect, memo } from 'react';
-import { Bot } from 'lucide-react';
+import { Bot, RefreshCw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useAssessmentChat } from '@/hooks/useAssessmentChat';
 import ChatMessageItem from './ChatMessage';
 import TypingIndicator from './TypingIndicator';
 import ChatInput from './ChatInput';
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
 
 // Using memo to prevent unnecessary re-renders
 const AssessmentChat: React.FC = memo(() => {
-  const { messages, isTyping, assessmentStage, handleSendMessage } = useAssessmentChat();
+  const { messages, isTyping, assessmentStage, handleSendMessage, resetAssessment } = useAssessmentChat();
   const messagesEndRef = useRef<HTMLDivElement>(null);
   
   // Auto-scroll to bottom when messages change
@@ -49,7 +50,29 @@ const AssessmentChat: React.FC = memo(() => {
             {getStageName(assessmentStage)}
           </div>
         </div>
-        <Button variant="outline" size="sm">Skip Assessment</Button>
+        <div className="flex gap-2">
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button variant="outline" size="sm" className="flex items-center gap-1">
+                <RefreshCw className="h-3.5 w-3.5" />
+                Reset
+              </Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>Reset Assessment</AlertDialogTitle>
+                <AlertDialogDescription>
+                  Are you sure you want to reset the assessment? This will clear all your conversation history and start over.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogAction onClick={resetAssessment}>Reset</AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+          <Button variant="outline" size="sm">Skip Assessment</Button>
+        </div>
       </div>
 
       <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-muted/30">
