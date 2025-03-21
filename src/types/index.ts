@@ -43,7 +43,7 @@ export interface ChatMessage {
   message: string;
   timestamp: Date;
   options?: string[];
-  stageWhenSent?: number; // Added this property with optional ? marker
+  stageWhenSent?: number;
 }
 
 export interface CareerRoadmap {

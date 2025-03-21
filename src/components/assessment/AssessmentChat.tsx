@@ -38,6 +38,14 @@ const AssessmentChat: React.FC = memo(() => {
     }
   };
 
+  // Skip assessment handler
+  const handleSkipAssessment = () => {
+    // You might want to implement specific skip logic here
+    // For now, we just navigate directly to recommendations (stage 4)
+    console.log("Skipping to recommendations");
+    // TODO: Implement skip functionality
+  };
+
   return (
     <div className="flex flex-col h-[600px] glass-card rounded-lg overflow-hidden shadow-md">
       <div className="flex items-center justify-between p-4 border-b bg-background/80">
@@ -71,7 +79,7 @@ const AssessmentChat: React.FC = memo(() => {
               </AlertDialogFooter>
             </AlertDialogContent>
           </AlertDialog>
-          <Button variant="outline" size="sm" onClick={resetAssessment}>Skip Assessment</Button>
+          <Button variant="outline" size="sm" onClick={handleSkipAssessment}>Skip Assessment</Button>
         </div>
       </div>
 

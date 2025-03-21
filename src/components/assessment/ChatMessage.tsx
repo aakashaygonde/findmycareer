@@ -12,6 +12,21 @@ interface ChatMessageItemProps {
 }
 
 const ChatMessageItem = memo(({ message, onOptionClick }: ChatMessageItemProps) => {
+  // Format the timestamp based on whether it's a string or Date object
+  const formatTimestamp = () => {
+    if (typeof message.timestamp === 'string') {
+      return new Date(message.timestamp).toLocaleTimeString([], { 
+        hour: '2-digit', 
+        minute: '2-digit' 
+      });
+    } else {
+      return message.timestamp.toLocaleTimeString([], { 
+        hour: '2-digit', 
+        minute: '2-digit' 
+      });
+    }
+  };
+
   return (
     <div
       className={cn(
@@ -37,7 +52,7 @@ const ChatMessageItem = memo(({ message, onOptionClick }: ChatMessageItemProps) 
             {message.sender === 'bot' ? 'Career Advisor' : 'You'}
           </span>
           <span className="text-xs opacity-70">
-            {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+            {formatTimestamp()}
           </span>
         </div>
         <div className="whitespace-pre-wrap">{message.message}</div>

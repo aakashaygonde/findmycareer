@@ -5,17 +5,25 @@ import { useToast } from '@/components/ui/use-toast';
 import { ChatMessage, CareerRoadmap } from '@/types';
 import { supabase } from '@/integrations/supabase/client';
 
-// Initial welcome message
+// Initial welcome message with proper Date object
 const initialMessages: ChatMessage[] = [
   {
     id: '1',
     sender: 'bot',
     message: "Hello! I'm your career advisor. I'm here to help you discover career paths that match your skills, interests, and values. Tell me about yourself - what subjects, activities, or types of work do you enjoy the most?",
-    timestamp: new Date().toISOString(), // Store as ISO string for better serialization
+    timestamp: new Date(),
     options: ['I enjoy working with technology', 'I like creative activities', 'I prefer helping people'],
     stageWhenSent: 1
   }
 ];
+
+// Helper function to parse dates from storage
+const parseStoredMessages = (messages: any[]): ChatMessage[] => {
+  return messages.map(msg => ({
+    ...msg,
+    timestamp: new Date(msg.timestamp)
+  }));
+};
 
 export const useAssessmentChat = () => {
   // Load persisted data from localStorage if available
@@ -26,7 +34,9 @@ export const useAssessmentChat = () => {
       const savedRoadmap = localStorage.getItem('careerRoadmap');
 
       return {
-        messages: savedMessages ? JSON.parse(savedMessages) : initialMessages,
+        messages: savedMessages 
+          ? parseStoredMessages(JSON.parse(savedMessages)) 
+          : initialMessages,
         stage: savedStage ? parseInt(savedStage, 10) : 1,
         roadmap: savedRoadmap ? JSON.parse(savedRoadmap) : null
       };
@@ -91,12 +101,12 @@ export const useAssessmentChat = () => {
     // Create a new abort controller for this request
     abortControllerRef.current = new AbortController();
 
-    // Add user message
+    // Add user message with proper Date object
     const userMessage: ChatMessage = {
       id: uuidv4(),
       sender: 'user',
       message: messageContent,
-      timestamp: new Date().toISOString(), // Store as ISO string for better serialization
+      timestamp: new Date(),
       stageWhenSent: assessmentStage
     };
     
@@ -118,12 +128,12 @@ export const useAssessmentChat = () => {
       
       if (error) throw error;
       
-      // Add bot response
+      // Add bot response with proper Date object
       const botResponse: ChatMessage = {
         id: uuidv4(),
         sender: 'bot',
         message: data.message,
-        timestamp: new Date().toISOString(), // Store as ISO string for better serialization
+        timestamp: new Date(),
         options: data.options,
         stageWhenSent: assessmentStage
       };
@@ -164,7 +174,7 @@ export const useAssessmentChat = () => {
           id: uuidv4(),
           sender: 'bot',
           message: "I'm sorry, I'm having trouble processing that. Could you try rephrasing or asking something else?",
-          timestamp: new Date().toISOString(), // Store as ISO string for better serialization
+          timestamp: new Date(),
           options: ["Tell me about your interests", "What skills do you have?", "What's important to you in a career?"],
           stageWhenSent: assessmentStage
         };
