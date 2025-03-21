@@ -38,12 +38,13 @@ const AssessmentChat: React.FC = memo(() => {
     }
   };
 
-  // Skip assessment handler
+  // Skip assessment handler - now properly jumps to stage 4
   const handleSkipAssessment = () => {
-    // You might want to implement specific skip logic here
-    // For now, we just navigate directly to recommendations (stage 4)
-    console.log("Skipping to recommendations");
-    // TODO: Implement skip functionality
+    // First, send a special message to trigger stage advancement
+    handleSendMessage("I'd like to skip to career recommendations");
+    
+    // Show a toast message explaining what happened
+    // Note: We don't need to manually set the stage as the edge function will handle it
   };
 
   return (

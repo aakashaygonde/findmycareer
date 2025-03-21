@@ -115,8 +115,8 @@ export const useAssessmentChat = () => {
 
     try {
       // Call the Supabase edge function for AI response
-      console.log("Calling career-advisor edge function");
-      const { data, error } = await supabase.functions.invoke('career-advisor', {
+      console.log("Calling career-advisor edge function with stage:", assessmentStage);
+      const response = await supabase.functions.invoke('career-advisor', {
         body: { 
           message: messageContent,
           conversationHistory,
@@ -124,9 +124,17 @@ export const useAssessmentChat = () => {
         }
       });
       
-      console.log("Edge function response:", { data, error });
+      console.log("Edge function response:", response);
       
-      if (error) throw error;
+      if (response.error) {
+        throw new Error(`Edge function error: ${response.error.message || 'Unknown error'}`);
+      }
+      
+      const data = response.data;
+      
+      if (!data) {
+        throw new Error('No data returned from edge function');
+      }
       
       // Add bot response with proper Date object
       const botResponse: ChatMessage = {

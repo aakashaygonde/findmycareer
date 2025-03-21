@@ -1,4 +1,6 @@
 
+# A string used as the project ID
 project_id = "nytqmuhmpkvsvsvjjtrx"
+# The entrypoint file name
 [functions.career-advisor]
 verify_jwt = false
