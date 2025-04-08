@@ -78,11 +78,11 @@ const predefinedResponses: Record<string, { message: string, options: string[], 
   // Default fallback responses
   'default_stage_1': {
     message: "That's interesting! Could you tell me more about what specific activities or subjects you enjoy most?",
-    options: ['I enjoy problem-solving', 'I like working with people', 'I prefer creative endeavors'],
+    options: ['I enjoy problem-solving', 'I like working with people', 'I prefer creative endeavors']
   },
   'default_stage_2': {
     message: "Thanks for sharing! Let's talk about your skills. What would you say are your strongest abilities?",
-    options: ['Technical/analytical skills', 'Communication/people skills', 'Creative/artistic skills'],
+    options: ['Technical/analytical skills', 'Communication/people skills', 'Creative/artistic skills']
   },
   'default_stage_3': {
     message: "Based on what you've shared, you might be well-suited for careers that combine your interests and skills. Would you like to hear some specific recommendations?",
@@ -96,7 +96,7 @@ const predefinedResponses: Record<string, { message: string, options: string[], 
   },
   'default_stage_5': {
     message: "I'm glad you found this helpful! Remember that career development is a journey, and it's normal for your interests and goals to evolve over time. Keep exploring opportunities that align with your values and strengths.\n\nIs there anything else you'd like to know about career planning?",
-    options: ['How do I deal with career changes?', 'What if I'm not sure about my path?', 'Thanks, this has been helpful!'],
+    options: ['How do I deal with career changes?', 'What if I'm not sure about my path?', 'Thanks, this has been helpful!']
   }
 };
 
