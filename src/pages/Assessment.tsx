@@ -1,36 +1,18 @@
 
-import React, { Suspense, lazy, useState, useEffect } from 'react';
+import React, { Suspense, lazy } from 'react';
 import Layout from '@/components/Layout';
-import { Progress } from '@/components/ui/progress';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, InfoIcon, Clock, Lightbulb, BadgeHelp, Loader2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
-import { useAssessmentChat } from '@/hooks/useAssessmentChat';
 
 const AssessmentChat = lazy(() => import('@/components/assessment/AssessmentChat'));
 const CareerRoadmapDisplay = lazy(() => import('@/components/assessment/CareerRoadmapDisplay'));
 
 const Assessment: React.FC = () => {
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(true);
-  const { assessmentStage } = useAssessmentChat();
   
-  // Calculate progress based on actual assessment stage
-  const progressPercentage = Math.min(assessmentStage * 20, 100);
-
-  useEffect(() => {
-    console.log("Assessment page rendered");
-    const initialTimer = setTimeout(() => {
-      setIsLoading(false);
-    }, 300);
-    
-    return () => {
-      clearTimeout(initialTimer);
-    };
-  }, []);
-
   return (
     <Layout className="py-8">
       <div className="mb-8">
@@ -53,14 +35,6 @@ const Assessment: React.FC = () => {
             <Clock className="h-4 w-4 text-muted-foreground" />
             <span className="text-sm">Estimated time: 5-10 minutes</span>
           </Card>
-        </div>
-        
-        <div className="mb-8">
-          <div className="flex justify-between items-center mb-2">
-            <span className="text-sm font-medium">Assessment Progress</span>
-            <span className="text-sm font-medium">{progressPercentage}%</span>
-          </div>
-          <Progress value={progressPercentage} className="h-2" />
         </div>
       </div>
       
@@ -96,7 +70,7 @@ const Assessment: React.FC = () => {
               <InfoIcon className="h-5 w-5 text-primary mt-0.5" />
               <div>
                 <h3 className="font-bold">How it works</h3>
-                <p className="text-sm text-muted-foreground">Our AI career advisor will ask questions to understand your interests, skills, and career goals.</p>
+                <p className="text-sm text-muted-foreground">Our career advisor will ask questions to understand your interests, skills, and career goals.</p>
               </div>
             </div>
             
