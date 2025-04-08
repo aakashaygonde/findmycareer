@@ -75,7 +75,7 @@ export const predefinedResponses: Record<string, { message: string, options: str
   },
   'default_stage_3': {
     message: "Based on what you've shared, you might be well-suited for careers that combine your interests and skills. Would you like to hear some specific recommendations?",
-    options: ['Yes, I'd like to hear recommendations', 'I'd like to explore more options first', 'What education would I need?'],
+    options: ["Yes, I'd like to hear recommendations", "I'd like to explore more options first", "What education would I need?"],
     nextStage: 4
   },
   'default_stage_4': {
@@ -85,7 +85,7 @@ export const predefinedResponses: Record<string, { message: string, options: str
   },
   'default_stage_5': {
     message: "I'm glad you found this helpful! Remember that career development is a journey, and it's normal for your interests and goals to evolve over time. Keep exploring opportunities that align with your values and strengths.\n\nIs there anything else you'd like to know about career planning?",
-    options: ['How do I deal with career changes?', 'What if I\'m not sure about my path?', 'Thanks, this has been helpful!']
+    options: ['How do I deal with career changes?', "What if I'm not sure about my path?", 'Thanks, this has been helpful!']
   }
 };
 
