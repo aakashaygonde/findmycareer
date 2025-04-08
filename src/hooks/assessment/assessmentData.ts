@@ -90,7 +90,7 @@ export const predefinedResponses: Record<string, { message: string, options: str
 };
 
 // Predefined roadmap data
-export const careerRoadmaps = {
+export const careerRoadmaps: Record<string, CareerRoadmap> = {
   technology: {
     shortTerm: [
       { title: "Learn Fundamental Skills", description: "Master programming basics and tools" },

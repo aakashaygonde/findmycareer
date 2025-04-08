@@ -28,7 +28,7 @@ export const getStageDescription = (stage: number): string => {
 };
 
 // Helper function to determine roadmap type based on message content
-export const determineRoadmapType = (messageContent: string): keyof typeof import('./assessmentData').careerRoadmaps => {
+export const determineRoadmapType = (messageContent: string): string => {
   const content = messageContent.toLowerCase();
   
   if (content.includes('software') || 
