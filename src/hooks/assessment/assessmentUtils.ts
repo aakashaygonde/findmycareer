@@ -1,5 +1,5 @@
 
-import { ChatMessage, CareerRoadmap } from '@/types';
+import { ChatMessage } from '@/types';
 
 // Helper function to parse dates from storage
 export const parseStoredMessages = (messages: any[]): ChatMessage[] => {
