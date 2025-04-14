@@ -89,9 +89,9 @@ function generateResponse(userMessage: string, stage: number) {
       
     case 4: // Career recommendations
       response = "Based on our conversation, here are some careers that might align with your interests and skills:\n\n" +
-        "1. **Software Developer**\n   - Description: Build applications and systems using programming languages\n   - Education: Computer Science degree or coding bootcamp\n   - Skills: Programming, problem-solving, teamwork\n   - Salary Range: $70,000 - $150,000\n\n" +
-        "2. **Data Analyst**\n   - Description: Analyze data to help businesses make decisions\n   - Education: Statistics, mathematics, or related field\n   - Skills: Statistical analysis, data visualization, SQL\n   - Salary Range: $60,000 - $120,000\n\n" +
-        "3. **UX/UI Designer**\n   - Description: Design user interfaces for websites and applications\n   - Education: Design degree or UX certification\n   - Skills: Design tools, user research, wireframing\n   - Salary Range: $65,000 - $130,000\n\n" +
+        "1. **Software Developer**\n   - Description: Build applications and systems using programming languages\n   - Education: Computer Science degree or coding bootcamp\n   - Skills: Programming, problem-solving, teamwork\n   - Salary Range: ₹5,80,000 - ₹12,45,000\n\n" +
+        "2. **Data Analyst**\n   - Description: Analyze data to help businesses make decisions\n   - Education: Statistics, mathematics, or related field\n   - Skills: Statistical analysis, data visualization, SQL\n   - Salary Range: ₹4,98,000 - ₹9,96,000\n\n" +
+        "3. **UX/UI Designer**\n   - Description: Design user interfaces for websites and applications\n   - Education: Design degree or UX certification\n   - Skills: Design tools, user research, wireframing\n   - Salary Range: ₹5,39,500 - ₹10,79,000\n\n" +
         "Which of these paths interests you most?";
       options = ["Tell me more about software development", "How do I start in data analysis?", "What skills do UX designers need?"];
       break;
@@ -164,9 +164,9 @@ function generateCareerRoadmap(careerPath: string): any {
         { title: "Consider Leadership", description: "Explore management or entrepreneurial paths" }
       ],
       resources: [
-        { title: "LinkedIn Learning", url: "https://www.linkedin.com/learning/" },
-        { title: "Indeed Career Guide", url: "https://www.indeed.com/career-advice" },
-        { title: "O*NET OnLine", url: "https://www.onetonline.org/" }
+        { title: "LinkedIn Learning", url: "https://www.linkedin.com/learning/", type: "course" },
+        { title: "Indeed Career Guide", url: "https://www.indeed.com/career-advice", type: "article" },
+        { title: "O*NET OnLine", url: "https://www.onetonline.org/", type: "tool" }
       ]
     }
   };

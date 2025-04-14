@@ -33,13 +33,56 @@ export const determineRoadmapType = (messageContent: string): string => {
   
   if (content.includes('software') || 
       content.includes('programming') || 
-      content.includes('tech')) {
+      content.includes('tech') || 
+      content.includes('web development') || 
+      content.includes('javascript') || 
+      content.includes('code') || 
+      content.includes('developer')) {
     return 'technology';
-  } else if (content.includes('design') || 
-            content.includes('art') || 
-            content.includes('creative')) {
+  } 
+  else if (content.includes('design') || 
+          content.includes('art') || 
+          content.includes('creative') || 
+          content.includes('visual') || 
+          content.includes('ux/ui') || 
+          content.includes('graphics') ||
+          content.includes('media')) {
     return 'creative';
   }
   
   return 'general';
+};
+
+// Helper function to convert USD salary to INR (Rupees)
+export const convertToRupees = (usdMin: number, usdMax: number): { min: string, max: string } => {
+  // Using an approximate conversion rate (1 USD = 83 INR)
+  const exchangeRate = 83;
+  
+  const inrMin = Math.round(usdMin * exchangeRate);
+  const inrMax = Math.round(usdMax * exchangeRate);
+  
+  // Format with commas for Indian number format
+  const formatIndianRupees = (amount: number): string => {
+    // Convert to string and split into array
+    const numStr = amount.toString();
+    const parts = [];
+    
+    // Handle the first 1-3 digits (from right)
+    parts.unshift(numStr.slice(-3));
+    
+    // Handle the remaining digits in groups of 2
+    let remaining = numStr.slice(0, -3);
+    while (remaining.length > 0) {
+      parts.unshift(remaining.slice(-2));
+      remaining = remaining.slice(0, -2);
+    }
+    
+    // Join with commas
+    return '₹' + parts.join(',');
+  };
+  
+  return {
+    min: formatIndianRupees(inrMin),
+    max: formatIndianRupees(inrMax)
+  };
 };

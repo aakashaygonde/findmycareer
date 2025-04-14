@@ -52,7 +52,7 @@ export const predefinedResponses: Record<string, { message: string, options: str
   
   // Stage 3 responses (example for one path)
   'Web development (HTML, CSS, JavaScript)': {
-    message: "Based on your interests in web development, here are some potential career paths:\n\n1. **Frontend Developer**\n   - Focus on creating user interfaces and experiences\n   - Skills: HTML, CSS, JavaScript, React/Vue/Angular\n   - Salary range: $70,000 - $120,000\n\n2. **Full-Stack Developer**\n   - Work on both frontend and backend systems\n   - Skills: JavaScript, Node.js, databases, cloud services\n   - Salary range: $80,000 - $140,000\n\n3. **UX Engineer**\n   - Bridge design and development\n   - Skills: UI/UX principles, prototyping, frontend development\n   - Salary range: $85,000 - $130,000\n\nWould you like more details about any of these paths?",
+    message: "Based on your interests in web development, here are some potential career paths:\n\n1. **Frontend Developer**\n   - Focus on creating user interfaces and experiences\n   - Skills: HTML, CSS, JavaScript, React/Vue/Angular\n   - Salary range: ₹5,00,000 - ₹12,00,000\n\n2. **Full-Stack Developer**\n   - Work on both frontend and backend systems\n   - Skills: JavaScript, Node.js, databases, cloud services\n   - Salary range: ₹6,00,000 - ₹16,00,000\n\n3. **UX Engineer**\n   - Bridge design and development\n   - Skills: UI/UX principles, prototyping, frontend development\n   - Salary range: ₹6,50,000 - ₹14,00,000\n\nWould you like more details about any of these paths?",
     options: ['Tell me more about Frontend Development', 'Tell me more about Full-Stack Development', 'What education do I need for these roles?'],
     nextStage: 4
   },
@@ -110,7 +110,7 @@ export const careerRoadmaps: Record<string, CareerRoadmap> = {
     resources: [
       { id: "1", title: "freeCodeCamp", type: "course", url: "https://www.freecodecamp.org/", provider: "freeCodeCamp" },
       { id: "2", title: "The Odin Project", type: "course", url: "https://www.theodinproject.com/", provider: "The Odin Project" },
-      { id: "3", title: "Stack Overflow", type: "community", url: "https://stackoverflow.com/", provider: "Stack Overflow" }
+      { id: "3", title: "Stack Overflow", type: "tool", url: "https://stackoverflow.com/", provider: "Stack Overflow" }
     ]
   },
   creative: {
@@ -130,9 +130,9 @@ export const careerRoadmaps: Record<string, CareerRoadmap> = {
       { title: "Mentorship", description: "Share knowledge with emerging creatives" }
     ],
     resources: [
-      { id: "1", title: "Behance", type: "community", url: "https://www.behance.net/", provider: "Adobe" },
+      { id: "1", title: "Behance", type: "tool", url: "https://www.behance.net/", provider: "Adobe" },
       { id: "2", title: "Skillshare", type: "course", url: "https://www.skillshare.com/", provider: "Skillshare" },
-      { id: "3", title: "Dribbble", type: "community", url: "https://dribbble.com/", provider: "Dribbble" }
+      { id: "3", title: "Dribbble", type: "tool", url: "https://dribbble.com/", provider: "Dribbble" }
     ]
   },
   general: {
@@ -153,7 +153,7 @@ export const careerRoadmaps: Record<string, CareerRoadmap> = {
     ],
     resources: [
       { id: "1", title: "LinkedIn Learning", type: "course", url: "https://www.linkedin.com/learning/", provider: "LinkedIn" },
-      { id: "2", title: "Indeed Career Guide", type: "resource", url: "https://www.indeed.com/career-advice", provider: "Indeed" },
+      { id: "2", title: "Indeed Career Guide", type: "article", url: "https://www.indeed.com/career-advice", provider: "Indeed" },
       { id: "3", title: "O*NET OnLine", type: "tool", url: "https://www.onetonline.org/", provider: "U.S. Department of Labor" }
     ]
   }
