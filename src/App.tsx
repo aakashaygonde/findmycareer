@@ -15,6 +15,7 @@ const Dashboard = lazy(() => import("./pages/Dashboard"));
 const Profile = lazy(() => import("./pages/Profile"));
 const Auth = lazy(() => import("./pages/Auth"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const ExploreRoadmaps = lazy(() => import("./pages/ExploreRoadmaps"));
 const ProtectedRoute = lazy(() => import("./components/ProtectedRoute"));
 
 // Loading fallback component
@@ -65,6 +66,16 @@ const App = () => {
               <Route path="/profile" element={
                 <Suspense fallback={<PageLoader />}>
                   <Profile />
+                </Suspense>
+              } />
+              <Route path="/explore-roadmaps" element={
+                <Suspense fallback={<PageLoader />}>
+                  <ExploreRoadmaps />
+                </Suspense>
+              } />
+              <Route path="/explore-roadmaps/:category" element={
+                <Suspense fallback={<PageLoader />}>
+                  <ExploreRoadmaps />
                 </Suspense>
               } />
               <Route path="*" element={
