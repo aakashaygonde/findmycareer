@@ -1,4 +1,3 @@
-
 import { useState, useCallback, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useToast } from '@/components/ui/use-toast';
@@ -6,6 +5,7 @@ import { ChatMessage, CareerRoadmap } from '@/types';
 import { useAuth } from '@/context/AuthContext';
 import { initialMessages, predefinedResponses, careerRoadmaps } from './assessment/assessmentData';
 import { parseStoredMessages, getStageDescription, determineRoadmapType } from './assessment/assessmentUtils';
+import { getAdvisorResponse } from '@/lib/career-advisor'; // Updated import
 
 export const useAssessmentChat = () => {
   const { user } = useAuth();
