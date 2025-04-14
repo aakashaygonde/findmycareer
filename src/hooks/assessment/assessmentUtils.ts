@@ -49,8 +49,43 @@ export const determineRoadmapType = (messageContent: string): string => {
           content.includes('media')) {
     return 'creative';
   }
+  else if (content.includes('data') ||
+          content.includes('analyst') ||
+          content.includes('analytics') ||
+          content.includes('statistics') ||
+          content.includes('research')) {
+    return 'data';
+  }
   
   return 'general';
+};
+
+// Helper function to format Indian number system (e.g., 1,00,000)
+export const formatIndianNumber = (amount: number): string => {
+  const numStr = amount.toString();
+  
+  if (numStr.length <= 3) {
+    return numStr;
+  }
+  
+  // Handle the last 3 digits
+  let result = numStr.slice(-3);
+  let remaining = numStr.slice(0, -3);
+  
+  // Add the rest of the digits in groups of 2
+  while (remaining.length > 0) {
+    const segment = remaining.slice(-2);
+    result = segment + "," + result;
+    remaining = remaining.slice(0, -2);
+    
+    // If there's only one digit left, add it
+    if (remaining.length === 1) {
+      result = remaining + "," + result;
+      break;
+    }
+  }
+  
+  return result;
 };
 
 // Helper function to convert USD salary to INR (Rupees)
@@ -61,28 +96,36 @@ export const convertToRupees = (usdMin: number, usdMax: number): { min: string, 
   const inrMin = Math.round(usdMin * exchangeRate);
   const inrMax = Math.round(usdMax * exchangeRate);
   
-  // Format with commas for Indian number format
-  const formatIndianRupees = (amount: number): string => {
-    // Convert to string and split into array
-    const numStr = amount.toString();
-    const parts = [];
-    
-    // Handle the first 1-3 digits (from right)
-    parts.unshift(numStr.slice(-3));
-    
-    // Handle the remaining digits in groups of 2
-    let remaining = numStr.slice(0, -3);
-    while (remaining.length > 0) {
-      parts.unshift(remaining.slice(-2));
-      remaining = remaining.slice(0, -2);
-    }
-    
-    // Join with commas
-    return '₹' + parts.join(',');
+  return {
+    min: '₹' + formatIndianNumber(inrMin),
+    max: '₹' + formatIndianNumber(inrMax)
+  };
+};
+
+// Helper function to get USD salary ranges for common tech roles
+export const getCareerSalaryUSD = (career: string): { min: number, max: number } => {
+  const salaryRanges: Record<string, { min: number, max: number }> = {
+    'Full-Stack Developer': { min: 75000, max: 120000 },
+    'Data Scientist': { min: 90000, max: 140000 },
+    'UX/UI Designer': { min: 65000, max: 110000 },
+    'DevOps Engineer': { min: 85000, max: 130000 },
+    'Cybersecurity Analyst': { min: 80000, max: 125000 },
+    'Product Manager': { min: 85000, max: 140000 },
+    'Mobile App Developer': { min: 70000, max: 115000 },
+    'Cloud Architect': { min: 110000, max: 160000 },
+    'AI Engineer': { min: 95000, max: 150000 },
+    'Digital Marketer': { min: 60000, max: 100000 },
+    // Default fallback
+    'default': { min: 60000, max: 100000 }
   };
   
-  return {
-    min: formatIndianRupees(inrMin),
-    max: formatIndianRupees(inrMax)
-  };
+  return salaryRanges[career] || salaryRanges.default;
+};
+
+// Helper function to get salary range in rupees with proper formatting
+export const getCareerSalaryInRupees = (career: string): string => {
+  const usdSalary = getCareerSalaryUSD(career);
+  const inrSalary = convertToRupees(usdSalary.min, usdSalary.max);
+  
+  return `${inrSalary.min} - ${inrSalary.max}`;
 };

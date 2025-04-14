@@ -5,6 +5,7 @@ import Layout from '@/components/Layout';
 import Hero from '@/components/Hero';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/context/AuthContext';
+import FeaturedCareerPaths from '@/components/FeaturedCareerPaths';
 
 const Index: React.FC = () => {
   const { user } = useAuth();
@@ -80,92 +81,7 @@ const Index: React.FC = () => {
         </div>
       </section>
       
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">Featured Career Paths</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Explore some of the most in-demand career paths in today's job market.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-card p-6 rounded-lg shadow-sm border border-border hover:shadow-md transition-shadow">
-              <h3 className="text-xl font-semibold mb-2">Full-Stack Developer</h3>
-              <p className="text-sm text-muted-foreground mb-4">
-                Build complete web applications with both front-end and back-end expertise.
-              </p>
-              <div className="flex justify-between items-center">
-                <span className="text-sm font-medium">$75k - $120k</span>
-                <span className="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">High Growth</span>
-              </div>
-            </div>
-            
-            <div className="bg-card p-6 rounded-lg shadow-sm border border-border hover:shadow-md transition-shadow">
-              <h3 className="text-xl font-semibold mb-2">Data Scientist</h3>
-              <p className="text-sm text-muted-foreground mb-4">
-                Analyze complex data and extract insights to drive business decisions.
-              </p>
-              <div className="flex justify-between items-center">
-                <span className="text-sm font-medium">$90k - $140k</span>
-                <span className="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">High Growth</span>
-              </div>
-            </div>
-            
-            <div className="bg-card p-6 rounded-lg shadow-sm border border-border hover:shadow-md transition-shadow">
-              <h3 className="text-xl font-semibold mb-2">UX/UI Designer</h3>
-              <p className="text-sm text-muted-foreground mb-4">
-                Create intuitive and engaging user experiences for digital products.
-              </p>
-              <div className="flex justify-between items-center">
-                <span className="text-sm font-medium">$65k - $110k</span>
-                <span className="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">High Growth</span>
-              </div>
-            </div>
-            
-            <div className="bg-card p-6 rounded-lg shadow-sm border border-border hover:shadow-md transition-shadow">
-              <h3 className="text-xl font-semibold mb-2">DevOps Engineer</h3>
-              <p className="text-sm text-muted-foreground mb-4">
-                Streamline development processes and optimize deployment pipelines.
-              </p>
-              <div className="flex justify-between items-center">
-                <span className="text-sm font-medium">$85k - $130k</span>
-                <span className="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">High Growth</span>
-              </div>
-            </div>
-            
-            <div className="bg-card p-6 rounded-lg shadow-sm border border-border hover:shadow-md transition-shadow">
-              <h3 className="text-xl font-semibold mb-2">Cybersecurity Analyst</h3>
-              <p className="text-sm text-muted-foreground mb-4">
-                Protect organizations from digital threats and security breaches.
-              </p>
-              <div className="flex justify-between items-center">
-                <span className="text-sm font-medium">$80k - $125k</span>
-                <span className="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">High Growth</span>
-              </div>
-            </div>
-            
-            <div className="bg-card p-6 rounded-lg shadow-sm border border-border hover:shadow-md transition-shadow">
-              <h3 className="text-xl font-semibold mb-2">Product Manager</h3>
-              <p className="text-sm text-muted-foreground mb-4">
-                Lead product development from conception to launch and beyond.
-              </p>
-              <div className="flex justify-between items-center">
-                <span className="text-sm font-medium">$85k - $140k</span>
-                <span className="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">High Growth</span>
-              </div>
-            </div>
-          </div>
-          
-          <div className="text-center mt-12">
-            <Link to="/assessment">
-              <Button variant="outline" size="lg">
-                Discover Your Ideal Career
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
+      <FeaturedCareerPaths />
       
       {!user && (
         <section className="py-20 bg-muted/50">
@@ -191,4 +107,3 @@ const Index: React.FC = () => {
 };
 
 export default Index;
-
