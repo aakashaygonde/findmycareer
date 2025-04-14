@@ -94,9 +94,12 @@ const CareerList: React.FC = () => {
                   <Award className="h-4 w-4 mr-1" /> Key Skills
                 </h4>
                 <div className="flex flex-wrap gap-2">
-                  {path.skills.map((skill, idx) => (
+                  {path.skills.slice(0, 5).map((skill, idx) => (
                     <Badge key={idx} variant="outline">{skill}</Badge>
                   ))}
+                  {path.skills.length > 5 && (
+                    <Badge variant="outline">+{path.skills.length - 5} more</Badge>
+                  )}
                 </div>
               </div>
               
@@ -105,9 +108,12 @@ const CareerList: React.FC = () => {
                   <BookOpen className="h-4 w-4 mr-1" /> Education Paths
                 </h4>
                 <ul className="list-disc ml-5 text-sm">
-                  {path.education.map((edu, idx) => (
+                  {path.education.slice(0, 2).map((edu, idx) => (
                     <li key={idx}>{edu}</li>
                   ))}
+                  {path.education.length > 2 && (
+                    <li className="text-muted-foreground">+{path.education.length - 2} more options</li>
+                  )}
                 </ul>
               </div>
             </CardContent>
