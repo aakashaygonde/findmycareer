@@ -67,7 +67,7 @@ const FeaturedCareerPaths: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {careerPaths.map((career, index) => (
             <Card key={index} className="p-6 rounded-lg shadow-sm border border-border hover:shadow-md transition-shadow">
-              <Link to={`/explore-roadmaps/${career.category}`} className="block h-full">
+              <Link to={`/explore-roadmaps/${career.category}/${encodeURIComponent(career.title)}`} className="block h-full">
                 <h3 className="text-xl font-semibold mb-2">{career.title}</h3>
                 <p className="text-sm text-muted-foreground mb-4">
                   {career.description}

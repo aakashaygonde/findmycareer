@@ -68,12 +68,7 @@ const App = () => {
                   <Profile />
                 </Suspense>
               } />
-              <Route path="/explore-roadmaps" element={
-                <Suspense fallback={<PageLoader />}>
-                  <ExploreRoadmaps />
-                </Suspense>
-              } />
-              <Route path="/explore-roadmaps/:category" element={
+              <Route path="/explore-roadmaps/*" element={
                 <Suspense fallback={<PageLoader />}>
                   <ExploreRoadmaps />
                 </Suspense>

@@ -88,6 +88,83 @@ export const formatIndianNumber = (amount: number): string => {
   return result;
 };
 
+// Helper function to get salary ranges in INR for common careers
+export const getCareerSalaryRangesINR = (career: string): { min: number, max: number } => {
+  const salaryRanges: Record<string, { min: number, max: number }> = {
+    // Technology
+    'Full-Stack Developer': { min: 600000, max: 2000000 },
+    'Frontend Developer': { min: 500000, max: 1500000 },
+    'Backend Developer': { min: 550000, max: 1800000 },
+    'Mobile App Developer': { min: 550000, max: 1600000 },
+    'Software Development': { min: 550000, max: 1800000 },
+    'DevOps Engineer': { min: 800000, max: 2500000 },
+    'Data Scientist': { min: 800000, max: 2200000 },
+    'Machine Learning Engineer': { min: 900000, max: 2500000 },
+    'AI Engineer': { min: 1000000, max: 2800000 },
+    'Cybersecurity Analyst': { min: 700000, max: 2000000 },
+    'Cloud Architect': { min: 1200000, max: 3000000 },
+    'Database Administrator': { min: 600000, max: 1500000 },
+    
+    // Creative
+    'UX/UI Designer': { min: 500000, max: 1800000 },
+    'Graphic Design': { min: 350000, max: 1200000 },
+    'Content Creation': { min: 400000, max: 1000000 },
+    'Digital Marketing': { min: 450000, max: 1500000 },
+    'Animation': { min: 400000, max: 1500000 },
+    'Game Design': { min: 500000, max: 1800000 },
+    'Film Production': { min: 400000, max: 1500000 },
+    'Photography': { min: 300000, max: 1200000 },
+    
+    // Business
+    'Product Manager': { min: 1000000, max: 2500000 },
+    'Project Management': { min: 800000, max: 2000000 },
+    'Marketing': { min: 500000, max: 1500000 },
+    'Finance': { min: 600000, max: 2000000 },
+    'Human Resources': { min: 450000, max: 1500000 },
+    'Entrepreneurship': { min: 0, max: 5000000 }, // Highly variable
+    'Supply Chain Management': { min: 600000, max: 1800000 },
+    
+    // Science
+    'Research Scientist': { min: 500000, max: 1500000 },
+    'Biotechnology': { min: 500000, max: 1800000 },
+    'Environmental Science': { min: 400000, max: 1200000 },
+    'Materials Science': { min: 450000, max: 1400000 },
+    'Astronomy': { min: 450000, max: 1300000 },
+    'Neuroscience': { min: 500000, max: 1500000 },
+    
+    // Healthcare
+    'Nursing': { min: 350000, max: 900000 },
+    'Physical Therapy': { min: 400000, max: 1200000 },
+    'Healthcare Administration': { min: 600000, max: 1800000 },
+    'Mental Health Counseling': { min: 400000, max: 1000000 },
+    'Public Health': { min: 450000, max: 1200000 },
+    'Medical Laboratory Science': { min: 400000, max: 1100000 },
+    
+    // Education
+    'Teaching': { min: 300000, max: 900000 },
+    'Educational Leadership': { min: 600000, max: 1500000 },
+    'Educational Technology': { min: 500000, max: 1500000 },
+    'Special Education': { min: 350000, max: 900000 },
+    
+    // Social Services
+    'Social Work': { min: 300000, max: 800000 },
+    'Nonprofit Management': { min: 500000, max: 1500000 },
+    'Community Development': { min: 400000, max: 1000000 },
+    'Human Services': { min: 350000, max: 900000 },
+    
+    // Default fallback
+    'default': { min: 400000, max: 1500000 }
+  };
+  
+  return salaryRanges[career] || salaryRanges.default;
+};
+
+// Helper function to get salary range in rupees with proper formatting
+export const getCareerSalaryInRupees = (career: string): string => {
+  const inrSalary = getCareerSalaryRangesINR(career);
+  return `₹${formatIndianNumber(inrSalary.min)} - ₹${formatIndianNumber(inrSalary.max)}`;
+};
+
 // Helper function to convert USD salary to INR (Rupees)
 export const convertToRupees = (usdMin: number, usdMax: number): { min: string, max: string } => {
   // Using an approximate conversion rate (1 USD = 83 INR)
@@ -120,12 +197,4 @@ export const getCareerSalaryUSD = (career: string): { min: number, max: number }
   };
   
   return salaryRanges[career] || salaryRanges.default;
-};
-
-// Helper function to get salary range in rupees with proper formatting
-export const getCareerSalaryInRupees = (career: string): string => {
-  const usdSalary = getCareerSalaryUSD(career);
-  const inrSalary = convertToRupees(usdSalary.min, usdSalary.max);
-  
-  return `${inrSalary.min} - ${inrSalary.max}`;
 };
