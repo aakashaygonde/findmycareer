@@ -5,13 +5,13 @@ import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
-import { getCareerSalaryInRupees } from '@/hooks/assessment/assessmentUtils';
 
 type CareerPathInfo = {
   title: string;
   description: string;
   growth: 'High' | 'Medium' | 'Low';
   category: string;
+  salaryRange: string;
 };
 
 const careerPaths: CareerPathInfo[] = [
@@ -19,37 +19,43 @@ const careerPaths: CareerPathInfo[] = [
     title: 'Full-Stack Developer',
     description: 'Build complete web applications with both front-end and back-end expertise.',
     growth: 'High',
-    category: 'technology'
+    category: 'technology',
+    salaryRange: '₹6,00,000 - ₹20,00,000'
   },
   {
     title: 'Data Scientist',
     description: 'Analyze complex data and extract insights to drive business decisions.',
     growth: 'High',
-    category: 'technology'
+    category: 'technology',
+    salaryRange: '₹8,00,000 - ₹22,00,000'
   },
   {
     title: 'UX/UI Designer',
     description: 'Create intuitive and engaging user experiences for digital products.',
     growth: 'High',
-    category: 'creativeArts'
+    category: 'creativeArts',
+    salaryRange: '₹5,00,000 - ₹18,00,000'
   },
   {
     title: 'DevOps Engineer',
     description: 'Streamline development processes and optimize deployment pipelines.',
     growth: 'High',
-    category: 'technology'
+    category: 'technology',
+    salaryRange: '₹8,00,000 - ₹25,00,000'
   },
   {
     title: 'Cybersecurity Analyst',
     description: 'Protect organizations from digital threats and security breaches.',
     growth: 'High',
-    category: 'technology'
+    category: 'technology',
+    salaryRange: '₹7,00,000 - ₹20,00,000'
   },
   {
     title: 'Product Manager',
     description: 'Lead product development from conception to launch and beyond.',
     growth: 'High',
-    category: 'business'
+    category: 'business',
+    salaryRange: '₹10,00,000 - ₹25,00,000'
   },
 ];
 
@@ -73,7 +79,7 @@ const FeaturedCareerPaths: React.FC = () => {
                   {career.description}
                 </p>
                 <div className="flex justify-between items-center">
-                  <span className="text-sm font-medium">{getCareerSalaryInRupees(career.title)}</span>
+                  <span className="text-sm font-medium">{career.salaryRange}</span>
                   <Badge variant={career.growth === 'High' ? 'default' : 'outline'} className={career.growth === 'High' ? 'bg-green-100 text-green-800 hover:bg-green-200' : ''}>
                     {career.growth} Growth
                   </Badge>

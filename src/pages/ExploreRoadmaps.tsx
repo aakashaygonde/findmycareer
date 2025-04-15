@@ -8,8 +8,8 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { careerAdvice } from '@/lib/career-advisor';
 import { Badge } from '@/components/ui/badge';
-import { getCareerSalaryInRupees } from '@/hooks/assessment/assessmentUtils';
 import DetailedCareerRoadmap from '@/components/DetailedCareerRoadmap';
+import NavMenu from '@/components/NavMenu';
 
 // All paths in a single array for easy filtering
 const allPaths = Object.values(careerAdvice).flatMap(category => category.paths);
@@ -39,6 +39,10 @@ const CareerList: React.FC = () => {
   
   return (
     <div className="container mx-auto px-4 py-8">
+      <div className="flex justify-center mb-8">
+        <NavMenu />
+      </div>
+      
       <div className="flex items-center mb-6">
         <Link to="/">
           <Button variant="ghost" size="sm" className="mr-2">
@@ -120,7 +124,14 @@ const CareerList: React.FC = () => {
             <CardFooter className="flex justify-between items-center border-t pt-4">
               <div className="flex items-center text-sm">
                 <Clock className="h-4 w-4 mr-1" />
-                <span>Est. Salary: {getCareerSalaryInRupees(path.name)}</span>
+                <span>
+                  {path.name === 'Full-Stack Developer' && '₹6,00,000 - ₹20,00,000'}
+                  {path.name === 'Data Scientist' && '₹8,00,000 - ₹22,00,000'}
+                  {path.name === 'UX/UI Designer' && '₹5,00,000 - ₹18,00,000'}
+                  {path.name === 'DevOps Engineer' && '₹8,00,000 - ₹25,00,000'}
+                  {path.name === 'Cybersecurity Analyst' && '₹7,00,000 - ₹20,00,000'}
+                  {path.name === 'Product Manager' && '₹10,00,000 - ₹25,00,000'}
+                </span>
               </div>
               <Link to={`/explore-roadmaps/${selectedCategory}/${encodeURIComponent(path.name)}`}>
                 <Button size="sm">
