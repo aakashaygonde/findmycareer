@@ -1,0 +1,21 @@
+PBL :-
+// changes to be made 
+1. Execute the code on local host
+
+changes : 
+1. add Career roadmaps page as section beside home
+2. Set the progress bar to zero at initial for each account. 
+3. Add detailed roadmaps to homepage careers and show them in career roadmaps section.
+4. add short descriptions to deatiled career roadmaps
+5. Remove : 
+carrer roadmap >> 
+1. business >> Human resources
+2. Science >> remove all excecpt biotech and astronomy 
+3. Healthcare >> remove all except nursing and physical therapy and meantal health counseling. 
+4. Education >> remove Educational leadership and special education. 
+5. Remove all Social services.
+
+6. Change Logo.
+7. after signup email doesn't sync to profile section.
+8. Any profile changes isn't been saved.
+9. 
