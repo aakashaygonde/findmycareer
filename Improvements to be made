@@ -2,20 +2,25 @@ PBL :-
 // changes to be made 
 1. Execute the code on local host
 
-changes : 
+Chages made : 
 1. add Career roadmaps page as section beside home
 2. Set the progress bar to zero at initial for each account. 
-3. Add detailed roadmaps to homepage careers and show them in career roadmaps section.
-4. add short descriptions to deatiled career roadmaps
 5. Remove : 
 carrer roadmap >> 
-1. business >> Human resources
-2. Science >> remove all excecpt biotech and astronomy 
-3. Healthcare >> remove all except nursing and physical therapy and meantal health counseling. 
-4. Education >> remove Educational leadership and special education. 
-5. Remove all Social services.
+      i. business >> Human resources
+      ii. Science >> remove all excecpt biotech and astronomy 
+      iii. Healthcare >> remove all except nursing and physical therapy and meantal health counseling. 
+      iv. Education >> remove Educational leadership and special education. 
+      v. Remove all Social services.
 
+
+changes  :  
+3. Add detailed roadmaps to homepage careers and show them in career roadmaps section.
+4. add short descriptions to detailed career roadmaps
 6. Change Logo.
 7. after signup email doesn't sync to profile section.
 8. Any profile changes isn't been saved.
-9. 
+9. Integrate the Chatbot form "Botpress"
+10. Train the chatbot. 
+11. Add a feature to like/Bookmark the roadmap and show it in dashboard as choosen roadmap. 
+12. ...
