@@ -6,16 +6,16 @@ import Hero from '@/components/Hero';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/context/AuthContext';
 import FeaturedCareerPaths from '@/components/FeaturedCareerPaths';
-import NavMenu from '@/components/NavMenu';
+// import NavMenu from '@/components/NavMenu';
 
 const Index: React.FC = () => {
   const { user } = useAuth();
   
   return (
     <Layout fullWidth>
-      <div className="container mx-auto flex justify-center py-4">
+      {/* <div className="container mx-auto flex justify-center py-4">
         <NavMenu />
-      </div>
+      </div> */}
       
       <Hero />
       

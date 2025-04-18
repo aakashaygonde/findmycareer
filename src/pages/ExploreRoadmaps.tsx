@@ -9,7 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { careerAdvice } from '@/lib/career-advisor';
 import { Badge } from '@/components/ui/badge';
 import DetailedCareerRoadmap from '@/components/DetailedCareerRoadmap';
-import NavMenu from '@/components/NavMenu';
+// import NavMenu from '@/components/NavMenu';
 
 // All paths in a single array for easy filtering
 const allPaths = Object.values(careerAdvice).flatMap(category => category.paths);
@@ -39,9 +39,9 @@ const CareerList: React.FC = () => {
   
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="flex justify-center mb-8">
+      {/* <div className="flex justify-center mb-8">
         <NavMenu />
-      </div>
+      </div> */}
       
       <div className="flex items-center mb-6">
         <Link to="/">

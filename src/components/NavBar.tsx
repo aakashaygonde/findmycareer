@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useIsMobile } from '@/hooks/use-mobile';
-import { Menu, X, User, BarChart, MessageSquare, Home, LogOut } from 'lucide-react';
+import { Menu, X, User, BarChart, MessageSquare, Home, LogOut, ChartNoAxesGantt } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import { 
   DropdownMenu, 
@@ -37,6 +37,7 @@ const NavBar: React.FC = () => {
 
   const navLinks = [
     { name: 'Home', path: '/', icon: <Home className="w-4 h-4 mr-2" />, requiresAuth: false },
+    { name: 'Roadmaps', path: '/explore-roadmaps', icon: <ChartNoAxesGantt className="w-4 h-4 mr-2" />, requiresAuth: false },
     { name: 'Assessment', path: '/assessment', icon: <MessageSquare className="w-4 h-4 mr-2" />, requiresAuth: true },
     { name: 'Dashboard', path: '/dashboard', icon: <BarChart className="w-4 h-4 mr-2" />, requiresAuth: true },
     { name: 'Profile', path: '/profile', icon: <User className="w-4 h-4 mr-2" />, requiresAuth: true }

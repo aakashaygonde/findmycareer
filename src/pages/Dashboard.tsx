@@ -15,7 +15,7 @@ import {
   ArrowUpRight, 
   Briefcase, 
   TrendingUp, 
-  DollarSign, 
+  IndianRupee, 
   BarChart3, 
   ExternalLink, 
   Users,
@@ -76,11 +76,11 @@ const Dashboard: React.FC = () => {
 
             <div className="flex items-center space-x-2">
               <div className="p-2 rounded-md bg-primary/10">
-                <DollarSign className="h-5 w-5 text-primary" />
+                <IndianRupee className="h-5 w-5 text-primary" />
               </div>
               <div>
                 <p className="text-xs text-muted-foreground">Avg. Salary</p>
-                <p className="font-medium">$85,000 / year</p>
+                <p className="font-medium">₹8,00,000 / year</p>
               </div>
             </div>
 

@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Award, GraduationCap, Clock, DollarSign } from 'lucide-react';
+import { Award, GraduationCap, Clock, IndianRupee } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { getCareerSalaryInRupees } from '@/hooks/assessment/assessmentUtils';
@@ -43,7 +43,7 @@ const CareerInfoSidebar: React.FC<CareerInfoSidebarProps> = ({ careerPath, roadm
         <div className="pt-4 border-t">
           <div className="flex items-center justify-between mb-2">
             <h3 className="text-sm font-medium flex items-center">
-              <DollarSign className="h-4 w-4 mr-2 text-green-500" /> Salary Range (India)
+              <IndianRupee className="h-4 w-4 mr-2 text-green-500" /> Salary Range (India)
             </h3>
             <Badge className="bg-green-100 text-green-800">
               {roadmapData.salaryTrend}
