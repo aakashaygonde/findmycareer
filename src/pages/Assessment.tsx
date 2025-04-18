@@ -6,8 +6,9 @@ import { Button } from '@/components/ui/button';
 import { ArrowLeft, InfoIcon, Clock, Lightbulb, BadgeHelp, Loader2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
+import { Chatbot } from '@/Chatbot/Chatbot';
 
-const AssessmentChat = lazy(() => import('@/components/assessment/AssessmentChat'));
+// const AssessmentChat = lazy(() => import('@/components/assessment/AssessmentChat'));
 const CareerRoadmapDisplay = lazy(() => import('@/components/assessment/CareerRoadmapDisplay'));
 
 const Assessment: React.FC = () => {
@@ -49,7 +50,8 @@ const Assessment: React.FC = () => {
                 </div>
               </div>
             }>
-              <AssessmentChat />
+              {/* <AssessmentChat /> */}
+              <Chatbot />
             </Suspense>
           </ErrorBoundary>
           
