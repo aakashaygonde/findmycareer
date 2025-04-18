@@ -87,7 +87,7 @@ const Auth: React.FC = () => {
       <div className="w-full max-w-md mx-auto">
         <Card className="w-full shadow-lg glass-card">
           <CardHeader className="text-center">
-            <CardTitle className="text-2xl">Welcome to Find My Skills</CardTitle>
+            <CardTitle className="text-2xl">Welcome to Find My Career</CardTitle>
             <CardDescription>
               Sign in to your account or create a new one
             </CardDescription>

@@ -28,7 +28,7 @@ const Layout: React.FC<LayoutProps> = ({
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} Find My Skills. All rights reserved.
+              © {new Date().getFullYear()} Find My Career. All rights reserved.
             </div>
             <div className="flex space-x-6">
               <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">

@@ -61,7 +61,7 @@ const NavBar: React.FC = () => {
                   <path d="M2 12l10 5 10-5"/>
                 </svg>
               </span>
-              <span className="font-display font-bold text-xl">Find My Skills</span>
+              <span className="font-display font-bold text-xl">Find My Career</span>
             </Link>
           </div>
           
