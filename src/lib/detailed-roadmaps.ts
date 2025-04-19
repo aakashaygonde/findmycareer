@@ -1,4 +1,3 @@
-
 // Detailed career roadmap data with specific Indian market information
 type RoadmapData = {
   salaryTrend: string;
@@ -42,7 +41,6 @@ type RoadmapCollection = {
 };
 
 export const detailedRoadmaps: RoadmapCollection = {
-  // Software Development
   "Software Development": {
     salaryTrend: "Growing Rapidly",
     timeline: {
@@ -52,112 +50,140 @@ export const detailedRoadmaps: RoadmapCollection = {
     },
     beginner: {
       skills: [
-        "Programming fundamentals (Java, Python, JavaScript)",
-        "Data structures and algorithms",
-        "Version control (Git)",
-        "Basic frontend technologies (HTML, CSS)",
-        "Understanding of databases (SQL)",
-        "Problem-solving techniques"
+        {
+          name: "Programming fundamentals",
+          description: "Master core concepts like variables, data types, control structures, and OOP principles in languages like Java, Python, or JavaScript"
+        },
+        {
+          name: "Data structures and algorithms",
+          description: "Learn essential data structures (arrays, linked lists, trees) and basic algorithms for sorting, searching, and problem-solving"
+        },
+        {
+          name: "Version control (Git)",
+          description: "Understand repository management, branching strategies, and collaborative development using Git"
+        },
+        {
+          name: "Basic frontend technologies",
+          description: "Learn HTML5 for structure, CSS3 for styling, and JavaScript for interactivity in web applications"
+        },
+        {
+          name: "Database fundamentals",
+          description: "Master SQL basics, database design principles, and basic CRUD operations"
+        }
       ],
       resources: [
         {
-          name: "Coding bootcamps (Masai School, Newton School)",
-          description: "Intensive 3-6 month programs with placement assistance"
+          name: "Coding bootcamps",
+          description: "Intensive 3-6 month programs at institutions like Masai School or Newton School with placement assistance and hands-on learning"
         },
         {
-          name: "Online platforms (GeeksforGeeks, LeetCode)",
-          description: "Practice coding problems and learn algorithms"
+          name: "Online learning platforms",
+          description: "Practice coding on GeeksforGeeks, LeetCode for algorithmic problems, and structured courses on platforms like Coursera"
         },
         {
-          name: "YouTube tutorials and free courses",
-          description: "Learn fundamentals from channels like Telusko, CodeWithHarry"
+          name: "Documentation and tutorials",
+          description: "Learn from official documentation, MDN Web Docs, and free YouTube channels like Telusko, CodeWithHarry"
         }
       ],
       projects: [
         {
           name: "Personal portfolio website",
-          description: "Create a responsive website to showcase your skills"
+          description: "Build a responsive website showcasing your projects using HTML, CSS, and JavaScript with modern design principles"
         },
         {
-          name: "Todo list application",
-          description: "Build a full-stack app with CRUD operations"
+          name: "Task management application",
+          description: "Create a full-stack app with CRUD operations, user authentication, and data persistence"
         },
         {
-          name: "E-commerce product page clone",
-          description: "Recreate UI of popular e-commerce platforms"
+          name: "E-commerce platform clone",
+          description: "Develop a simplified version of popular e-commerce sites with product listings, cart functionality, and checkout process"
         }
       ],
-      outcomes: "By the end of this stage, you should be able to build basic web applications, understand programming logic, and have a portfolio of small projects to showcase your skills."
+      outcomes: "Gain proficiency in core programming concepts, build basic web applications independently, and develop problem-solving skills necessary for entry-level positions"
     },
     intermediate: {
       skills: [
-        "Full-stack development (MERN, MEAN, or similar stacks)",
-        "Cloud platforms (AWS, Azure)",
-        "API design and development",
-        "Testing methodologies",
-        "DevOps basics (CI/CD pipelines)",
-        "System design fundamentals"
+        {
+          name: "Advanced frontend frameworks",
+          description: "Master modern frameworks like React, Angular, or Vue.js, including state management and component architecture"
+        },
+        {
+          name: "Backend development",
+          description: "Build scalable server-side applications using Node.js, Python frameworks, or Java Spring"
+        },
+        {
+          name: "Cloud platforms",
+          description: "Learn deployment and scaling on AWS, Azure, or GCP, including containerization with Docker"
+        },
+        {
+          name: "System design fundamentals",
+          description: "Understand microservices architecture, API design patterns, and distributed systems"
+        },
+        {
+          name: "Testing methodologies",
+          description: "Implement unit testing, integration testing, and end-to-end testing using modern testing frameworks"
+        }
       ],
       certifications: [
         {
-          name: "AWS Certified Developer",
-          description: "Validates technical expertise in developing and maintaining applications on AWS"
+          name: "AWS Certified Developer Associate",
+          description: "Comprehensive cloud development certification covering AWS services, deployment, and best practices"
         },
         {
-          name: "Microsoft Certified: Azure Developer Associate",
-          description: "Proves skills in developing solutions using Azure services"
+          name: "Professional Full Stack Certification",
+          description: "Advanced certification from platforms like Scaler, covering both frontend and backend technologies"
         },
         {
-          name: "Professional certifications from Scaler, Upgrad",
-          description: "Industry-relevant certifications with project experience"
+          name: "Microsoft Azure Developer Associate",
+          description: "Learn cloud-native application development using Microsoft Azure services and tools"
         }
       ],
       milestones: [
         {
-          name: "Junior Developer to Mid-level Developer",
-          description: "Handling complete features independently without supervision"
+          name: "Lead feature development",
+          description: "Take ownership of complete features from design to deployment, mentoring junior developers"
         },
         {
-          name: "Contributing to open source",
-          description: "Making meaningful contributions to open source projects"
+          name: "Architecture contributions",
+          description: "Participate in system design decisions and implement complex technical solutions"
         },
         {
-          name: "Mentoring juniors",
-          description: "Beginning to guide new team members"
+          name: "Code quality champion",
+          description: "Establish coding standards, review processes, and maintain high-quality documentation"
         }
       ],
-      outcomes: "At this stage, you should be able to work independently on complex features, have specialized in certain technologies, and contribute meaningfully to larger projects. Your salary would typically range from ₹8,00,000 to ₹15,00,000 annually."
+      outcomes: "Develop expertise in full-stack development, lead technical implementations, and make significant contributions to large-scale projects"
     },
     advanced: {
       specializations: [
         {
-          name: "Architectural roles",
-          description: "Solution Architect, Technical Architect focusing on system design"
+          name: "Technical Architecture",
+          description: "Design and implement large-scale distributed systems, make critical technology decisions, and ensure scalability"
         },
         {
-          name: "DevOps specialization",
-          description: "Focus on deployment, infrastructure as code, and site reliability"
+          name: "DevOps Engineering",
+          description: "Implement CI/CD pipelines, automate deployment processes, and manage cloud infrastructure"
         },
         {
-          name: "AI/ML integration",
-          description: "Implementing machine learning solutions within applications"
+          name: "AI/ML Integration",
+          description: "Incorporate machine learning models into applications and develop AI-powered features"
         }
       ],
       leadership: [
         {
           title: "Technical Lead",
-          description: "Leading a team of 5-10 developers, making technical decisions"
+          description: "Lead a team of 5-10 developers, make architectural decisions, and ensure project delivery"
         },
         {
           title: "Engineering Manager",
-          description: "Managing multiple teams, handling resource allocation and delivery"
+          description: "Manage multiple teams, handle resource allocation, and drive technical strategy"
         },
         {
-          title: "CTO",
-          description: "Overseeing all technical aspects of the company, especially in startups"
+          title: "Chief Technology Officer",
+          description: "Define technical vision, make strategic decisions, and lead digital transformation initiatives"
         }
       ],
-      industryImpact: "As a senior software developer in India, you can shape the tech ecosystem by contributing to open standards, speaking at conferences like JSFoo or AWS Community Day, and mentoring the next generation through initiatives like CodeChef or Hackerrank."
+      industryImpact: "Shape the technology landscape through architectural decisions, mentoring, and contributions to the developer community through speaking engagements and open source"
     },
     indianMarket: {
       topCompanies: [
@@ -181,7 +207,6 @@ export const detailedRoadmaps: RoadmapCollection = {
     }
   },
   
-  // Data Science
   "Data Science": {
     salaryTrend: "High Growth",
     timeline: {
@@ -319,7 +344,6 @@ export const detailedRoadmaps: RoadmapCollection = {
     }
   },
   
-  // UX/UI Design
   "UX/UI Design": {
     salaryTrend: "Steady Growth",
     timeline: {
@@ -457,7 +481,6 @@ export const detailedRoadmaps: RoadmapCollection = {
     }
   },
   
-  // Full-Stack Developer
   "Full-Stack Developer": {
     salaryTrend: "High Demand",
     timeline: {
@@ -595,8 +618,7 @@ export const detailedRoadmaps: RoadmapCollection = {
     }
   },
   
-  // Default roadmap (used when a specific career is not found)
-  "default": {
+  "Default roadmap": {
     salaryTrend: "Varies by Industry",
     timeline: {
       entryLevel: "1 year",
@@ -733,7 +755,6 @@ export const detailedRoadmaps: RoadmapCollection = {
   }
 };
 
-// Helper function to get roadmap data for a specific career
 export const getRoadmapForCareer = (careerName: string): RoadmapData => {
-  return detailedRoadmaps[careerName] || detailedRoadmaps.default;
+  return detailedRoadmaps[careerName] || detailedRoadmaps["default"];
 };
