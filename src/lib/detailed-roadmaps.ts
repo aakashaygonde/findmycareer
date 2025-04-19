@@ -1,3 +1,4 @@
+
 // Detailed career roadmap data with specific Indian market information
 type RoadmapData = {
   salaryTrend: string;
@@ -389,78 +390,114 @@ export const detailedRoadmaps: RoadmapCollection = {
     },
     beginner: {
       skills: [
-        "Visual design principles",
-        "Typography and color theory",
-        "Wireframing and prototyping",
-        "User research basics",
-        "Design tools (Figma, Adobe XD)",
-        "Responsive design concepts"
+        {
+          name: "Visual design principles",
+          description: "Understanding composition, color theory, layout, and visual hierarchy to create appealing designs"
+        },
+        {
+          name: "Typography and color theory",
+          description: "Mastering font selection, pairing, and color schemes to communicate brand personality"
+        },
+        {
+          name: "Wireframing and prototyping",
+          description: "Creating low and high-fidelity mockups to demonstrate interface functionality and flow"
+        },
+        {
+          name: "User research basics",
+          description: "Learning how to conduct user interviews, create personas, and map user journeys"
+        },
+        {
+          name: "Design tools (Figma, Adobe XD)",
+          description: "Becoming proficient with industry-standard design software for creating mockups and prototypes"
+        },
+        {
+          name: "Responsive design concepts",
+          description: "Understanding how to design for different screen sizes and device capabilities"
+        }
       ],
       resources: [
         {
           name: "DesignBoat, IxDF courses",
-          description: "Structured courses focusing on design fundamentals"
+          description: "Structured courses focusing on design fundamentals and industry-specific best practices"
         },
         {
           name: "Design Sprint workshops",
-          description: "Practical application of UX methodologies"
+          description: "Practical application of UX methodologies through focused, rapid prototyping sessions"
         },
         {
           name: "YouTube channels (The Futur, Design Course)",
-          description: "Free tutorials on various design topics"
+          description: "Free tutorials on various design topics from established professionals in the field"
         }
       ],
       projects: [
         {
           name: "UI redesign of existing app",
-          description: "Redesign interface of popular local apps"
+          description: "Redesign interface of popular local apps to improve usability and visual appeal"
         },
         {
           name: "User journey mapping",
-          description: "Create detailed customer journeys for digital products"
+          description: "Create detailed customer journeys for digital products to identify pain points and opportunities"
         },
         {
           name: "Design system creation",
-          description: "Build a simple component library and style guide"
+          description: "Build a simple component library and style guide for consistent design implementation"
         }
       ],
       outcomes: "At this stage, you should understand design principles, be proficient with design tools, and have a portfolio showcasing your ability to create visually appealing and functional interfaces."
     },
     intermediate: {
       skills: [
-        "Advanced prototyping",
-        "Usability testing",
-        "Information architecture",
-        "Interaction design patterns",
-        "Design systems implementation",
-        "Accessibility standards"
+        {
+          name: "Advanced prototyping",
+          description: "Creating high-fidelity interactive prototypes that closely simulate real application behavior"
+        },
+        {
+          name: "Usability testing",
+          description: "Conducting structured tests to evaluate how real users interact with designs"
+        },
+        {
+          name: "Information architecture",
+          description: "Organizing and structuring content for optimal user navigation and comprehension"
+        },
+        {
+          name: "Interaction design patterns",
+          description: "Implementing established patterns and innovating new solutions for complex interactions"
+        },
+        {
+          name: "Design systems implementation",
+          description: "Creating comprehensive design systems with components, guidelines, and documentation"
+        },
+        {
+          name: "Accessibility standards",
+          description: "Ensuring designs are inclusive and usable by people with diverse abilities and needs"
+        }
       ],
       certifications: [
         {
           name: "Google UX Design Professional Certificate",
-          description: "Comprehensive UX training from Google"
+          description: "Comprehensive UX training from Google covering the entire design process"
         },
         {
           name: "Certified Usability Analyst (CUA)",
-          description: "Focus on user research and testing methodologies"
+          description: "Focus on user research and testing methodologies for creating user-centered designs"
         },
         {
           name: "Interaction Design Foundation certification",
-          description: "Specialized courses in various UX domains"
+          description: "Specialized courses in various UX domains from a respected industry organization"
         }
       ],
       milestones: [
         {
           name: "UI Designer to UX/UI Designer",
-          description: "Expanding from visual design to user experience"
+          description: "Expanding from visual design to user experience research and strategy"
         },
         {
           name: "Leading design for significant features",
-          description: "Owning the design process for major product components"
+          description: "Owning the design process for major product components or entire product lines"
         },
         {
           name: "Collaborative work with product and development",
-          description: "Effectively communicating design decisions across teams"
+          description: "Effectively communicating design decisions across teams and influencing product direction"
         }
       ],
       outcomes: "By this stage, you should be able to lead design projects, conduct user research, and translate business requirements into user-centered designs. Typical salary range is ₹8,00,000 to ₹18,00,000 annually."
@@ -469,29 +506,29 @@ export const detailedRoadmaps: RoadmapCollection = {
       specializations: [
         {
           name: "UX Research Lead",
-          description: "Focus on user research methodologies and insights"
+          description: "Focus on user research methodologies and insights to drive product strategy"
         },
         {
           name: "Design Systems Architect",
-          description: "Creating scalable design systems for large organizations"
+          description: "Creating scalable design systems for large organizations with multiple products"
         },
         {
           name: "Product Designer",
-          description: "Holistic product thinking beyond just interface design"
+          description: "Holistic product thinking beyond just interface design, including business strategy"
         }
       ],
       leadership: [
         {
           title: "Design Manager",
-          description: "Leading a team of designers and establishing processes"
+          description: "Leading a team of designers and establishing processes for effective design work"
         },
         {
           title: "Head of Design",
-          description: "Setting design strategy and standards across products"
+          description: "Setting design strategy and standards across products and influencing company direction"
         },
         {
           title: "Chief Design Officer",
-          description: "Executive-level role focusing on design as strategic advantage"
+          description: "Executive-level role focusing on design as strategic advantage for the organization"
         }
       ],
       industryImpact: "Senior designers in India are shaping how products are built for the diverse Indian market, speaking at events like DesignUp and India HCI, and bridging global design practices with local user needs."
@@ -526,78 +563,114 @@ export const detailedRoadmaps: RoadmapCollection = {
     },
     beginner: {
       skills: [
-        "HTML, CSS, JavaScript fundamentals",
-        "Frontend framework (React, Angular, Vue)",
-        "Backend basics (Node.js, Express, Django, etc.)",
-        "Database fundamentals (SQL, MongoDB)",
-        "RESTful API development",
-        "Version control with Git"
+        {
+          name: "HTML, CSS, JavaScript fundamentals",
+          description: "Mastering the core building blocks of web development for creating structured, styled, and interactive websites"
+        },
+        {
+          name: "Frontend framework (React, Angular, Vue)",
+          description: "Learning a modern JavaScript framework for building dynamic user interfaces with component-based architecture"
+        },
+        {
+          name: "Backend basics (Node.js, Express, Django, etc.)",
+          description: "Understanding server-side programming to handle data processing, authentication, and business logic"
+        },
+        {
+          name: "Database fundamentals (SQL, MongoDB)",
+          description: "Working with both relational and NoSQL databases to store and query application data efficiently"
+        },
+        {
+          name: "RESTful API development",
+          description: "Creating and consuming APIs to enable communication between frontend and backend systems"
+        },
+        {
+          name: "Version control with Git",
+          description: "Using Git for collaborative development, tracking changes, and maintaining code history"
+        }
       ],
       resources: [
         {
           name: "Scaler Academy, Newton School",
-          description: "Structured full-stack bootcamps with placements"
+          description: "Structured full-stack bootcamps with placements and industry-oriented curriculum"
         },
         {
           name: "freeCodeCamp, The Odin Project",
-          description: "Free comprehensive web development curriculum"
+          description: "Free comprehensive web development curriculum with hands-on projects and community support"
         },
         {
           name: "YouTube channels (Traversy Media, CodeWithHarry)",
-          description: "Project-based learning videos"
+          description: "Project-based learning videos covering various aspects of full-stack development"
         }
       ],
       projects: [
         {
           name: "Personal blog/portfolio",
-          description: "Full-stack website with admin dashboard"
+          description: "Full-stack website with admin dashboard, content management, and responsive design"
         },
         {
           name: "E-commerce clone",
-          description: "Shopping cart, user authentication, product listing"
+          description: "Building a shopping cart, user authentication, product listing, and payment integration"
         },
         {
           name: "Social media feed",
-          description: "Building a dynamic content feed with interactions"
+          description: "Creating a dynamic content feed with interactions like comments, likes, and sharing functionality"
         }
       ],
       outcomes: "At this stage, you should be able to build complete web applications from frontend to backend, understand database design, and deploy simple applications to production."
     },
     intermediate: {
       skills: [
-        "Advanced frontend (state management, performance optimization)",
-        "Microservices architecture",
-        "Cloud deployment (AWS, Azure, GCP)",
-        "Authentication systems and security",
-        "Testing (unit, integration, E2E)",
-        "CI/CD pipelines"
+        {
+          name: "Advanced frontend (state management, performance optimization)",
+          description: "Using libraries like Redux or Context API for state management and techniques to optimize application performance"
+        },
+        {
+          name: "Microservices architecture",
+          description: "Designing and implementing distributed systems with separate, specialized services"
+        },
+        {
+          name: "Cloud deployment (AWS, Azure, GCP)",
+          description: "Utilizing cloud platforms for hosting, scaling, and managing applications in production"
+        },
+        {
+          name: "Authentication systems and security",
+          description: "Implementing secure user authentication, authorization, and protecting against common web vulnerabilities"
+        },
+        {
+          name: "Testing (unit, integration, E2E)",
+          description: "Writing automated tests at different levels to ensure code quality and prevent regressions"
+        },
+        {
+          name: "CI/CD pipelines",
+          description: "Setting up continuous integration and deployment workflows for automated testing and deployment"
+        }
       ],
       certifications: [
         {
           name: "AWS Certified Developer",
-          description: "Cloud skills for deploying and managing applications"
+          description: "Cloud skills for deploying and managing applications on Amazon Web Services"
         },
         {
           name: "MongoDB Certified Developer",
-          description: "Database design and optimization skills"
+          description: "Database design and optimization skills for working with MongoDB"
         },
         {
           name: "Specialization certifications from edX, Coursera",
-          description: "Deep dives into specific technologies"
+          description: "Deep dives into specific technologies like React, Node.js, or cloud platforms"
         }
       ],
       milestones: [
         {
           name: "Junior to Mid-level Developer",
-          description: "Leading feature implementation independently"
+          description: "Leading feature implementation independently and taking ownership of significant components"
         },
         {
           name: "Mentoring junior developers",
-          description: "Providing technical guidance and code reviews"
+          description: "Providing technical guidance and code reviews to help less experienced team members grow"
         },
         {
           name: "Participating in system design",
-          description: "Contributing to architectural decisions"
+          description: "Contributing to architectural decisions and planning for large-scale applications"
         }
       ],
       outcomes: "By this stage, you should be architecting complex applications, making technology stack decisions, and implementing best practices for security and performance. Expect to earn between ₹10,00,000 to ₹18,00,000 annually."
@@ -606,29 +679,29 @@ export const detailedRoadmaps: RoadmapCollection = {
       specializations: [
         {
           name: "Technical Architect",
-          description: "Designing large-scale distributed systems"
+          description: "Designing large-scale distributed systems and making high-level technology decisions"
         },
         {
           name: "DevOps Engineer",
-          description: "Focusing on deployment infrastructure and automation"
+          description: "Focusing on deployment infrastructure, automation, and monitoring for optimal system performance"
         },
         {
           name: "Performance Engineer",
-          description: "Specialized in optimizing application performance"
+          description: "Specialized in optimizing application performance, scalability, and resource utilization"
         }
       ],
       leadership: [
         {
           title: "Technical Lead",
-          description: "Leading development teams of 5-10 people"
+          description: "Leading development teams of 5-10 people and guiding technical implementation"
         },
         {
           title: "Engineering Manager",
-          description: "Managing multiple teams and technical direction"
+          description: "Managing multiple teams and technical direction while balancing people management"
         },
         {
           title: "CTO",
-          description: "Setting technical vision and strategy, especially in startups"
+          description: "Setting technical vision and strategy, especially in startups and growing companies"
         }
       ],
       industryImpact: "Senior full-stack developers can contribute to open source, speak at conferences like JSFoo and React India, and mentor the next generation through initiatives like developer meetups and hackathons."
@@ -663,78 +736,114 @@ export const detailedRoadmaps: RoadmapCollection = {
     },
     beginner: {
       skills: [
-        "Foundational technical skills",
-        "Industry-specific knowledge",
-        "Basic tools and software proficiency",
-        "Problem-solving abilities",
-        "Communication skills",
-        "Time management"
+        {
+          name: "Foundational technical skills",
+          description: "Building the core technical abilities required for your specific field"
+        },
+        {
+          name: "Industry-specific knowledge",
+          description: "Understanding the domain, terminology, and best practices of your industry"
+        },
+        {
+          name: "Basic tools and software proficiency",
+          description: "Mastering the essential tools and platforms used in your profession"
+        },
+        {
+          name: "Problem-solving abilities",
+          description: "Developing analytical thinking and approaches to overcome challenges"
+        },
+        {
+          name: "Communication skills",
+          description: "Learning to effectively communicate ideas, progress, and results"
+        },
+        {
+          name: "Time management",
+          description: "Organizing tasks, meeting deadlines, and balancing multiple priorities"
+        }
       ],
       resources: [
         {
           name: "Online learning platforms",
-          description: "Coursera, Udemy, edX for structured learning"
+          description: "Coursera, Udemy, edX for structured learning with certificates and projects"
         },
         {
           name: "Industry certification programs",
-          description: "Entry-level certifications in your chosen field"
+          description: "Entry-level certifications in your chosen field to validate skills"
         },
         {
           name: "Free learning resources",
-          description: "YouTube tutorials, blogs, and open educational resources"
+          description: "YouTube tutorials, blogs, and open educational resources for self-paced learning"
         }
       ],
       projects: [
         {
           name: "Portfolio projects",
-          description: "Build examples of your work to showcase skills"
+          description: "Build examples of your work to showcase skills and demonstrate capabilities"
         },
         {
           name: "Volunteer opportunities",
-          description: "Gain experience through pro-bono work"
+          description: "Gain experience through pro-bono work for non-profits or community organizations"
         },
         {
           name: "Personal skill-building projects",
-          description: "Self-directed projects to develop capabilities"
+          description: "Self-directed projects to develop capabilities in specific areas of interest"
         }
       ],
       outcomes: "At this stage, you should understand the fundamentals of your field, have basic technical skills, and be ready for entry-level positions or internships."
     },
     intermediate: {
       skills: [
-        "Advanced technical abilities",
-        "Specialized knowledge areas",
-        "Project management",
-        "Mentoring and leadership",
-        "Industry best practices",
-        "Cross-functional collaboration"
+        {
+          name: "Advanced technical abilities",
+          description: "Developing deeper expertise in specialized areas of your field"
+        },
+        {
+          name: "Specialized knowledge areas",
+          description: "Focusing on specific domains that align with your career goals"
+        },
+        {
+          name: "Project management",
+          description: "Leading initiatives and coordinating resources to achieve objectives"
+        },
+        {
+          name: "Mentoring and leadership",
+          description: "Guiding others and taking responsibility for team outcomes"
+        },
+        {
+          name: "Industry best practices",
+          description: "Implementing standards and methodologies recognized as optimal in your field"
+        },
+        {
+          name: "Cross-functional collaboration",
+          description: "Working effectively with different teams and disciplines across an organization"
+        }
       ],
       certifications: [
         {
           name: "Professional-level certifications",
-          description: "Industry-recognized credentials for your field"
+          description: "Industry-recognized credentials for your field that validate advanced skills"
         },
         {
           name: "Specialized training programs",
-          description: "Advanced courses in your area of expertise"
+          description: "Advanced courses in your area of expertise from recognized institutions"
         },
         {
           name: "Management and leadership training",
-          description: "Developing soft skills for career advancement"
+          description: "Developing soft skills for career advancement and team leadership"
         }
       ],
       milestones: [
         {
           name: "Individual contributor to specialist",
-          description: "Becoming recognized for expertise in specific areas"
+          description: "Becoming recognized for expertise in specific areas within your organization"
         },
         {
           name: "Taking on leadership responsibilities",
-          description: "Leading projects or mentoring junior team members"
+          description: "Leading projects or mentoring junior team members as you grow professionally"
         },
         {
           name: "Industry recognition",
-          description: "Having work recognized by peers and industry"
+          description: "Having work recognized by peers and industry through publications or awards"
         }
       ],
       outcomes: "By this stage, you should have developed specialized expertise, be able to lead projects, and have established yourself as a valuable professional in your field."
@@ -743,29 +852,29 @@ export const detailedRoadmaps: RoadmapCollection = {
       specializations: [
         {
           name: "Expert specialist",
-          description: "Becoming a recognized authority in a specific domain"
+          description: "Becoming a recognized authority in a specific domain with deep expertise"
         },
         {
           name: "Leadership track",
-          description: "Moving into management and strategic roles"
+          description: "Moving into management and strategic roles with broader organizational impact"
         },
         {
           name: "Consultant or advisor",
-          description: "Providing expert guidance across organizations"
+          description: "Providing expert guidance across organizations based on extensive experience"
         }
       ],
       leadership: [
         {
           title: "Team Lead or Manager",
-          description: "Leading teams and developing talent"
+          description: "Leading teams and developing talent while ensuring project success"
         },
         {
           title: "Director or Department Head",
-          description: "Setting strategy and direction for departments"
+          description: "Setting strategy and direction for departments with significant responsibility"
         },
         {
           title: "Executive Leadership",
-          description: "C-suite or senior leadership positions"
+          description: "C-suite or senior leadership positions with company-wide decision-making authority"
         }
       ],
       industryImpact: "At the advanced stage, professionals can shape industry standards, mentor the next generation, speak at conferences, and contribute to the evolution of their field."
