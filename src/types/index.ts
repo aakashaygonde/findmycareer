@@ -1,3 +1,4 @@
+
 export interface Career {
   id: string;
   title: string;
@@ -100,10 +101,29 @@ export interface UserRoadmap {
 }
 
 export interface RoadmapData {
-  name: string;
-  description: string;
-  growthRate: string;
-  jobOpenings: string;
+  salaryTrend: string;
+  timeline: {
+    entryLevel: string;
+    midLevel: string;
+    seniorLevel: string;
+  };
+  beginner: {
+    skills: Array<{ name: string; description: string }>;
+    resources: Array<{ name: string; description: string }>;
+    projects: Array<{ name: string; description: string }>;
+    outcomes: string;
+  };
+  intermediate: {
+    skills: Array<{ name: string; description: string }>;
+    certifications: Array<{ name: string; description: string }>;
+    milestones: Array<{ name: string; description: string }>;
+    outcomes: string;
+  };
+  advanced: {
+    specializations: Array<{ name: string; description: string }>;
+    leadership: Array<{ title: string; description: string }>;
+    industryImpact: string;
+  };
   indianMarket: {
     topCompanies: string[];
     regions: string[];
@@ -115,4 +135,6 @@ export interface RoadmapData {
     };
     outlook: string;
   };
+  growthRate: string; // Added this property
+  jobOpenings: string; // Added this property
 }
