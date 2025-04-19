@@ -72,12 +72,10 @@ const Dashboard: React.FC = () => {
     fetchPrimaryRoadmap();
   }, [user]);
 
-  // Find the career path details if a primary roadmap exists
   const categoryKey = primaryRoadmap?.category as keyof typeof careerAdvice;
   const categoryData = primaryRoadmap ? careerAdvice[categoryKey] : null;
   const careerPath = categoryData?.paths.find(path => path.name === primaryRoadmap?.career_name);
   
-  // Get the detailed roadmap data
   const roadmapKey = primaryRoadmap?.roadmap_key || 'Software Development';
   const roadmapData = detailedRoadmaps[roadmapKey as keyof typeof detailedRoadmaps] || detailedRoadmaps.default;
 
