@@ -1,13 +1,7 @@
-
 import React from 'react';
 import { TrendingUp, IndianRupee, Briefcase, Users } from 'lucide-react';
 import { getCareerSalaryInRupees } from '@/hooks/assessment/assessmentUtils';
-import { RoadmapData } from '@/types';
-
-interface DashboardStatsProps {
-  roadmapData: RoadmapData;
-  careerPath: any;
-}
+import { DashboardStatsProps } from '@/types/dashboard';
 
 const DashboardStats = ({ roadmapData, careerPath }: DashboardStatsProps) => {
   return (

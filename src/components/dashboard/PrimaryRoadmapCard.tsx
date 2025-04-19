@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Badge } from '@/components/ui/badge';
@@ -6,13 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { ExternalLink, ArrowUpRight } from 'lucide-react';
 import DashboardStats from './DashboardStats';
-
-interface PrimaryRoadmapCardProps {
-  primaryRoadmap: any;
-  categoryData: any;
-  careerPath: any;
-  roadmapData: any;
-}
+import { PrimaryRoadmapCardProps } from '@/types/dashboard';
 
 const PrimaryRoadmapCard = ({ primaryRoadmap, categoryData, careerPath, roadmapData }: PrimaryRoadmapCardProps) => {
   if (!careerPath) return null;
