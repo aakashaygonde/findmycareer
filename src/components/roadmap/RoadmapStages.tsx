@@ -3,6 +3,11 @@ import React from 'react';
 import { BookOpen, Briefcase, Award, ChevronRight } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
+type SkillItem = {
+  name: string;
+  description: string;
+};
+
 type RoadmapStagesProps = {
   roadmapData: any;
 };
@@ -26,7 +31,7 @@ const RoadmapStages: React.FC<RoadmapStagesProps> = ({ roadmapData }) => {
             <div className="absolute left-0 -translate-x-1/2 w-3 h-3 rounded-full bg-blue-500"></div>
             <h4 className="font-semibold text-base">Essential Skills to Develop</h4>
             <ul className="mt-2 space-y-4">
-              {roadmapData.beginner.skills.map((skill: string, index: number) => (
+              {roadmapData.beginner.skills.map((skill: SkillItem, index: number) => (
                 <li key={index} className="flex items-start space-y-1">
                   <ChevronRight className="h-4 w-4 text-blue-500 mr-2 mt-1 flex-shrink-0" />
                   <div>
@@ -42,7 +47,7 @@ const RoadmapStages: React.FC<RoadmapStagesProps> = ({ roadmapData }) => {
             <div className="absolute left-0 -translate-x-1/2 w-3 h-3 rounded-full bg-blue-500"></div>
             <h4 className="font-semibold text-base">Key Learning Resources</h4>
             <ul className="mt-2 space-y-4">
-              {roadmapData.beginner.resources.map((resource: any, index: number) => (
+              {roadmapData.beginner.resources.map((resource: SkillItem, index: number) => (
                 <li key={index} className="flex items-start">
                   <ChevronRight className="h-4 w-4 text-blue-500 mr-2 mt-1 flex-shrink-0" />
                   <div>
@@ -58,7 +63,7 @@ const RoadmapStages: React.FC<RoadmapStagesProps> = ({ roadmapData }) => {
             <div className="absolute left-0 -translate-x-1/2 w-3 h-3 rounded-full bg-blue-500"></div>
             <h4 className="font-semibold text-base">Projects to Build</h4>
             <ul className="mt-2 space-y-4">
-              {roadmapData.beginner.projects.map((project: any, index: number) => (
+              {roadmapData.beginner.projects.map((project: SkillItem, index: number) => (
                 <li key={index} className="flex items-start">
                   <ChevronRight className="h-4 w-4 text-blue-500 mr-2 mt-1 flex-shrink-0" />
                   <div>
@@ -88,7 +93,7 @@ const RoadmapStages: React.FC<RoadmapStagesProps> = ({ roadmapData }) => {
             <div className="absolute left-0 -translate-x-1/2 w-3 h-3 rounded-full bg-blue-500"></div>
             <h4 className="font-semibold text-base">Advanced Skills to Develop</h4>
             <ul className="mt-2 space-y-4">
-              {roadmapData.intermediate.skills.map((skill: any, index: number) => (
+              {roadmapData.intermediate.skills.map((skill: SkillItem, index: number) => (
                 <li key={index} className="flex items-start">
                   <ChevronRight className="h-4 w-4 text-blue-500 mr-2 mt-1 flex-shrink-0" />
                   <div>
@@ -104,7 +109,7 @@ const RoadmapStages: React.FC<RoadmapStagesProps> = ({ roadmapData }) => {
             <div className="absolute left-0 -translate-x-1/2 w-3 h-3 rounded-full bg-blue-500"></div>
             <h4 className="font-semibold text-base">Professional Development</h4>
             <ul className="mt-2 space-y-4">
-              {roadmapData.intermediate.certifications.map((cert: any, index: number) => (
+              {roadmapData.intermediate.certifications.map((cert: SkillItem, index: number) => (
                 <li key={index} className="flex items-start">
                   <ChevronRight className="h-4 w-4 text-blue-500 mr-2 mt-1 flex-shrink-0" />
                   <div>
@@ -120,7 +125,7 @@ const RoadmapStages: React.FC<RoadmapStagesProps> = ({ roadmapData }) => {
             <div className="absolute left-0 -translate-x-1/2 w-3 h-3 rounded-full bg-blue-500"></div>
             <h4 className="font-semibold text-base">Career Milestones</h4>
             <ul className="mt-2 space-y-4">
-              {roadmapData.intermediate.milestones.map((milestone: any, index: number) => (
+              {roadmapData.intermediate.milestones.map((milestone: SkillItem, index: number) => (
                 <li key={index} className="flex items-start">
                   <ChevronRight className="h-4 w-4 text-blue-500 mr-2 mt-1 flex-shrink-0" />
                   <div>
@@ -150,7 +155,7 @@ const RoadmapStages: React.FC<RoadmapStagesProps> = ({ roadmapData }) => {
             <div className="absolute left-0 -translate-x-1/2 w-3 h-3 rounded-full bg-blue-500"></div>
             <h4 className="font-semibold text-base">Specialized Expertise</h4>
             <ul className="mt-2 space-y-4">
-              {roadmapData.advanced.specializations.map((specialization: any, index: number) => (
+              {roadmapData.advanced.specializations.map((specialization: SkillItem, index: number) => (
                 <li key={index} className="flex items-start">
                   <ChevronRight className="h-4 w-4 text-blue-500 mr-2 mt-1 flex-shrink-0" />
                   <div>
@@ -166,7 +171,7 @@ const RoadmapStages: React.FC<RoadmapStagesProps> = ({ roadmapData }) => {
             <div className="absolute left-0 -translate-x-1/2 w-3 h-3 rounded-full bg-blue-500"></div>
             <h4 className="font-semibold text-base">Leadership Opportunities</h4>
             <ul className="mt-2 space-y-4">
-              {roadmapData.advanced.leadership.map((role: any, index: number) => (
+              {roadmapData.advanced.leadership.map((role: { title: string; description: string }, index: number) => (
                 <li key={index} className="flex items-start">
                   <ChevronRight className="h-4 w-4 text-blue-500 mr-2 mt-1 flex-shrink-0" />
                   <div>

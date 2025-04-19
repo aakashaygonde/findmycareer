@@ -7,13 +7,13 @@ type RoadmapData = {
     seniorLevel: string;
   };
   beginner: {
-    skills: string[];
+    skills: Array<{ name: string; description: string }>;
     resources: Array<{ name: string; description: string }>;
     projects: Array<{ name: string; description: string }>;
     outcomes: string;
   };
   intermediate: {
-    skills: string[];
+    skills: Array<{ name: string; description: string }>;
     certifications: Array<{ name: string; description: string }>;
     milestones: Array<{ name: string; description: string }>;
     outcomes: string;
@@ -216,12 +216,30 @@ export const detailedRoadmaps: RoadmapCollection = {
     },
     beginner: {
       skills: [
-        "Programming in Python/R",
-        "Statistics and mathematics",
-        "Data manipulation and cleaning",
-        "Data visualization",
-        "SQL and database basics",
-        "Basic machine learning algorithms"
+        {
+          name: "Programming in Python/R",
+          description: "Learn programming fundamentals in Python or R with a focus on data manipulation libraries like Pandas and NumPy"
+        },
+        {
+          name: "Statistics and mathematics",
+          description: "Master probability, descriptive statistics, inferential statistics, hypothesis testing, and linear algebra fundamentals"
+        },
+        {
+          name: "Data manipulation and cleaning",
+          description: "Develop skills in cleaning messy datasets, handling missing values, and transforming data into analysis-ready formats"
+        },
+        {
+          name: "Data visualization",
+          description: "Create informative visualizations using libraries like Matplotlib, Seaborn, and interactive tools like Tableau or Power BI"
+        },
+        {
+          name: "SQL and database basics",
+          description: "Learn database fundamentals, SQL queries, and data extraction techniques from various database systems"
+        },
+        {
+          name: "Basic machine learning algorithms",
+          description: "Understand fundamental ML algorithms like linear regression, logistic regression, decision trees, and k-means clustering"
+        }
       ],
       resources: [
         {
@@ -255,12 +273,30 @@ export const detailedRoadmaps: RoadmapCollection = {
     },
     intermediate: {
       skills: [
-        "Advanced ML algorithms",
-        "Deep learning fundamentals",
-        "Big data technologies (Hadoop, Spark)",
-        "Feature engineering techniques",
-        "Model deployment and MLOps",
-        "Cloud-based data solutions"
+        {
+          name: "Advanced ML algorithms",
+          description: "Explore ensemble methods, neural networks, and advanced regression techniques with practical implementations"
+        },
+        {
+          name: "Deep learning fundamentals",
+          description: "Master frameworks like TensorFlow or PyTorch and understand CNN, RNN, and transformer architectures"
+        },
+        {
+          name: "Big data technologies",
+          description: "Learn distributed computing with Hadoop, Spark, and big data processing techniques for large datasets"
+        },
+        {
+          name: "Feature engineering techniques",
+          description: "Develop skills in creating and selecting meaningful features to improve model performance"
+        },
+        {
+          name: "Model deployment and MLOps",
+          description: "Implement end-to-end ML pipelines and deploy models to production environments with monitoring"
+        },
+        {
+          name: "Cloud-based data solutions",
+          description: "Utilize cloud platforms like AWS, Azure, or GCP for scalable data science workflows"
+        }
       ],
       certifications: [
         {
