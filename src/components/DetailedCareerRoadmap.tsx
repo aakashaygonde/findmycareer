@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { ArrowLeft, Bookmark, BookmarkCheck } from 'lucide-react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
@@ -33,9 +32,15 @@ const DetailedCareerRoadmap: React.FC = () => {
     'Full-Stack Developer': 'Full-Stack Developer',
     'Data Scientist': 'Data Science',
     'UX/UI Designer': 'UX/UI Design',
-    'DevOps Engineer': 'Software Development',
-    'Cybersecurity Analyst': 'Software Development',
-    'Product Manager': 'UX/UI Design',
+    'DevOps Engineer': 'DevOps Engineer',
+    'Cybersecurity Analyst': 'Cybersecurity Analyst',
+    'Cybersecurity Specialist': 'Cybersecurity Analyst',
+    'Security Engineer': 'Cybersecurity Analyst',
+    'Information Security Analyst': 'Cybersecurity Analyst',
+    'Product Manager': 'Product Management',
+    'Technical Product Manager': 'Product Management',
+    'Associate Product Manager': 'Product Management',
+    'Product Owner': 'Product Management',
     // Add more mappings as needed
   };
   

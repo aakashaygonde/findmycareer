@@ -1,4 +1,3 @@
-
 // Detailed career roadmap data with specific Indian market information
 type RoadmapData = {
   salaryTrend: string;
@@ -727,6 +726,350 @@ export const detailedRoadmaps: RoadmapCollection = {
     }
   },
   
+  "DevOps Engineer": {
+    salaryTrend: "High Demand",
+    timeline: {
+      entryLevel: "1-2 years",
+      midLevel: "3-5 years",
+      seniorLevel: "6+ years"
+    },
+    beginner: {
+      skills: [
+        {
+          name: "Linux fundamentals",
+          description: "Master Linux operating system basics, command line interface, and system administration tasks"
+        },
+        {
+          name: "Version control with Git",
+          description: "Learn advanced Git workflows, branching strategies, and repository management for collaborative development"
+        },
+        {
+          name: "Basic programming/scripting",
+          description: "Develop proficiency in scripting languages like Python, Bash, or PowerShell for automation tasks"
+        },
+        {
+          name: "Cloud platforms",
+          description: "Understand fundamental services and architecture in major cloud platforms like AWS, Azure, or GCP"
+        },
+        {
+          name: "Basic networking",
+          description: "Learn networking concepts including TCP/IP, DNS, HTTP/HTTPS, and network troubleshooting"
+        },
+        {
+          name: "Containerization basics",
+          description: "Understand Docker container concepts, image creation, and basic container orchestration"
+        }
+      ],
+      resources: [
+        {
+          name: "Online courses and certifications",
+          description: "Platform-specific training from AWS, Azure, Google Cloud, and DevOps-focused courses on platforms like Udemy and Coursera"
+        },
+        {
+          name: "Open-source projects",
+          description: "Contribute to DevOps tools and automation projects on GitHub to build practical experience"
+        },
+        {
+          name: "DevOps communities",
+          description: "Join communities like DevOps India, attend meetups, and participate in online forums like Stack Overflow and Reddit's r/devops"
+        }
+      ],
+      projects: [
+        {
+          name: "Automated deployment pipeline",
+          description: "Build a CI/CD pipeline for a simple application using tools like Jenkins, GitHub Actions, or GitLab CI"
+        },
+        {
+          name: "Infrastructure as Code project",
+          description: "Create cloud infrastructure using Terraform or AWS CloudFormation to deploy a multi-tier application"
+        },
+        {
+          name: "Containerization project",
+          description: "Containerize an application, create Docker Compose files, and implement basic orchestration"
+        }
+      ],
+      outcomes: "Develop foundational DevOps skills, understand infrastructure automation basics, and gain experience with key DevOps tools to qualify for entry-level positions"
+    },
+    intermediate: {
+      skills: [
+        {
+          name: "Container orchestration",
+          description: "Master Kubernetes for container deployment, scaling, and management in production environments"
+        },
+        {
+          name: "Infrastructure as Code (IaC)",
+          description: "Develop expertise in tools like Terraform, AWS CloudFormation, or Azure Resource Manager for infrastructure provisioning"
+        },
+        {
+          name: "CI/CD pipelines",
+          description: "Design and implement advanced continuous integration and deployment pipelines with tools like Jenkins, GitHub Actions, or GitLab CI"
+        },
+        {
+          name: "Configuration management",
+          description: "Use tools like Ansible, Chef, or Puppet to automate configuration and management of servers at scale"
+        },
+        {
+          name: "Monitoring and observability",
+          description: "Implement comprehensive monitoring solutions using tools like Prometheus, Grafana, ELK stack, and distributed tracing"
+        },
+        {
+          name: "Cloud architecture",
+          description: "Design resilient, scalable cloud architectures following best practices for security, cost optimization, and performance"
+        }
+      ],
+      certifications: [
+        {
+          name: "AWS Certified DevOps Engineer",
+          description: "Professional certification validating expertise in continuous delivery and process automation on AWS"
+        },
+        {
+          name: "Certified Kubernetes Administrator (CKA)",
+          description: "Certification demonstrating ability to install, configure, and manage Kubernetes environments"
+        },
+        {
+          name: "Microsoft Azure DevOps Solutions",
+          description: "Certification for implementing DevOps practices, implementing CI/CD, and managing source control on Azure"
+        }
+      ],
+      milestones: [
+        {
+          name: "Lead DevOps implementations",
+          description: "Successfully implement DevOps practices across multiple teams or products, showing measurable improvements"
+        },
+        {
+          name: "Infrastructure optimization",
+          description: "Redesign infrastructure to improve reliability, performance, and cost-efficiency"
+        },
+        {
+          name: "Automation champion",
+          description: "Create automation solutions that significantly reduce manual operations and improve deployment frequency"
+        }
+      ],
+      outcomes: "Function as a mid-level DevOps engineer capable of designing and implementing comprehensive automation strategies, infrastructure as code solutions, and deployment pipelines"
+    },
+    advanced: {
+      specializations: [
+        {
+          name: "Platform Engineering",
+          description: "Build and maintain internal developer platforms that improve productivity and standardize workflows"
+        },
+        {
+          name: "Site Reliability Engineering (SRE)",
+          description: "Focus on reliability, observability, and performance optimization of large-scale distributed systems"
+        },
+        {
+          name: "DevSecOps",
+          description: "Integrate security practices throughout the software development lifecycle and infrastructure management"
+        }
+      ],
+      leadership: [
+        {
+          title: "DevOps Team Lead",
+          description: "Lead a team of DevOps engineers, establish best practices, and drive continuous improvement initiatives"
+        },
+        {
+          title: "Platform Engineering Manager",
+          description: "Manage development and evolution of the company's internal platforms and infrastructure"
+        },
+        {
+          title: "Director of Infrastructure",
+          description: "Define strategic direction for infrastructure, automation, and operational excellence across the organization"
+        }
+      ],
+      industryImpact: "Influence the broader DevOps community through open-source contributions, speaking at conferences like DevOpsDays India and AWS Community Days, and publishing technical content on modern infrastructure practices"
+    },
+    indianMarket: {
+      topCompanies: [
+        "Amazon", "Microsoft", "Google", 
+        "Flipkart", "Swiggy", "Zomato", 
+        "Freshworks", "Razorpay", "Ola", 
+        "Infosys", "TCS", "Wipro"
+      ],
+      regions: [
+        "Bangalore", "Hyderabad", "Pune", 
+        "Chennai", "Gurgaon/NCR", "Mumbai"
+      ],
+      salaryByExperience: {
+        entrySalary: "₹6,00,000 - ₹12,00,000",
+        midSalary: "₹15,00,000 - ₹25,00,000",
+        seniorSalary: "₹25,00,000 - ₹45,00,000",
+        leadershipSalary: "₹45,00,000 - ₹85,00,000+"
+      },
+      outlook: "DevOps engineering roles are in high demand across India's tech sector, with both product and service companies investing heavily in automation and cloud infrastructure. Remote work options have expanded opportunities, with many engineers working for global companies while based in India"
+    }
+  },
+  "Cybersecurity Analyst": {
+    salaryTrend: "Rapidly Growing",
+    timeline: {
+      entryLevel: "1-2 years",
+      midLevel: "3-5 years",
+      seniorLevel: "6+ years"
+    },
+    beginner: {
+      skills: [
+        {
+          name: "Networking fundamentals",
+          description: "Understand network protocols, architecture, and common networking tools like Wireshark and tcpdump"
+        },
+        {
+          name: "Operating system security",
+          description: "Learn security principles for Windows, Linux, and other operating systems including access controls and hardening"
+        },
+        {
+          name: "Security fundamentals",
+          description: "Master core concepts like CIA triad, authentication, authorization, encryption, and common attack vectors"
+        },
+        {
+          name: "Basic scripting",
+          description: "Develop skills in Python, Bash, or PowerShell for security automation and tool development"
+        },
+        {
+          name: "Security tools",
+          description: "Learn to use common security tools like Nmap, Metasploit, Burp Suite, and vulnerability scanners"
+        },
+        {
+          name: "Security compliance",
+          description: "Understand basic regulatory frameworks like ISO 27001, GDPR, and industry-specific standards"
+        }
+      ],
+      resources: [
+        {
+          name: "Cybersecurity courses",
+          description: "Online training from platforms like SANS, Cybrary, TryHackMe, and HackTheBox for hands-on practice"
+        },
+        {
+          name: "Security certifications",
+          description: "Entry-level certifications like CompTIA Security+, CEH (Certified Ethical Hacker), or SSCP"
+        },
+        {
+          name: "Cybersecurity communities",
+          description: "Join OWASP chapters, Null Community meetups, and online forums like r/netsec and security StackExchange"
+        }
+      ],
+      projects: [
+        {
+          name: "Vulnerability assessment",
+          description: "Conduct security assessments of applications or systems and document findings with remediation plans"
+        },
+        {
+          name: "Security monitoring setup",
+          description: "Set up basic SIEM (Security Information and Event Management) systems to collect and analyze security logs"
+        },
+        {
+          name: "CTF (Capture The Flag) challenges",
+          description: "Participate in security competitions to practice identifying and exploiting vulnerabilities"
+        }
+      ],
+      outcomes: "Develop foundational cybersecurity knowledge, understand common threats and vulnerabilities, and gain practical experience with security tools for entry-level security roles"
+    },
+    intermediate: {
+      skills: [
+        {
+          name: "Threat detection and analysis",
+          description: "Develop advanced skills in identifying suspicious activities, analyzing malware, and conducting incident response"
+        },
+        {
+          name: "Security architecture",
+          description: "Design secure systems and networks applying defense-in-depth principles and security best practices"
+        },
+        {
+          name: "Cloud security",
+          description: "Understand security controls and best practices for major cloud providers like AWS, Azure, and GCP"
+        },
+        {
+          name: "Application security",
+          description: "Conduct security code reviews, penetration testing, and implement secure coding practices"
+        },
+        {
+          name: "Security automation",
+          description: "Develop scripts and workflows to automate security tasks, scanning, and incident response"
+        },
+        {
+          name: "Risk assessment",
+          description: "Evaluate security risks, conduct threat modeling, and recommend proportionate security controls"
+        }
+      ],
+      certifications: [
+        {
+          name: "CISSP (Certified Information Systems Security Professional)",
+          description: "Comprehensive security certification covering multiple domains of cybersecurity"
+        },
+        {
+          name: "OSCP (Offensive Security Certified Professional)",
+          description: "Hands-on penetration testing certification focused on practical skills"
+        },
+        {
+          name: "Cloud security certifications",
+          description: "Platform-specific security certifications like AWS Security Specialty or Azure Security Engineer"
+        }
+      ],
+      milestones: [
+        {
+          name: "Lead security assessments",
+          description: "Independently conduct comprehensive security assessments and provide actionable recommendations"
+        },
+        {
+          name: "Incident response handling",
+          description: "Successfully manage security incidents from detection through containment and remediation"
+        },
+        {
+          name: "Security program development",
+          description: "Contribute to organizational security policies, standards, and procedures"
+        }
+      ],
+      outcomes: "Function as a skilled cybersecurity professional capable of identifying advanced threats, implementing comprehensive security measures, and leading security initiatives across an organization"
+    },
+    advanced: {
+      specializations: [
+        {
+          name: "Security Architecture",
+          description: "Design secure systems and infrastructure with a focus on scalability, compliance, and defense-in-depth"
+        },
+        {
+          name: "Penetration Testing",
+          description: "Specialize in simulating advanced attacks to identify vulnerabilities before malicious actors"
+        },
+        {
+          name: "Security Operations",
+          description: "Focus on building and managing security operations centers (SOC) with advanced monitoring capabilities"
+        }
+      ],
+      leadership: [
+        {
+          title: "Cybersecurity Team Lead",
+          description: "Lead a team of security professionals, coordinate security initiatives, and develop team capabilities"
+        },
+        {
+          title: "Security Director",
+          description: "Oversee enterprise security programs, manage security teams, and align security with business objectives"
+        },
+        {
+          title: "Chief Information Security Officer (CISO)",
+          description: "Executive responsible for the organization's security strategy, governance, and risk management"
+        }
+      ],
+      industryImpact: "Shape cybersecurity practices through participation in industry standards development, speaking at security conferences like NULLCON and c0c0n, and contributing to security research and knowledge sharing"
+    },
+    indianMarket: {
+      topCompanies: [
+        "IBM", "Cisco", "Microsoft", 
+        "TCS", "Wipro", "HCL", 
+        "Paytm", "Razorpay", "PhonePe", 
+        "KPMG", "EY", "Deloitte"
+      ],
+      regions: [
+        "Bangalore", "Hyderabad", "Pune", 
+        "Chennai", "Gurgaon/NCR", "Mumbai"
+      ],
+      salaryByExperience: {
+        entrySalary: "₹5,00,000 - ₹10,00,000",
+        midSalary: "₹12,00,000 - ₹25,00,000",
+        seniorSalary: "₹25,00,000 - ₹45,00,000",
+        leadershipSalary: "₹50,00,000 - ₹90,00,000+"
+      },
+      outlook: "Cybersecurity is experiencing explosive growth in India driven by digital transformation, increasing cyber threats, and tightening regulatory requirements. The severe skills shortage means qualified professionals command premium salaries, with financial services, IT, and healthcare sectors having the highest demand"
+    }
+  },
   "Default roadmap": {
     salaryTrend: "Varies by Industry",
     timeline: {
@@ -896,6 +1239,170 @@ export const detailedRoadmaps: RoadmapCollection = {
         leadershipSalary: "₹35,00,000 - ₹75,00,000+"
       },
       outlook: "Career prospects vary significantly by industry, with technology, finance, and healthcare generally offering the strongest growth opportunities. The Indian market continues to evolve, with increasing specialization and opportunities for professionals who combine technical expertise with management skills."
+    }
+  },
+  "Product Management": {
+    salaryTrend: "Highly Competitive",
+    timeline: {
+      entryLevel: "1-2 years",
+      midLevel: "3-5 years",
+      seniorLevel: "6+ years"
+    },
+    beginner: {
+      skills: [
+        {
+          name: "User-centered design",
+          description: "Understand user needs through research, personas, journey mapping, and usability testing methodologies"
+        },
+        {
+          name: "Agile methodologies",
+          description: "Learn Scrum, Kanban, and sprint planning practices for effective product development cycles"
+        },
+        {
+          name: "Market research",
+          description: "Master competitor analysis, market sizing, and identifying market opportunities and gaps"
+        },
+        {
+          name: "Data analysis fundamentals",
+          description: "Use tools like Excel, SQL basics, and Google Analytics to make data-driven decisions"
+        },
+        {
+          name: "Communication skills",
+          description: "Effectively present product ideas, write specifications, and facilitate discussions between stakeholders"
+        }
+      ],
+      resources: [
+        {
+          name: "Product management courses",
+          description: "Online courses from Coursera, Udemy, or specialized platforms like Product School and UpGrad"
+        },
+        {
+          name: "Product management communities",
+          description: "Join communities like Mind the Product, ProductHunt, and Indian Product Managers for networking and learning"
+        },
+        {
+          name: "Books and podcasts",
+          description: "Read 'Inspired' by Marty Cagan, 'The Lean Product Playbook', and listen to podcasts like 'Product Talk'"
+        }
+      ],
+      projects: [
+        {
+          name: "Product requirement document (PRD)",
+          description: "Create detailed PRDs for imaginary products with user stories, acceptance criteria, and wireframes"
+        },
+        {
+          name: "Competitive analysis",
+          description: "Conduct in-depth competitor research for an existing product with feature comparison and opportunity identification"
+        },
+        {
+          name: "User research project",
+          description: "Design and execute user interviews, surveys, and analyze findings to inform product decisions"
+        }
+      ],
+      outcomes: "Develop fundamental product thinking skills, understand the product development process, and build a portfolio of sample product documents for entry-level product roles"
+    },
+    intermediate: {
+      skills: [
+        {
+          name: "Product strategy",
+          description: "Define product vision, roadmaps, and prioritization frameworks like RICE or KANO model"
+        },
+        {
+          name: "Business acumen",
+          description: "Understand business models, revenue streams, and translate business requirements into product features"
+        },
+        {
+          name: "Technical fluency",
+          description: "Gain sufficient technical knowledge to effectively communicate with engineering teams and understand technical constraints"
+        },
+        {
+          name: "A/B testing and experimentation",
+          description: "Design experiments, analyze results, and make data-driven product decisions"
+        },
+        {
+          name: "Product analytics",
+          description: "Use tools like Mixpanel, Amplitude, or custom analytics to track key product metrics and user behavior"
+        }
+      ],
+      certifications: [
+        {
+          name: "Certified Product Manager (CPM)",
+          description: "Recognized certification from Association of International Product Marketing & Management (AIPMM)"
+        },
+        {
+          name: "Product School Certifications",
+          description: "Specialized certifications like Product Manager Certificate (PMC) or Senior Product Manager Certificate (SPMC)"
+        },
+        {
+          name: "Scrum Product Owner Certification",
+          description: "Professional Scrum Product Owner certification to master the product owner role"
+        }
+      ],
+      milestones: [
+        {
+          name: "Launch major product features",
+          description: "Successfully take features from conception to launch, measuring impact and iterating based on feedback"
+        },
+        {
+          name: "Cross-functional leadership",
+          description: "Lead product initiatives involving multiple teams, balancing stakeholder needs and technical constraints"
+        },
+        {
+          name: "Product growth metrics",
+          description: "Demonstrate measurable product growth through key metrics like user acquisition, retention, and revenue"
+        }
+      ],
+      outcomes: "Lead end-to-end product development, make strategic product decisions, and drive measurable business results through product innovations"
+    },
+    advanced: {
+      specializations: [
+        {
+          name: "Product Growth",
+          description: "Focus on user acquisition, activation, retention, referral, and revenue (AARRR) through experimentation and optimization"
+        },
+        {
+          name: "Enterprise Product Management",
+          description: "Specialize in complex B2B products with multiple stakeholders, long sales cycles, and high contract values"
+        },
+        {
+          name: "AI/ML Product Management",
+          description: "Lead AI-powered products, understanding machine learning development cycles and ethical considerations"
+        }
+      ],
+      leadership: [
+        {
+          title: "Senior Product Manager",
+          description: "Lead a product area with multiple features, mentor junior PMs, and influence product strategy"
+        },
+        {
+          title: "Product Director",
+          description: "Oversee a product line or category, manage a team of product managers, and set strategic direction"
+        },
+        {
+          title: "Chief Product Officer",
+          description: "Define overall product vision, build product organizations, and align product strategy with business objectives"
+        }
+      ],
+      industryImpact: "Shape industry product standards, speak at conferences, publish thought leadership content, and influence the future direction of product management practices"
+    },
+    indianMarket: {
+      topCompanies: [
+        "Flipkart", "Amazon India", "Swiggy", 
+        "Zomato", "PhonePe", "BYJU'S", 
+        "Ola", "MakeMyTrip", "Paytm", 
+        "Razorpay", "Unacademy", "Meesho"
+      ],
+      regions: [
+        "Bangalore", "Gurgaon/NCR", "Mumbai", 
+        "Hyderabad", "Pune", "Chennai"
+      ],
+      salaryByExperience: {
+        entrySalary: "₹8-15 lakhs per annum",
+        midSalary: "₹18-30 lakhs per annum",
+        seniorSalary: "₹30-60 lakhs per annum",
+        leadershipSalary: "₹70 lakhs - 1.5 crores+ per annum"
+      },
+      outlook: "Strong demand for product managers in India's growing startup ecosystem and established tech companies, with increasing specialization in fintech, edtech, and healthtech sectors"
     }
   }
 };
