@@ -1,4 +1,3 @@
-
 import React, { Suspense, useEffect, useState } from 'react';
 import Layout from '@/components/Layout';
 import CareerRoadmap from '@/components/CareerRoadmap';
@@ -29,6 +28,7 @@ import { Link } from 'react-router-dom';
 import { careerAdvice } from '@/lib/career-advisor';
 import { detailedRoadmaps } from '@/lib/detailed-roadmaps';
 import { getCareerSalaryInRupees } from '@/hooks/assessment/assessmentUtils';
+import { UserRoadmap, RoadmapData } from '@/types';
 
 const LoadingFallback = () => (
   <div className="flex justify-center items-center p-8">
@@ -36,16 +36,6 @@ const LoadingFallback = () => (
     <span className="ml-2">Loading component...</span>
   </div>
 );
-
-type UserRoadmap = {
-  id: string;
-  user_id: string;
-  career_name: string;
-  category: string;
-  roadmap_key: string;
-  is_primary: boolean;
-  created_at: string;
-}
 
 const Dashboard: React.FC = () => {
   const { user } = useAuth();

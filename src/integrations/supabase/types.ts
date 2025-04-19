@@ -42,6 +42,36 @@ export type Database = {
         }
         Relationships: []
       }
+      user_roadmaps: {
+        Row: {
+          career_name: string
+          category: string
+          created_at: string
+          id: string
+          is_primary: boolean | null
+          roadmap_key: string
+          user_id: string
+        }
+        Insert: {
+          career_name: string
+          category: string
+          created_at?: string
+          id?: string
+          is_primary?: boolean | null
+          roadmap_key: string
+          user_id: string
+        }
+        Update: {
+          career_name?: string
+          category?: string
+          created_at?: string
+          id?: string
+          is_primary?: boolean | null
+          roadmap_key?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

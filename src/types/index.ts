@@ -1,4 +1,3 @@
-
 export interface Career {
   id: string;
   title: string;
@@ -88,4 +87,32 @@ export interface Milestone {
   timeframe: 'short' | 'medium' | 'long';
   completed: boolean;
   resources?: Resource[];
+}
+
+export interface UserRoadmap {
+  id: string;
+  user_id: string;
+  career_name: string;
+  category: string;
+  roadmap_key: string;
+  is_primary: boolean | null;
+  created_at: string;
+}
+
+export interface RoadmapData {
+  name: string;
+  description: string;
+  growthRate: string;
+  jobOpenings: string;
+  indianMarket: {
+    topCompanies: string[];
+    regions: string[];
+    salaryByExperience: {
+      entrySalary: string;
+      midSalary: string;
+      seniorSalary: string;
+      leadershipSalary: string;
+    };
+    outlook: string;
+  };
 }

@@ -12,6 +12,7 @@ import IndianMarketInsights from './roadmap/IndianMarketInsights';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/context/AuthContext';
+import { UserRoadmap } from '@/types';
 
 const DetailedCareerRoadmap: React.FC = () => {
   const { category, careerName } = useParams<{ category?: string; careerName?: string }>();
@@ -57,7 +58,7 @@ const DetailedCareerRoadmap: React.FC = () => {
           .eq('career_name', decodedCareerName)
           .eq('category', category)
           .eq('is_primary', true)
-          .single();
+          .maybeSingle();
         
         if (error && error.code !== 'PGRST116') {
           console.error('Error checking bookmark status:', error);
