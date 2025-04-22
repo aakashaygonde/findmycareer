@@ -9,6 +9,16 @@ export const careerAdvice: CareerAdviceData = {
         skills: ['Programming', 'Problem-solving', 'Logical thinking'],
         education: ['Computer Science degree', 'Coding bootcamp', 'Self-taught with portfolio'] 
       },
+      { name: 'Frontend Developer', 
+        description: 'Create responsive, interactive user interfaces for websites and web applications',
+        skills: ['HTML/CSS', 'JavaScript', 'UI/UX principles', 'Frontend frameworks'],
+        education: ['Computer Science degree', 'Web Development bootcamp', 'Self-taught with portfolio']
+      },
+      { name: 'Full-Stack Developer', 
+        description: 'Build complete web applications with both frontend and backend expertise',
+        skills: ['Frontend development', 'Backend development', 'Database management', 'API integration'],
+        education: ['Computer Science degree', 'Full Stack bootcamp', 'Self-taught with portfolio']
+      },
       { name: 'Data Science', 
         description: 'Analyze and interpret complex data to help organizations make better decisions',
         skills: ['Statistical analysis', 'Machine learning', 'Data visualization'],
