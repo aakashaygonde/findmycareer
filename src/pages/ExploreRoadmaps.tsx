@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Layout from '@/components/Layout';
 import { useParams, useNavigate, Link, Routes, Route } from 'react-router-dom';
@@ -125,7 +124,9 @@ const CareerList: React.FC = () => {
               <div className="flex items-center text-sm">
                 <Clock className="h-4 w-4 mr-1" />
                 <span>
-                  {path.name === 'Full-Stack Developer' && '₹6,00,000 - ₹20,00,000'}
+                  {path.name === 'Full-Stack Developer' && '₹4,00,000 - ₹20,00,000'}
+                  {path.name === 'Frontend Developer' && '₹3,00,000 - ₹18,00,000'}
+                  {path.name === 'Backend Developer' && '₹5,00,000 - ₹22,00,000'}
                   {path.name === 'Data Scientist' && '₹8,00,000 - ₹22,00,000'}
                   {path.name === 'UX/UI Designer' && '₹5,00,000 - ₹18,00,000'}
                   {path.name === 'DevOps Engineer' && '₹8,00,000 - ₹25,00,000'}

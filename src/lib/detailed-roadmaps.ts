@@ -1,4 +1,3 @@
-
 // Detailed career roadmap data with specific Indian market information
 type RoadmapData = {
   salaryTrend: string;
@@ -555,175 +554,511 @@ export const detailedRoadmaps: RoadmapCollection = {
   },
   
   "Full-Stack Developer": {
-    salaryTrend: "High Demand",
+    salaryTrend: "Growing Rapidly",
     timeline: {
-      entryLevel: "1 year",
+      entryLevel: "6 months - 1 year",
       midLevel: "2-3 years",
       seniorLevel: "4+ years"
     },
     beginner: {
       skills: [
         {
-          name: "HTML, CSS, JavaScript fundamentals",
-          description: "Mastering the core building blocks of web development for creating structured, styled, and interactive websites"
+          name: "HTML, CSS & JavaScript",
+          description: "Master the fundamental building blocks of web development including semantic HTML, responsive CSS, and modern JavaScript ES6+"
         },
         {
-          name: "Frontend framework (React, Angular, Vue)",
-          description: "Learning a modern JavaScript framework for building dynamic user interfaces with component-based architecture"
+          name: "Frontend Framework (React)",
+          description: "Learn a popular frontend framework like React, including components, state management, and hooks"
         },
         {
-          name: "Backend basics (Node.js, Express, Django, etc.)",
-          description: "Understanding server-side programming to handle data processing, authentication, and business logic"
+          name: "Node.js Fundamentals",
+          description: "Understand server-side JavaScript with Node.js including npm, express, and RESTful API development"
         },
         {
-          name: "Database fundamentals (SQL, MongoDB)",
-          description: "Working with both relational and NoSQL databases to store and query application data efficiently"
+          name: "Database Management",
+          description: "Learn both SQL (MySQL, PostgreSQL) and NoSQL (MongoDB) database systems, including CRUD operations and data modeling"
         },
         {
-          name: "RESTful API development",
-          description: "Creating and consuming APIs to enable communication between frontend and backend systems"
-        },
-        {
-          name: "Version control with Git",
-          description: "Using Git for collaborative development, tracking changes, and maintaining code history"
+          name: "Version Control (Git)",
+          description: "Master repository management, branching, merging, and collaborative workflows with Git and GitHub"
         }
       ],
       resources: [
         {
-          name: "Scaler Academy, Newton School",
-          description: "Structured full-stack bootcamps with placements and industry-oriented curriculum"
+          name: "The Odin Project, freeCodeCamp",
+          description: "Free comprehensive full-stack curriculum with hands-on projects and community support"
         },
         {
-          name: "freeCodeCamp, The Odin Project",
-          description: "Free comprehensive web development curriculum with hands-on projects and community support"
+          name: "Masai School, Newton School",
+          description: "Intensive bootcamps with placement assistance specifically tailored for the Indian market"
         },
         {
-          name: "YouTube channels (Traversy Media, CodeWithHarry)",
-          description: "Project-based learning videos covering various aspects of full-stack development"
+          name: "Udemy courses by Stephen Grider, Maximilian Schwarzmüller",
+          description: "Comprehensive project-based courses covering both frontend and backend technologies"
         }
       ],
       projects: [
         {
-          name: "Personal blog/portfolio",
-          description: "Full-stack website with admin dashboard, content management, and responsive design"
+          name: "Personal portfolio website",
+          description: "Build a responsive portfolio site with HTML, CSS, JavaScript and deploy it to GitHub Pages or Netlify"
         },
         {
-          name: "E-commerce clone",
-          description: "Building a shopping cart, user authentication, product listing, and payment integration"
+          name: "MERN stack to-do application",
+          description: "Create a full-stack task manager with MongoDB, Express, React, and Node.js with user authentication"
         },
         {
-          name: "Social media feed",
-          description: "Creating a dynamic content feed with interactions like comments, likes, and sharing functionality"
+          name: "E-commerce platform",
+          description: "Develop a basic online store with product listings, shopping cart, checkout process, and admin dashboard"
         }
       ],
-      outcomes: "At this stage, you should be able to build complete web applications from frontend to backend, understand database design, and deploy simple applications to production."
+      outcomes: "Gain proficiency in both frontend and backend technologies, build complete web applications independently, and develop the problem-solving skills needed for entry-level full-stack positions"
     },
     intermediate: {
       skills: [
         {
-          name: "Advanced frontend (state management, performance optimization)",
-          description: "Using libraries like Redux or Context API for state management and techniques to optimize application performance"
+          name: "Advanced React patterns",
+          description: "Master context API, hooks, custom hooks, and advanced state management with Redux or similar libraries"
         },
         {
-          name: "Microservices architecture",
-          description: "Designing and implementing distributed systems with separate, specialized services"
+          name: "Backend architecture",
+          description: "Design scalable APIs, implement authentication/authorization, and handle middleware effectively"
         },
         {
-          name: "Cloud deployment (AWS, Azure, GCP)",
-          description: "Utilizing cloud platforms for hosting, scaling, and managing applications in production"
+          name: "Database optimization",
+          description: "Learn advanced querying, indexing strategies, and performance tuning for databases"
         },
         {
-          name: "Authentication systems and security",
-          description: "Implementing secure user authentication, authorization, and protecting against common web vulnerabilities"
+          name: "DevOps basics",
+          description: "Understand CI/CD pipelines, Docker containerization, and cloud deployment with AWS, Azure or GCP"
         },
         {
-          name: "Testing (unit, integration, E2E)",
-          description: "Writing automated tests at different levels to ensure code quality and prevent regressions"
+          name: "Testing methodologies",
+          description: "Implement comprehensive testing strategies including unit, integration, and end-to-end testing"
         },
         {
-          name: "CI/CD pipelines",
-          description: "Setting up continuous integration and deployment workflows for automated testing and deployment"
+          name: "TypeScript",
+          description: "Add static typing to JavaScript applications for improved code quality and developer experience"
         }
       ],
       certifications: [
         {
-          name: "AWS Certified Developer",
-          description: "Cloud skills for deploying and managing applications on Amazon Web Services"
+          name: "AWS Certified Developer Associate",
+          description: "Cloud deployment and serverless architecture skills for modern web applications"
         },
         {
-          name: "MongoDB Certified Developer",
-          description: "Database design and optimization skills for working with MongoDB"
+          name: "MongoDB Developer Certification",
+          description: "Advanced database design, optimization, and best practices for NoSQL databases"
         },
         {
-          name: "Specialization certifications from edX, Coursera",
-          description: "Deep dives into specific technologies like React, Node.js, or cloud platforms"
+          name: "Professional React or Node.js certifications",
+          description: "Specialized credentials from platforms like LinkedIn Learning or industry associations"
         }
       ],
       milestones: [
         {
-          name: "Junior to Mid-level Developer",
-          description: "Leading feature implementation independently and taking ownership of significant components"
+          name: "Lead feature development",
+          description: "Take ownership of complete features from design to deployment while mentoring junior developers"
         },
         {
-          name: "Mentoring junior developers",
-          description: "Providing technical guidance and code reviews to help less experienced team members grow"
+          name: "System architecture design",
+          description: "Contribute to architectural decisions and implement scalable technical solutions"
         },
         {
-          name: "Participating in system design",
-          description: "Contributing to architectural decisions and planning for large-scale applications"
+          name: "Open source contributions",
+          description: "Participate in open source projects or develop libraries used by the community"
         }
       ],
-      outcomes: "By this stage, you should be architecting complex applications, making technology stack decisions, and implementing best practices for security and performance. Expect to earn between ₹10,00,000 to ₹18,00,000 annually."
+      outcomes: "Become proficient in full-stack architecture, lead technical implementations, optimize application performance, and make significant contributions to large-scale projects"
     },
     advanced: {
       specializations: [
         {
-          name: "Technical Architect",
-          description: "Designing large-scale distributed systems and making high-level technology decisions"
+          name: "Systems Architect",
+          description: "Design complex distributed systems, make critical technology decisions, and ensure scalability across the stack"
         },
         {
-          name: "DevOps Engineer",
-          description: "Focusing on deployment infrastructure, automation, and monitoring for optimal system performance"
+          name: "DevOps Specialist",
+          description: "Focus on automated deployment, infrastructure as code, and monitoring/observability for high-availability systems"
         },
         {
-          name: "Performance Engineer",
-          description: "Specialized in optimizing application performance, scalability, and resource utilization"
+          name: "Performance Optimization Expert",
+          description: "Specialize in identifying and resolving performance bottlenecks across frontend and backend systems"
         }
       ],
       leadership: [
         {
-          title: "Technical Lead",
-          description: "Leading development teams of 5-10 people and guiding technical implementation"
+          title: "Tech Lead",
+          description: "Lead a team of 5-10 full-stack developers, make architectural decisions, and ensure project delivery"
         },
         {
           title: "Engineering Manager",
-          description: "Managing multiple teams and technical direction while balancing people management"
+          description: "Manage multiple teams, handle resource allocation, and drive technical strategy"
         },
         {
-          title: "CTO",
-          description: "Setting technical vision and strategy, especially in startups and growing companies"
+          title: "CTO/VP of Engineering",
+          description: "Define technical vision, make strategic decisions, and lead digital transformation initiatives"
         }
       ],
-      industryImpact: "Senior full-stack developers can contribute to open source, speak at conferences like JSFoo and React India, and mentor the next generation through initiatives like developer meetups and hackathons."
+      industryImpact: "Shape the technology landscape through architectural innovations, mentoring the next generation of developers, and contributing to the developer community through open source, speaking engagements, and thought leadership"
     },
     indianMarket: {
       topCompanies: [
-        "FAANG (Meta, Amazon, etc.)", "Flipkart", "Swiggy", 
-        "Razorpay", "CRED", "Meesho", 
-        "Zomato", "Ola", "Byju's", 
-        "PayTM", "Freshworks"
+        "TCS", "Infosys", "Wipro", 
+        "Amazon", "Microsoft", 
+        "Razorpay", "Swiggy", 
+        "Zomato", "CRED", 
+        "PhonePe", "Zerodha"
       ],
       regions: [
         "Bangalore", "Hyderabad", "Pune", 
-        "Gurgaon/NCR", "Chennai", "Mumbai"
+        "Chennai", "Gurgaon/NCR", "Mumbai"
       ],
       salaryByExperience: {
-        entrySalary: "₹4,50,000 - ₹8,00,000",
-        midSalary: "₹10,00,000 - ₹18,00,000",
-        seniorSalary: "₹20,00,000 - ₹35,00,000",
-        leadershipSalary: "₹40,00,000 - ₹80,00,000+"
+        entrySalary: "₹4-8 LPA",
+        midSalary: "₹10-20 LPA",
+        seniorSalary: "₹20-40 LPA",
+        leadershipSalary: "₹40-80+ LPA"
       },
-      outlook: "Full-stack development remains one of the most in-demand skills in India's tech ecosystem. Product-based companies and well-funded startups offer significantly higher compensation than service companies. Remote opportunities have expanded the market, with international companies hiring Indian developers at competitive rates."
+      outlook: "Full-stack developers are in high demand across India, with particularly strong growth in fintech, e-commerce, and SaaS sectors. The remote work trend has further expanded opportunities beyond traditional tech hubs."
+    }
+  },
+  
+  "Frontend Developer": {
+    salaryTrend: "Strong Growth",
+    timeline: {
+      entryLevel: "4-8 months",
+      midLevel: "1-3 years",
+      seniorLevel: "3+ years"
+    },
+    beginner: {
+      skills: [
+        {
+          name: "HTML5 & CSS3",
+          description: "Master semantic HTML elements, responsive design with CSS Grid/Flexbox, and CSS variables/preprocessing"
+        },
+        {
+          name: "JavaScript Fundamentals",
+          description: "Learn core JS concepts including DOM manipulation, events, async programming with Promises, and ES6+ features"
+        },
+        {
+          name: "React.js",
+          description: "Understand components, props, state, hooks, and the component lifecycle in modern React applications"
+        },
+        {
+          name: "Responsive Design",
+          description: "Create mobile-first layouts that adapt to various screen sizes and devices using media queries and flexible units"
+        },
+        {
+          name: "Web Performance Basics",
+          description: "Learn image optimization, lazy loading, and performance measuring tools to create fast-loading websites"
+        }
+      ],
+      resources: [
+        {
+          name: "freeCodeCamp, Frontend Masters",
+          description: "Structured curriculum and workshops by industry experts covering modern frontend technologies"
+        },
+        {
+          name: "CSS-Tricks, Smashing Magazine",
+          description: "In-depth articles and tutorials on frontend development best practices and techniques"
+        },
+        {
+          name: "Web Dev Simplified, Traversy Media (YouTube)",
+          description: "Video tutorials with practical project-based learning covering various frontend topics"
+        }
+      ],
+      projects: [
+        {
+          name: "Portfolio website",
+          description: "Build a responsive personal portfolio showcasing your projects and skills with modern CSS techniques"
+        },
+        {
+          name: "Interactive dashboard",
+          description: "Create a data visualization interface with charts, filters, and interactive elements using React"
+        },
+        {
+          name: "E-commerce UI",
+          description: "Develop product listing pages, shopping cart, and checkout flow with responsive design and accessibility"
+        }
+      ],
+      outcomes: "Develop proficiency in creating modern, responsive user interfaces, gain practical experience with React components, and build a portfolio showcasing your frontend skills"
+    },
+    intermediate: {
+      skills: [
+        {
+          name: "State management",
+          description: "Master Redux, Context API, or other state management libraries for complex application state"
+        },
+        {
+          name: "TypeScript",
+          description: "Implement static typing in frontend applications for improved code quality and developer experience"
+        },
+        {
+          name: "Testing",
+          description: "Write effective tests using Jest, React Testing Library, and Cypress for unit and end-to-end testing"
+        },
+        {
+          name: "Performance optimization",
+          description: "Implement code splitting, memoization, virtualization, and other techniques to optimize React applications"
+        },
+        {
+          name: "CSS Architecture",
+          description: "Design scalable CSS systems using methodologies like BEM, CSS Modules, or styled-components"
+        },
+        {
+          name: "Frontend build tools",
+          description: "Master Webpack, Vite, and other modern build tools for optimizing application delivery"
+        }
+      ],
+      certifications: [
+        {
+          name: "Meta Frontend Developer Certificate",
+          description: "Industry-recognized credential covering React and modern frontend development practices"
+        },
+        {
+          name: "Google UX Design Certificate",
+          description: "Learn design thinking and user experience principles to enhance your frontend development"
+        },
+        {
+          name: "AWS Certified Developer - Associate",
+          description: "Cloud integration skills for modern frontend applications with backend services"
+        }
+      ],
+      milestones: [
+        {
+          name: "Lead UI development",
+          description: "Take ownership of the user interface for significant features or entire products"
+        },
+        {
+          name: "Create component libraries",
+          description: "Design and implement reusable component systems and design systems for consistent UI"
+        },
+        {
+          name: "Drive accessibility initiatives",
+          description: "Champion web accessibility standards and implement inclusive design practices"
+        }
+      ],
+      outcomes: "Master advanced frontend patterns, optimize application performance, build scalable UI architectures, and become a go-to resource for frontend challenges within your organization"
+    },
+    advanced: {
+      specializations: [
+        {
+          name: "UI Architecture",
+          description: "Design complex frontend systems, implement micro-frontend architectures, and lead design system development"
+        },
+        {
+          name: "Performance Engineering",
+          description: "Specialize in measuring and optimizing web performance metrics and user experience"
+        },
+        {
+          name: "Interactive Data Visualization",
+          description: "Create complex data visualization systems and interactive dashboards with D3.js or similar libraries"
+        }
+      ],
+      leadership: [
+        {
+          title: "Frontend Tech Lead",
+          description: "Lead frontend teams, establish coding standards, and make architectural decisions"
+        },
+        {
+          title: "UI Engineering Manager",
+          description: "Manage frontend teams, mentor developers, and align UI development with product goals"
+        },
+        {
+          title: "Director of Frontend Engineering",
+          description: "Set frontend technology strategy and lead multiple teams across an organization"
+        }
+      ],
+      industryImpact: "Shape frontend development practices through speaking at conferences, contributing to open source libraries, writing technical articles, and mentoring the next generation of UI developers"
+    },
+    indianMarket: {
+      topCompanies: [
+        "Flipkart", "Amazon", "Swiggy", 
+        "MakeMyTrip", "Paytm", 
+        "Razorpay", "Ola", 
+        "TCS", "Infosys", 
+        "CRED", "Dream11"
+      ],
+      regions: [
+        "Bangalore", "Hyderabad", "Pune", 
+        "Gurgaon/NCR", "Mumbai", "Chennai"
+      ],
+      salaryByExperience: {
+        entrySalary: "₹3-7 LPA",
+        midSalary: "₹8-18 LPA",
+        seniorSalary: "₹18-35 LPA",
+        leadershipSalary: "₹35-60+ LPA"
+      },
+      outlook: "Frontend developers with React skills are in high demand across India's tech landscape, particularly in e-commerce, fintech, and product companies. Companies increasingly value frontend expertise as user experience becomes a key competitive differentiator."
+    }
+  },
+  
+  "Backend Developer": {
+    salaryTrend: "Steadily Growing",
+    timeline: {
+      entryLevel: "6 months - 1 year",
+      midLevel: "2-4 years",
+      seniorLevel: "4+ years"
+    },
+    beginner: {
+      skills: [
+        {
+          name: "Server-side language",
+          description: "Master a backend language such as Node.js, Python, Java, or Go, including syntax and core programming concepts"
+        },
+        {
+          name: "API development",
+          description: "Build RESTful APIs and understand HTTP methods, status codes, and API design principles"
+        },
+        {
+          name: "Database management",
+          description: "Learn SQL (PostgreSQL, MySQL) and NoSQL (MongoDB) databases, including schema design and CRUD operations"
+        },
+        {
+          name: "Authentication & authorization",
+          description: "Implement user authentication with JWT, OAuth, and role-based access control systems"
+        },
+        {
+          name: "Version control & CI/CD basics",
+          description: "Use Git for version control and understand basic continuous integration and deployment workflows"
+        }
+      ],
+      resources: [
+        {
+          name: "Backend roadmaps on roadmap.sh",
+          description: "Structured learning paths for different backend technologies and languages"
+        },
+        {
+          name: "Node.js documentation, Python Django tutorials",
+          description: "Official documentation and tutorials for popular backend frameworks"
+        },
+        {
+          name: "Udemy courses (Node.js, Spring Boot, Django)",
+          description: "Comprehensive courses covering backend development with practical projects"
+        }
+      ],
+      projects: [
+        {
+          name: "RESTful API",
+          description: "Create a complete CRUD API with authentication, proper error handling, and data validation"
+        },
+        {
+          name: "User management system",
+          description: "Build a backend for user registration, authentication, and profile management"
+        },
+        {
+          name: "Data processing service",
+          description: "Develop a service that processes and analyzes data from external sources or APIs"
+        }
+      ],
+      outcomes: "Develop the ability to create secure, efficient backend services, understand database management, and implement proper API design for modern web applications"
+    },
+    intermediate: {
+      skills: [
+        {
+          name: "Advanced database concepts",
+          description: "Master database optimization, indexing strategies, transactions, and advanced query optimization"
+        },
+        {
+          name: "Microservices architecture",
+          description: "Design and implement distributed systems with separate, specialized services"
+        },
+        {
+          name: "Caching strategies",
+          description: "Implement Redis, Memcached, or similar technologies for performance optimization"
+        },
+        {
+          name: "Message queues & event-driven architecture",
+          description: "Use RabbitMQ, Kafka, or similar tools for asynchronous processing and service communication"
+        },
+        {
+          name: "Containerization & orchestration",
+          description: "Deploy applications with Docker and manage them with Kubernetes or similar platforms"
+        },
+        {
+          name: "API security",
+          description: "Protect against common vulnerabilities, implement rate limiting, and secure sensitive data"
+        }
+      ],
+      certifications: [
+        {
+          name: "AWS Certified Developer Associate",
+          description: "Cloud-native backend development using AWS services and best practices"
+        },
+        {
+          name: "MongoDB Developer Certification",
+          description: "Specialized database skills for NoSQL data modeling and optimization"
+        },
+        {
+          name: "Microsoft Azure Developer Associate",
+          description: "Backend development skills using Azure cloud services and solutions"
+        }
+      ],
+      milestones: [
+        {
+          name: "Design complex systems",
+          description: "Architect scalable backend solutions for high-traffic or data-intensive applications"
+        },
+        {
+          name: "Performance optimization",
+          description: "Identify and resolve bottlenecks to improve system throughput and response times"
+        },
+        {
+          name: "Technical documentation",
+          description: "Create comprehensive API documentation and technical specifications for complex systems"
+        }
+      ],
+      outcomes: "Become proficient in designing scalable, maintainable backend architectures, optimize system performance, and implement advanced features like microservices and event-driven systems"
+    },
+    advanced: {
+      specializations: [
+        {
+          name: "Distributed Systems Architect",
+          description: "Design highly available, fault-tolerant systems that can scale horizontally across multiple servers"
+        },
+        {
+          name: "Database Specialist",
+          description: "Focus on advanced database administration, optimization, and data architecture"
+        },
+        {
+          name: "Cloud Infrastructure Expert",
+          description: "Specialize in serverless architectures, infrastructure as code, and complex cloud deployments"
+        }
+      ],
+      leadership: [
+        {
+          title: "Backend Tech Lead",
+          description: "Lead backend development teams, make architectural decisions, and ensure scalable implementations"
+        },
+        {
+          title: "Engineering Manager",
+          description: "Manage development teams while maintaining technical expertise and strategic planning"
+        },
+        {
+          title: "Chief Architect",
+          description: "Define system architecture across the organization and establish technical standards"
+        }
+      ],
+      industryImpact: "Influence backend development practices through system architecture innovations, contributing to open source tools, speaking at conferences, and mentoring emerging backend developers"
+    },
+    indianMarket: {
+      topCompanies: [
+        "Amazon", "Microsoft", "Google", 
+        "Flipkart", "Paytm", "Razorpay", 
+        "TCS", "Infosys", "Wipro", 
+        "MakeMyTrip", "Ola", "PhonePe"
+      ],
+      regions: [
+        "Bangalore", "Hyderabad", "Pune", 
+        "Chennai", "Gurgaon/NCR", "Mumbai"
+      ],
+      salaryByExperience: {
+        entrySalary: "₹5-8 LPA",
+        midSalary: "₹10-22 LPA",
+        seniorSalary: "₹22-45 LPA",
+        leadershipSalary: "₹45-90+ LPA"
+      },
+      outlook: "Backend developers are consistently in high demand across India's tech industry, with particularly strong demand in fintech, SaaS, and e-commerce sectors. Companies value backend expertise for building scalable platforms that can handle India's large and growing digital user base."
     }
   },
   
