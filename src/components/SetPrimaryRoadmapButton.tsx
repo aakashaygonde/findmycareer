@@ -21,31 +21,67 @@ const SetPrimaryRoadmapButton: React.FC<SetPrimaryRoadmapButtonProps> = ({
 
   const handleSetPrimary = async () => {
     setLoading(true);
+    
     try {
+      console.log('Setting primary roadmap for user:', userId);
+      
+      // First, let's check if the user has any roadmaps
+      const { data: existingRoadmaps, error: checkError } = await supabase
+        .from('user_roadmaps')
+        .select('*')
+        .eq('user_id', userId);
+      
+      if (checkError) {
+        console.error('Error checking existing roadmaps:', checkError);
+        throw checkError;
+      }
+      
+      console.log('Existing roadmaps:', existingRoadmaps);
+      
       // Set all existing user_roadmaps for this user to is_primary=false
-      await supabase
+      const { error: updateError } = await supabase
         .from('user_roadmaps')
         .update({ is_primary: false })
         .eq('user_id', userId);
+      
+      if (updateError) {
+        console.error('Error updating existing roadmaps:', updateError);
+        throw updateError;
+      }
+      
+      console.log('Reset all primary flags to false');
 
-      // Set this roadmap to primary (insert or update)
+      // Now upsert the current roadmap as primary
+      const roadmapData = {
+        user_id: userId,
+        career_name: careerName,
+        category,
+        is_primary: true,
+        roadmap_key: careerName, // this assumes roadmap_key == careerName, adjust if needed
+        created_at: new Date().toISOString(),
+      };
+      
+      console.log('Upserting roadmap with data:', roadmapData);
+      
       const { error: upsertError } = await supabase
         .from('user_roadmaps')
         .upsert(
-          {
-            user_id: userId,
-            career_name: careerName,
-            category,
-            is_primary: true,
-            roadmap_key: careerName, // this assumes roadmap_key == careerName, adjust if needed
-            created_at: new Date().toISOString(),
-          },
+          roadmapData,
           { onConflict: 'user_id,career_name,category' }
         );
 
-      if (upsertError) throw upsertError;
-      toast({ title: "Primary Roadmap Set", description: "This roadmap is now your primary roadmap!" });
+      if (upsertError) {
+        console.error('Error upserting roadmap:', upsertError);
+        throw upsertError;
+      }
+      
+      console.log('Primary roadmap set successfully');
+      toast({ 
+        title: "Primary Roadmap Set", 
+        description: "This roadmap is now your primary roadmap!" 
+      });
     } catch (err: any) {
+      console.error('Error in handleSetPrimary:', err);
       toast({
         title: "Error",
         description: err?.message || "Failed to set primary roadmap.",
