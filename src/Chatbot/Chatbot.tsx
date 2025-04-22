@@ -7,7 +7,7 @@ export const Chatbot = () => {
           clientId='a34b967c-9845-4882-b14d-18bb14ab48e0' 
           configuration={{
             botAvatar: '/src/assets/chatbot.jpg',
-            botName: 'Navi',
+            botName: 'FindMyCareer Advisor',
             color: '#32636e',
             botDescription: "Hi! I’m your personal career buddy — here to help you discover what you’re good at, what excites you, and which paths could lead to a fulfilling future. Whether you're exploring options or need a little nudge, I’m here to make it easier (and more fun) to figure it all out!",
             fontFamily: 'ibm',
@@ -23,5 +23,3 @@ export const Chatbot = () => {
       </div>
     )
   }
-
-
