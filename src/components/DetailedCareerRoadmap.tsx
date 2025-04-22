@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { ArrowLeft, Bookmark, BookmarkCheck } from 'lucide-react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
@@ -28,20 +29,18 @@ const DetailedCareerRoadmap: React.FC = () => {
   const careerPath = categoryData?.paths.find(path => path.name === decodedCareerName);
   
   // Map between common career names and detailed roadmap keys
-  const careerToRoadmapMap: Record<string, keyof typeof detailedRoadmaps> = {
-    'Software Development': 'softwareDevelopment',
-    'Frontend Developer': 'frontendDevelopment',
-    'Full-Stack Developer': 'fullStackDevelopment',
-    'DevOps Engineer': 'devOpsEngineering',
-    'Cybersecurity Analyst': 'cybersecurityAnalysis',
-    'Product Manager': 'productManagement',
-    'Data Scientist': 'dataScience',
-    'UX/UI Designer': 'uxUiDesign',
+  const careerToRoadmapMap: Record<string, string> = {
+    'Full-Stack Developer': 'Full-Stack Developer',
+    'Data Scientist': 'Data Science',
+    'UX/UI Designer': 'UX/UI Design',
+    'DevOps Engineer': 'Software Development',
+    'Cybersecurity Analyst': 'Software Development',
+    'Product Manager': 'UX/UI Design',
     // Add more mappings as needed
   };
   
   // Look up the roadmap key or use the career name directly
-  const roadmapKey = careerToRoadmapMap[decodedCareerName] || 'softwareDevelopment';
+  const roadmapKey = careerToRoadmapMap[decodedCareerName] || 'Software Development';
   
   // Get roadmap data with fallback to default
   const roadmapData = detailedRoadmaps[roadmapKey] || detailedRoadmaps.default;
