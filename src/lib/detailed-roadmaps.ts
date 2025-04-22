@@ -1404,6 +1404,202 @@ export const detailedRoadmaps: RoadmapCollection = {
       },
       outlook: "Strong demand for product managers in India's growing startup ecosystem and established tech companies, with increasing specialization in fintech, edtech, and healthtech sectors"
     }
+  },
+  "Frontend Developer": {
+    salaryTrend: "High Demand",
+    timeline: {
+      entryLevel: "6 months - 1 year",
+      midLevel: "2-3 years",
+      seniorLevel: "4+ years"
+    },
+    beginner: {
+      skills: [
+        {
+          name: "HTML5 fundamentals",
+          description: "Master semantic HTML elements, forms, media elements, and structure for accessible web pages"
+        },
+        {
+          name: "CSS3 and responsive design",
+          description: "Learn styling, layouts (Flexbox, Grid), responsive design principles, and media queries"
+        },
+        {
+          name: "JavaScript core concepts",
+          description: "Understand variables, data types, functions, DOM manipulation, events, and asynchronous programming"
+        },
+        {
+          name: "Version control (Git)",
+          description: "Learn repository management, branching, pull requests, and collaborative workflows"
+        },
+        {
+          name: "Web design principles",
+          description: "Understand UI/UX fundamentals, color theory, typography, and layout principles"
+        },
+        {
+          name: "Browser developer tools",
+          description: "Master debugging, performance analysis, and using console for troubleshooting"
+        }
+      ],
+      resources: [
+        {
+          name: "freeCodeCamp and The Odin Project",
+          description: "Free, structured learning paths with hands-on projects and supportive communities"
+        },
+        {
+          name: "MDN Web Docs",
+          description: "Comprehensive documentation for HTML, CSS, and JavaScript with examples and tutorials"
+        },
+        {
+          name: "Frontend Masters and Udemy",
+          description: "In-depth courses on frontend technologies taught by industry experts"
+        },
+        {
+          name: "YouTube channels (Traversy Media, Web Dev Simplified)",
+          description: "Free video tutorials covering all aspects of frontend development with practical examples"
+        }
+      ],
+      projects: [
+        {
+          name: "Personal portfolio website",
+          description: "Create a responsive portfolio showcasing your skills and projects using HTML, CSS, and JavaScript"
+        },
+        {
+          name: "Interactive landing page",
+          description: "Build a modern landing page with animations, responsive design, and interactive elements"
+        },
+        {
+          name: "Simple JavaScript applications",
+          description: "Develop small web apps like todo lists, calculators, or weather apps using vanilla JavaScript"
+        },
+        {
+          name: "CSS art or animations",
+          description: "Create visually impressive designs or animations using advanced CSS techniques"
+        }
+      ],
+      outcomes: "At this stage, you should be comfortable with core web technologies, able to build responsive websites, implement basic interactivity, and understand fundamental design principles"
+    },
+    intermediate: {
+      skills: [
+        {
+          name: "JavaScript frameworks (React, Vue, Angular)",
+          description: "Master component architecture, state management, and routing in a major frontend framework"
+        },
+        {
+          name: "Advanced CSS and preprocessors",
+          description: "Learn Sass/SCSS, CSS-in-JS, CSS modules, and advanced layout techniques"
+        },
+        {
+          name: "Modern JavaScript (ES6+)",
+          description: "Implement arrow functions, destructuring, modules, async/await, and other modern JS features"
+        },
+        {
+          name: "State management",
+          description: "Master Redux, Context API, Vuex, or other state management solutions for complex applications"
+        },
+        {
+          name: "API integration",
+          description: "Work with RESTful APIs, GraphQL, and handle authentication, data fetching, and error handling"
+        },
+        {
+          name: "Testing methodologies",
+          description: "Implement unit tests, integration tests, and end-to-end tests using Jest, Cypress, or similar tools"
+        },
+        {
+          name: "Performance optimization",
+          description: "Apply code splitting, lazy loading, asset optimization, and performance monitoring techniques"
+        }
+      ],
+      certifications: [
+        {
+          name: "Meta Frontend Developer Professional Certificate",
+          description: "Comprehensive certification covering React and modern frontend development practices"
+        },
+        {
+          name: "JavaScript framework certifications",
+          description: "Official certifications for Angular, Vue.js, or React Native to validate specialized knowledge"
+        },
+        {
+          name: "Google UX Design Professional Certificate",
+          description: "Learn design thinking, wireframing, prototyping, and user research to enhance frontend skills"
+        }
+      ],
+      milestones: [
+        {
+          name: "Complex single-page applications",
+          description: "Build full-featured SPAs with routing, state management, and API integration"
+        },
+        {
+          name: "Contributing to open source",
+          description: "Make meaningful contributions to frontend libraries, frameworks, or tools"
+        },
+        {
+          name: "Mentoring junior developers",
+          description: "Help newer developers through code reviews, pair programming, and knowledge sharing"
+        },
+        {
+          name: "Frontend technical blogs",
+          description: "Share knowledge through writing articles about frontend development challenges and solutions"
+        }
+      ],
+      outcomes: "Develop expertise in modern JavaScript frameworks, create complex interactive applications, implement best practices for performance and testing, and begin specializing in particular areas of frontend development"
+    },
+    advanced: {
+      specializations: [
+        {
+          name: "Frontend Architecture",
+          description: "Design scalable component systems, establish coding standards, and create design systems for large applications"
+        },
+        {
+          name: "Performance Engineering",
+          description: "Specialize in web vitals optimization, runtime performance, advanced rendering strategies, and bundle optimization"
+        },
+        {
+          name: "Accessibility Expert",
+          description: "Master WCAG guidelines, assistive technologies, and implement inclusive design patterns"
+        },
+        {
+          name: "Interactive Experiences",
+          description: "Create advanced animations, WebGL experiences, data visualizations, and interactive storytelling"
+        },
+        {
+          name: "Cross-platform Development",
+          description: "Build native-like applications using React Native, Flutter, or other cross-platform technologies"
+        }
+      ],
+      leadership: [
+        {
+          title: "Frontend Lead",
+          description: "Lead a team of frontend developers, establish technical direction, and ensure code quality"
+        },
+        {
+          title: "UI/UX Engineering Manager",
+          description: "Bridge the gap between design and development teams, manage implementation of design systems"
+        },
+        {
+          title: "Principal Frontend Architect",
+          description: "Define technical vision, make platform decisions, and architect large-scale frontend systems"
+        }
+      ],
+      industryImpact: "Shape frontend development practices through conference speaking, open source contributions, technical writing, and mentoring the next generation of developers"
+    },
+    indianMarket: {
+      topCompanies: [
+        "Amazon", "Microsoft", "Google", 
+        "Flipkart", "Swiggy", "Zomato", 
+        "CRED", "Razorpay", "PhonePe", 
+        "Meesho", "Urban Company"
+      ],
+      regions: [
+        "Bangalore", "Hyderabad", "Pune", 
+        "Chennai", "Gurgaon/NCR", "Mumbai"
+      ],
+      salaryByExperience: {
+        entrySalary: "₹4,00,000 - ₹8,00,000",
+        midSalary: "₹10,00,000 - ₹18,00,000",
+        seniorSalary: "₹20,00,000 - ₹35,00,000",
+        leadershipSalary: "₹40,00,000 - ₹70,00,000+"
+      },
+      outlook: "The frontend development market in India is experiencing rapid growth with expanding opportunities in startups, product companies, and enterprises. Remote work has opened global opportunities for Indian frontend developers. The demand for specialists in modern frameworks like React and responsive design experts continues to rise steadily."
+    }
   }
 };
 

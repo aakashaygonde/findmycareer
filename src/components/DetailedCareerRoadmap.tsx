@@ -29,7 +29,9 @@ const DetailedCareerRoadmap: React.FC = () => {
   
   // Map between common career names and detailed roadmap keys
   const careerToRoadmapMap: Record<string, string> = {
+    'Frontend Developer': 'Frontend Developer',
     'Full-Stack Developer': 'Full-Stack Developer',
+    'Full Stack Developer': 'Full-Stack Developer',
     'Data Scientist': 'Data Science',
     'UX/UI Designer': 'UX/UI Design',
     'DevOps Engineer': 'DevOps Engineer',
