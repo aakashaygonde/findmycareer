@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -6,8 +5,8 @@ import { Badge } from '@/components/ui/badge';
 import { CheckCircle, Circle, ChevronRight, BookOpen, Award, Code, Calendar } from 'lucide-react';
 import { Milestone } from '@/types';
 
-// Mock data for milestones
-const mockMilestones: Milestone[] = [
+// This is mock data that will be used for all users
+const defaultMilestones: Milestone[] = [
   {
     id: '1',
     title: 'Learn HTML & CSS Fundamentals',
@@ -81,7 +80,7 @@ const mockMilestones: Milestone[] = [
 ];
 
 const CareerRoadmap: React.FC = () => {
-  const [milestones, setMilestones] = useState<Milestone[]>(mockMilestones);
+  const [milestones, setMilestones] = useState<Milestone[]>(defaultMilestones);
   const [expandedMilestone, setExpandedMilestone] = useState<string | null>(null);
 
   const toggleMilestoneCompleted = (id: string) => {
