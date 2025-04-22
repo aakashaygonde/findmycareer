@@ -40,7 +40,7 @@ const SetPrimaryRoadmapButton: React.FC<SetPrimaryRoadmapButtonProps> = ({
             roadmap_key: careerName, // this assumes roadmap_key == careerName, adjust if needed
             created_at: new Date().toISOString(),
           },
-          { onConflict: ['user_id', 'career_name', 'category'] }
+          { onConflict: 'user_id,career_name,category' }
         );
 
       if (upsertError) throw upsertError;
