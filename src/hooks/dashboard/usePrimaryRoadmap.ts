@@ -1,6 +1,16 @@
+
 import { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
-import { UserRoadmap } from '@/types';
+
+export interface UserRoadmap {
+  id: string;
+  user_id: string;
+  career_name: string;
+  category: string;
+  roadmap_key: string;
+  is_primary: boolean | null;
+  created_at: string;
+}
 
 export const usePrimaryRoadmap = (userId: string | undefined) => {
   const [primaryRoadmap, setPrimaryRoadmap] = useState<UserRoadmap | null>(null);
@@ -9,18 +19,16 @@ export const usePrimaryRoadmap = (userId: string | undefined) => {
 
   useEffect(() => {
     let isMounted = true;
-    setLoading(true); // Reset loading state on userId change
-    setError(null); // Reset error state on userId change
-    
-    const fetchPrimaryRoadmap = async () => {
+
+    const fetchPrimary = async () => {
+      setLoading(true);
+      setError(null);
+
       if (!userId) {
-        if (isMounted) {
-          setLoading(false);
-          setPrimaryRoadmap(null);
-        }
+        setLoading(false);
+        setPrimaryRoadmap(null);
         return;
       }
-      
       try {
         const { data, error: supabaseError } = await supabase
           .from('user_roadmaps')
@@ -28,24 +36,21 @@ export const usePrimaryRoadmap = (userId: string | undefined) => {
           .eq('user_id', userId)
           .eq('is_primary', true)
           .maybeSingle();
-        
         if (supabaseError) throw supabaseError;
-        
         if (isMounted) {
           setPrimaryRoadmap(data);
           setLoading(false);
         }
-      } catch (error) {
-        console.error('Error fetching primary roadmap:', error);
+      } catch (e: any) {
         if (isMounted) {
-          setError(error as Error);
+          setError(e);
           setLoading(false);
         }
       }
     };
-    
-    fetchPrimaryRoadmap();
-    
+
+    fetchPrimary();
+
     return () => {
       isMounted = false;
     };

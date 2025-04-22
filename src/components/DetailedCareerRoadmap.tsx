@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+
+import React from 'react';
 import { ArrowLeft } from 'lucide-react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -10,20 +11,18 @@ import RoadmapStages from './roadmap/RoadmapStages';
 import IndianMarketInsights from './roadmap/IndianMarketInsights';
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/context/AuthContext';
+import SetPrimaryRoadmapButton from './SetPrimaryRoadmapButton';
 
 const DetailedCareerRoadmap: React.FC = () => {
   const { category, careerName } = useParams<{ category?: string; careerName?: string }>();
   const navigate = useNavigate();
   const { toast } = useToast();
   const { user } = useAuth();
-  
-  const decodedCareerName = careerName ? decodeURIComponent(careerName) : '';
 
-  // Find the career in the category
+  const decodedCareerName = careerName ? decodeURIComponent(careerName) : '';
   const categoryData = category ? careerAdvice[category as keyof typeof careerAdvice] : null;
   const careerPath = categoryData?.paths.find(path => path.name === decodedCareerName);
-  
-  // Map between common career names and detailed roadmap keys
+
   const careerToRoadmapMap: Record<string, string> = {
     'Full-Stack Developer': 'Full-Stack Developer',
     'Frontend Developer': 'Frontend Developer',
@@ -33,13 +32,8 @@ const DetailedCareerRoadmap: React.FC = () => {
     'DevOps Engineer': 'Software Development',
     'Cybersecurity Analyst': 'Software Development',
     'Product Manager': 'UX/UI Design',
-    // Add more mappings as needed
   };
-  
-  // Look up the roadmap key or use the career name directly
   const roadmapKey = careerToRoadmapMap[decodedCareerName] || 'Software Development';
-  
-  // Get roadmap data with fallback to default
   const roadmapData = detailedRoadmaps[roadmapKey] || detailedRoadmaps.default;
 
   if (!careerPath) {
@@ -63,13 +57,19 @@ const DetailedCareerRoadmap: React.FC = () => {
             Back to Careers
           </Button>
         </Link>
+        {user && (
+          <SetPrimaryRoadmapButton
+            userId={user.id}
+            careerName={careerPath.name}
+            category={category as string}
+          />
+        )}
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-1">
           <CareerInfoSidebar careerPath={careerPath} roadmapData={roadmapData} />
         </div>
-
         <div className="lg:col-span-2">
           <Card>
             <CardHeader>
@@ -82,7 +82,6 @@ const DetailedCareerRoadmap: React.FC = () => {
               <RoadmapStages roadmapData={roadmapData} />
             </CardContent>
           </Card>
-
           <IndianMarketInsights marketData={roadmapData.indianMarket} />
         </div>
       </div>
