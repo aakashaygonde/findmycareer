@@ -13,6 +13,66 @@ import DetailedCareerRoadmap from '@/components/DetailedCareerRoadmap';
 // All paths in a single array for easy filtering
 const allPaths = Object.values(careerAdvice).flatMap(category => category.paths);
 
+// Helper function to get salary range for a career
+const getSalaryRange = (careerName: string): string => {
+  // Technology
+  if (careerName === 'Software Development') return '₹5,00,000 - ₹20,00,000';
+  if (careerName === 'Frontend Developer') return '₹4,00,000 - ₹18,00,000';
+  if (careerName === 'Full-Stack Developer') return '₹6,00,000 - ₹20,00,000';
+  if (careerName === 'Data Science') return '₹8,00,000 - ₹22,00,000';
+  if (careerName === 'Cybersecurity') return '₹7,00,000 - ₹20,00,000';
+  if (careerName === 'UX/UI Design') return '₹5,00,000 - ₹18,00,000';
+  if (careerName === 'AI Engineering') return '₹10,00,000 - ₹25,00,000';
+  if (careerName === 'DevOps Engineering') return '₹8,00,000 - ₹25,00,000';
+  
+  // Creative Arts
+  if (careerName === 'Graphic Design') return '₹3,50,000 - ₹15,00,000';
+  if (careerName === 'Content Creation') return '₹3,00,000 - ₹12,00,000';
+  if (careerName === 'Animation') return '₹4,00,000 - ₹16,00,000';
+  if (careerName === 'Photography') return '₹3,00,000 - ₹12,00,000';
+  if (careerName === 'Film Production') return '₹4,50,000 - ₹18,00,000';
+  if (careerName === 'Game Design') return '₹5,00,000 - ₹20,00,000';
+  
+  // Business
+  if (careerName === 'Marketing') return '₹4,00,000 - ₹15,00,000';
+  if (careerName === 'Finance') return '₹5,00,000 - ₹20,00,000';
+  if (careerName === 'Entrepreneurship') return '₹Varies widely';
+  if (careerName === 'Human Resources') return '₹4,50,000 - ₹18,00,000';
+  if (careerName === 'Project Management') return '₹6,00,000 - ₹22,00,000';
+  if (careerName === 'Supply Chain Management') return '₹5,00,000 - ₹18,00,000';
+  
+  // Science
+  if (careerName === 'Research Scientist') return '₹5,00,000 - ₹18,00,000';
+  if (careerName === 'Environmental Science') return '₹4,00,000 - ₹15,00,000';
+  if (careerName === 'Biotechnology') return '₹5,50,000 - ₹20,00,000';
+  if (careerName === 'Astronomy') return '₹4,50,000 - ₹16,00,000';
+  if (careerName === 'Materials Science') return '₹5,00,000 - ₹18,00,000';
+  if (careerName === 'Neuroscience') return '₹6,00,000 - ₹20,00,000';
+  
+  // Healthcare
+  if (careerName === 'Nursing') return '₹4,50,000 - ₹15,00,000';
+  if (careerName === 'Healthcare Administration') return '₹5,00,000 - ₹18,00,000';
+  if (careerName === 'Physical Therapy') return '₹5,00,000 - ₹16,00,000';
+  if (careerName === 'Mental Health Counseling') return '₹4,00,000 - ₹14,00,000';
+  if (careerName === 'Public Health') return '₹4,50,000 - ₹16,00,000';
+  if (careerName === 'Medical Laboratory Science') return '₹4,00,000 - ₹15,00,000';
+  
+  // Education
+  if (careerName === 'Teaching') return '₹3,50,000 - ₹12,00,000';
+  if (careerName === 'Educational Leadership') return '₹6,00,000 - ₹20,00,000';
+  if (careerName === 'Educational Technology') return '₹4,50,000 - ₹16,00,000';
+  if (careerName === 'Special Education') return '₹4,00,000 - ₹14,00,000';
+  
+  // Social Services
+  if (careerName === 'Social Work') return '₹3,50,000 - ₹12,00,000';
+  if (careerName === 'Nonprofit Management') return '₹4,00,000 - ₹16,00,000';
+  if (careerName === 'Community Development') return '₹3,80,000 - ₹14,00,000';
+  if (careerName === 'Human Services') return '₹3,50,000 - ₹13,00,000';
+  
+  // For any other career
+  return '₹4,00,000 - ₹18,00,000';
+};
+
 const CareerList: React.FC = () => {
   const { category: urlCategory } = useParams<{ category?: string }>();
   const navigate = useNavigate();
@@ -124,13 +184,7 @@ const CareerList: React.FC = () => {
               <div className="flex items-center text-sm">
                 <Clock className="h-4 w-4 mr-1" />
                 <span>
-                  {path.name === 'Frontend Developer' && '₹4,00,000 - ₹18,00,000'}
-                  {path.name === 'Full-Stack Developer' && '₹6,00,000 - ₹20,00,000'}
-                  {path.name === 'Data Scientist' && '₹8,00,000 - ₹22,00,000'}
-                  {path.name === 'UX/UI Designer' && '₹5,00,000 - ₹18,00,000'}
-                  {path.name === 'DevOps Engineer' && '₹8,00,000 - ₹25,00,000'}
-                  {path.name === 'Cybersecurity Analyst' && '₹7,00,000 - ₹20,00,000'}
-                  {path.name === 'Product Manager' && '₹10,00,000 - ₹25,00,000'}
+                  {getSalaryRange(path.name)}
                 </span>
               </div>
               <Link to={`/explore-roadmaps/${selectedCategory}/${encodeURIComponent(path.name)}`}>
