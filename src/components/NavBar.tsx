@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -13,6 +12,7 @@ import {
   DropdownMenuTrigger 
 } from '@/components/ui/dropdown-menu';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import ThemeToggle from './ThemeToggle';
 
 const NavBar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -85,6 +85,8 @@ const NavBar: React.FC = () => {
                 </Link>
               ))}
               
+              <ThemeToggle />
+              
               {!user ? (
                 <Link to="/auth">
                   <Button>Get Started</Button>
@@ -127,18 +129,21 @@ const NavBar: React.FC = () => {
 
           {/* Mobile Menu Button */}
           {isMobile && (
-            <Button 
-              variant="ghost" 
-              size="icon"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              aria-label="Toggle menu"
-            >
-              {isMenuOpen ? (
-                <X className="h-5 w-5" />
-              ) : (
-                <Menu className="h-5 w-5" />
-              )}
-            </Button>
+            <div className="flex items-center space-x-2">
+              <ThemeToggle />
+              <Button 
+                variant="ghost" 
+                size="icon"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                aria-label="Toggle menu"
+              >
+                {isMenuOpen ? (
+                  <X className="h-5 w-5" />
+                ) : (
+                  <Menu className="h-5 w-5" />
+                )}
+              </Button>
+            </div>
           )}
         </div>
       </div>
